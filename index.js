@@ -57,7 +57,7 @@ var PlaceHolder = function ($scope, $element, $http, $timeout, $compile) {
     //specially for fuzz and nik :)
   }
 
-
+  console.log("wooork");
   let debounceTimer = null;
 
 
@@ -71,9 +71,6 @@ var PlaceHolder = function ($scope, $element, $http, $timeout, $compile) {
     return {
 
       link: function (scope, elem, attrs) {
-        console.log("scope", scope);
-        console.log("elem", elem);
-
         if (elem && elem[0] && elem[0].children[0] && elem[0].children[0].getAttribute("address-auto-complete-field") === "POSTALCODE") {
 
           elem.empty();
