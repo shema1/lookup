@@ -72,7 +72,7 @@ var PlaceHolder = function ($scope, $element, $http, $timeout, $compile) {
 		return {
 
 			link: function (scope, elem, attrs) {
-				if (elem && elem[0] && elem[0].children[0] && elem[0].children[0].getAttribute("lw-tst") === "input_postalCode") {
+				if (elem && elem[0] && elem[0].children[0] && elem[0].children[0].getAttribute("address-auto-complete-field") === "POSTALCODE") {
 
 					elem.empty();
 
