@@ -1,4 +1,4 @@
-let postCodeInput = `
+let postCodeInput2 = `
 
 <input lw-tst="input_postalCode" list="postcodes" type="text" autocomplete="off" ng-disabled="sameAsShipping" tabindex="8" ng-model="address.PostCode" ng-change="changePostSearch()">
 
@@ -14,7 +14,7 @@ let postCodeInput = `
 
 
 
-const lookupControl = `
+const lookupControl2 = `
 
 <div class="control-group">
 
@@ -75,11 +75,11 @@ var PlaceHolder = function ($scope, $element, $http, $timeout, $compile) {
 
           elem.empty();
 
-          elem.append($compile(postCodeInput)(scope));
+          elem.append($compile(postCodeInput2)(scope));
 
 
 
-          $($compile(lookupControl)(scope)).insertAfter(elem[0].parentElement.parentElement);
+          $($compile(lookupControl2)(scope)).insertAfter(elem[0].parentElement.parentElement);
 
 
 
