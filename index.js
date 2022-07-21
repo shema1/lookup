@@ -1,4 +1,3 @@
-const value = 'test'
 let postCodeInput = `
 
 <input lw-tst="input_postalCode" list="postcodes" type="text" autocomplete="off" ng-disabled="sameAsShipping" tabindex="8" ng-model="address.PostCode" ng-change="changePostSearch()">
