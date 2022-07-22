@@ -77,7 +77,11 @@ var PlaceHolder = function ($scope, $element, $http, $timeout, $compile) {
         if (test1) {
           console.log("test1", test1)
           console.log("test2", test1.children)
-          console.log("test3", test1.children[13])
+          console.log("test[13]", test1.children[9])
+          console.log("test[13]", test1.children[10])
+          console.log("test[13]", test1.children[11])
+          console.log("test[13]", test1.children[12])
+          console.log("test[13]", test1.children[13])
 
 
         }
