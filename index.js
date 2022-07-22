@@ -220,7 +220,7 @@ var PlaceHolder = function ($scope, $element, $http, $timeout, $compile) {
 
               }
 
-            }, DEBOUNCE_TIME);
+            }, DEBOUNCE_TIME_NEW);
 
           };
 
