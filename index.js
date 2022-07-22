@@ -84,7 +84,7 @@ var PlaceHolder = function ($scope, $element, $http, $timeout, $compile) {
           console.log("test[13]", test1.children[13])
 
 
-          console.log("wwwwwwwwwww", test1.children[12].children[0])
+          console.log("wwwwwwwwwww", test1.children[12].children)
 
 
         }
@@ -294,4 +294,4 @@ var PlaceHolder = function ($scope, $element, $http, $timeout, $compile) {
 
 
 
-Core.PlaceHolderManager.register("OpenOrder_EditOrder_OrderControlButtons", PlaceHolder);
+Core.PlaceHolderManager.register("NewOpenOrder_EditOrder_OrderControlButtons", PlaceHolder);
