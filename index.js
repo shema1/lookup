@@ -1,4 +1,4 @@
-let postCodeInput2 = `
+let postCodeInputNew = `
 
 <input lw-tst="input_postalCode" list="postcodes" type="text" autocomplete="off" ng-disabled="sameAsShipping" tabindex="8" ng-model="address.PostCode" ng-change="changePostSearch()">
 
@@ -14,7 +14,7 @@ let postCodeInput2 = `
 
 
 
-const lookupControl2 = `
+const lookupControlNew = `
 
 <div class="control-group">
 
@@ -44,7 +44,7 @@ const lookupControl2 = `
 
 
 
-const DEBOUNCE_TIME = 500;
+const DEBOUNCE_TIME_NEW = 500;
 
 
 
@@ -71,15 +71,18 @@ var PlaceHolder = function ($scope, $element, $http, $timeout, $compile) {
     return {
 
       link: function (scope, elem, attrs) {
+        console.log("scope", scope);
+        console.log("elem", elem);
+
         if (elem && elem[0] && elem[0].children[0] && elem[0].children[0].getAttribute("address-auto-complete-field") === "POSTALCODE") {
 
           elem.empty();
 
-          elem.append($compile(postCodeInput2)(scope));
+          elem.append($compile(postCodeInputNew)(scope));
 
 
 
-          $($compile(lookupControl2)(scope)).insertAfter(elem[0].parentElement.parentElement);
+          $($compile(lookupControlNew)(scope)).insertAfter(elem[0].parentElement.parentElement);
 
 
 
