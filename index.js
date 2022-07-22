@@ -86,6 +86,8 @@ var PlaceHolder = function ($scope, $element, $http, $timeout, $compile) {
 
           console.log("wwwwwwwwwww", test1.children[12].children[0])
 
+          console.log("children", test1.children[12].children)
+
 
         }
         // console.log("elem[0].children[1].children[0].children[0]", elem[0].children[1].children[0].children[0]);
