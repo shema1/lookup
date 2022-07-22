@@ -71,15 +71,16 @@ var PlaceHolder = function ($scope, $element, $http, $timeout, $compile) {
     return {
 
       link: function (scope, elem, attrs) {
+        console.log("teeeeest ", document.querySelectorAll("[address-auto-complete-field='POSTALCODE']"))
         console.log("scope", scope);
-        console.log("elem", elem);
-        console.log("elem[0]", elem[0]);
-        console.log("elem[0].children[0]", elem[0].children[0]);
-        console.log("elem[0].children[0].getAttribute('lw-tst')", elem[0].children[0].getAttribute("lw-tst"));
-        console.log("elem[0].children[0].getAttribute('address-auto-complete-field')", elem[0].children[0].getAttribute("address-auto-complete-field"));
+        // console.log("elem", elem);
+        // console.log("elem[0]", elem[0]);
+        // console.log("elem[0].children[0]", elem[0].children[0]);
+        // console.log("elem[0].children[0].getAttribute('lw-tst')", elem[0].children[0].getAttribute("lw-tst"));
+        console.log("elem[0].children[1].children[0].children[0]", elem[0].children[1].children[0].children[0]);
+          
 
-
-        if (elem && elem[0] && elem[0].children[0] && elem[0].children[0].getAttribute("lw-tst") === "input_postalCode") {
+        if (elem && elem[0] && elem[0].children[1] && elem[0].children[1].children[0] && elem[0].children[1].children[0].children[0] && elem[0].children[1].children[0].children[0].getAttribute("lw-tst") === "input_postalCode") {
 
           elem.empty();
 
@@ -283,4 +284,4 @@ var PlaceHolder = function ($scope, $element, $http, $timeout, $compile) {
 
 
 
-Core.PlaceHolderManager.register("OrderAddress_ShippingFields", PlaceHolder);
+Core.PlaceHolderManager.register("NewOpenOrder_EditOrder_OrderControlButtons", PlaceHolder);
