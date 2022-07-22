@@ -72,15 +72,12 @@ var PlaceHolder = function ($scope, $element, $http, $timeout, $compile) {
 
       link: function (scope, elem, attrs) {
         console.log("scope", scope);
-        // console.log("elem", elem);
-        // console.log("elem[0]", elem[0]);
-        // console.log("elem[0].children[0]", elem[0].children[0]);
-        // console.log("elem[0].children[0].getAttribute('lw-tst')", elem[0].children[0].getAttribute("lw-tst"));
+        console.log("elem", elem);
+        
         console.log("elem[0].children[1].children[0].children[0]", elem[0].children[1].children[0].children[0]);
-        console.log("teeeeest ", elem.querySelectorAll("[address-auto-complete-field='POSTALCODE']"))
-          
 
-        if (elem && elem[0] && elem[0].children[1] && elem[0].children[1].children[0] && elem[0].children[1].children[0].children[0] && elem[0].children[1].children[0].children[0].getAttribute("lw-tst") === "input_postalCode") {
+``
+        if (elem && elem[0] && elem[0].children[0] && elem[0].children[0].getAttribute("lw-tst") === "input_postalCode") {
 
           elem.empty();
 
