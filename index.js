@@ -76,9 +76,17 @@ var PlaceHolder = function ($scope, $element, $http, $timeout, $compile) {
         // console.log("elem[0]", elem[0]);
         // console.log("elem[0].children[0]", elem[0].children[0]);
         // console.log("elem[0].children[0].getAttribute('lw-tst')", elem[0].children[0].getAttribute("lw-tst"));
-        console.log("elem[0].children[1].children[0].children[0]", elem[0]?.children[1]?.children[0]?.children[0]?.children[14]?.children[0]);
+        const test1 = elem[0]?.children[1]?.children[0]?.children[0]
+        if (test1) {
+          console.log("test1", test1)
+        }
+        const test2 = elem[0]?.children[1]?.children[0]?.children[0]?.children[13]
+        if (test2) {
+          console.log("test2", test2)
+        }
+        // console.log("elem[0].children[1].children[0].children[0]", elem[0]?.children[1]?.children[0]?.children[0]?.children[14]?.children[0]);
         // console.log("teeeeest ", elem.querySelectorAll("[address-auto-complete-field='POSTALCODE']"))
-          
+
 
         if (elem && elem[0] && elem[0].children[1] && elem[0].children[1].children[0] && elem[0].children[1].children[0].children[0] && elem[0].children[1].children[0].children[0].getAttribute("lw-tst") === "input_postalCode") {
 
