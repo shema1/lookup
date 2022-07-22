@@ -73,8 +73,13 @@ var PlaceHolder = function ($scope, $element, $http, $timeout, $compile) {
       link: function (scope, elem, attrs) {
         console.log("scope", scope);
         console.log("elem", elem);
-        
-        console.log("elem[0].children[1].children[0].children[0]", elem[0].children[1].children[0].children[0]);
+
+        const test1 = elem[0]?.children[1]?.children[0]?.children[0]?.children[13];
+
+        if (test1) {
+          console.log("test1", test1)
+        }
+        // console.log("elem[0].children[1].children[0].children[0]", elem[0].children[1].children[0].children[0]);
 
         if (elem && elem[0] && elem[0].children[0] && elem[0].children[0].getAttribute("lw-tst") === "input_postalCode") {
 
