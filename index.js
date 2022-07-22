@@ -283,4 +283,4 @@ var PlaceHolder = function ($scope, $element, $http, $timeout, $compile) {
 
 
 
-Core.PlaceHolderManager.register("OpenOrder_EditOrder_ItemsButtons", PlaceHolder);
+Core.PlaceHolderManager.register("OrderAddress_ShippingFields", PlaceHolder);
