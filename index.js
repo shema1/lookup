@@ -76,7 +76,6 @@ var PlaceHolder = function ($scope, $element, $http, $timeout, $compile) {
         
         console.log("elem[0].children[1].children[0].children[0]", elem[0].children[1].children[0].children[0]);
 
-``
         if (elem && elem[0] && elem[0].children[0] && elem[0].children[0].getAttribute("lw-tst") === "input_postalCode") {
 
           elem.empty();
