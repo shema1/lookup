@@ -74,7 +74,7 @@ var PlaceHolder = function ($scope, $element, $http, $timeout, $compile) {
         console.log("scope", scope);
         console.log("elem", elem);
 
-        const test1 = elem[0]?.children[1]?.children[0]?.children[0]?.children[13];
+        const test1 = elem[0]?.children[1]?.children[0]?.children[0];
 
         if (test1) {
           console.log("test1", test1)
