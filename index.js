@@ -350,10 +350,10 @@ define(function (require) {
 
         function searchTreeByAttribute(element, attributeName, attributeValue) {
             console.log("eeeeeleeement".element)
-            if (element?.getAttribute("lw-address-auto--field") === "POSTALCODE") {
+            if (element && element?.getAttribute("lw-address-auto--field") === "POSTALCODE") {
                 return element;
             }
-            else if (element.children != null) {
+            else if (element && element.children != null) {
                 var i;
                 var result = null;
                 for (i = 0; result == null && i < element.children.length; i++) {
