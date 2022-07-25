@@ -331,6 +331,11 @@ define(function (require) {
       return items;
       //specially for fuzz and nik :)
     }
+
+    this.valueChanged = async function (itemKey, val) {
+      console.log("itemKey", itemKey);
+      console.log("val", val);
+    }
   };
 
 
