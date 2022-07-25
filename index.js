@@ -394,11 +394,8 @@ define(function (require) {
                     for (const node of mutation.addedNodes) {
                         console.log("node", node)
                         var resultEmail = searchTree(node, "Email");
-                        if (resultEmail) {
-                            console.log("resultEmail", resultEmail)
-                        }
-
-                        //Find close button
+                        console.log("resultEmail", resultEmail);
+                        // //Find close button
                         // var closeBtn = searchTree(node, "Close");
 
                         // if (closeBtn) {
@@ -492,8 +489,11 @@ define(function (require) {
                         //     //angular.element(closeBtn.parentNode).attr('id', );
                         // }
 
+                        // var postcode = searchTree(node, " Postcode ");
+                        // console.log("postcode", postcode)
 
-                        // Find SAVE button
+
+                        // // Find SAVE button
                         // var saveTxt = searchTree(node, " Save");
                         // if (saveTxt) {
                         //     var btn = angular.element(saveTxt.parentNode);
@@ -559,31 +559,31 @@ define(function (require) {
                         //     </button>`;
 
 
-                        // var ctrl = angular.element(btn).controller();
+                        //     var ctrl = angular.element(btn).controller();
 
-                        // if (ctrl.options.viewName == "ViewOrder") {
-                        //     var scp_new = btn.scope();
+                        //     if (ctrl.options.viewName == "ViewOrder") {
+                        //         var scp_new = btn.scope();
 
-                        //     var is_new = scp_new.config.is_new;
+                        //         var is_new = scp_new.config.is_new;
 
-                        //     if (is_new) {
-                        //         var btn_save = angular.element(saveTxt);
-                        //         btn_save.replaceWith(newBtn);
+                        //         if (is_new) {
+                        //             var btn_save = angular.element(saveTxt);
+                        //             btn_save.replaceWith(newBtn);
+                        //         }
+                        //         else {
+
+                        //             btn.replaceWith(newBtn);
+                        //         }
+
                         //     }
-                        //     else {
-
-                        //         btn.replaceWith(newBtn);
-                        //     }
-
-                        // }
 
 
 
 
 
-                        // var attrBtn = angular.element(btn).context.getAttribute('ng-disabled');
+                        //     var attrBtn = angular.element(btn).context.getAttribute('ng-disabled');
 
-                        // var attrBtnClick = angular.element(btn).context.getAttribute('ng-click');
+                        //     var attrBtnClick = angular.element(btn).context.getAttribute('ng-click');
 
                         //     if (attrBtnClick) {
                         //         // GET btn scope
@@ -610,7 +610,7 @@ define(function (require) {
 
                         // }
 
-                        // Get subsource 
+                        // // Get subsource 
                         // var resultSubSource = searchTreeIncludes(node, "Subsource");
 
                         // if (resultSubSource) {
@@ -652,9 +652,9 @@ define(function (require) {
                         //     }
                         // }
 
-                        //#region Shipping address
+                        // //#region Shipping address
 
-                        // Look for another fields ... 
+                        // // Look for another fields ... 
                         // var resultEmail = searchTree(node, "Email");
 
                         // var resultAddress = searchTree(node, "Address 1");
@@ -668,7 +668,7 @@ define(function (require) {
                         // var resultPostCode = searchTree(node, "Postcode");
 
 
-                        ///
+                        // ///
                         // if (resultAdd) {
                         //     if (resultAdd.nextElementSibling.tagName == "INPUT") angular.element(resultAdd).context.setAttribute('style', "font-size:13px!important;");
                         // }
@@ -688,308 +688,308 @@ define(function (require) {
                         //         emailInput.attr("required", "required");
                         //         emailInput.attr("type", "email");
                         //     }
+                        // }
+
+
+                        // // Address 1, Town, Postcode => Cannot be empty (at least 1 character)
+                        // if (resultAddress) {
+                        //     if (resultAddress.nextElementSibling.tagName == "INPUT") {
+                        //         resultAddress.innerText = "*" + resultAddress.innerText;
+                        //         angular.element(resultAddress).context.setAttribute('style', "color:red!important;");
+                        //         var addInput = angular.element(resultAddress.nextElementSibling);
+                        //         addInput.context.setAttribute('minlength', '1');
+                        //         addInput.attr("required", "required");
+                        //     }
+                        // }
+
+                        // if (resultPostcode) {
+                        //     if (resultPostcode.nextElementSibling.tagName == "INPUT") {
+                        //         resultPostcode.innerText = "*" + resultPostcode.innerText;
+                        //         angular.element(resultPostcode).context.setAttribute('style', "color:red!important;");
+
+                        //         var codeInput = angular.element(resultPostcode.nextElementSibling);
+                        //         codeInput.context.setAttribute('minlength', '1');
+                        //         codeInput.attr("required", "required");
+                        //     }
+                        // }
+
+                        // if (resultTown) {
+                        //     if (resultTown.nextElementSibling.tagName == "INPUT") {
+                        //         resultTown.innerText = "*" + resultTown.innerText;
+
+                        //         angular.element(resultTown).context.setAttribute('style', "color:red!important;");
+
+                        //         var townInput = angular.element(resultTown.nextElementSibling);
+                        //         townInput.context.setAttribute('minlength', '1');
+                        //         townInput.attr("required", "required");
+                        //     }
+                        // }
+                        // //#endregion
+
+                        // //#region Billing address
+                        // // Look for another fields ... 
+                        // var resultEmailBilling = searchTreeWithParent(node, "Email", "Billing Address");
+
+                        // var resultAddressBilling = searchTreeWithParent(node, "Address 1", "Billing Address");
+
+                        // var resultPostcodeBilling = searchTreeWithParent(node, "Postcode", "Billing Address");
+                        // var resultTownBilling = searchTreeWithParent(node, "Town", "Billing Address");
+
+                        // var resultAddBilling = searchTreeWithParent(node, "Address", "Billing Address");
+                        // var resultPhoneBilling = searchTreeWithParent(node, "Phone", "Billing Address");
+
+                        // ///
+                        // if (resultAddBilling) angular.element(resultAddBilling).context.setAttribute('style', "font-size:13px!important;");
+                        // if (resultPhoneBilling) resultPhoneBilling.innerText = "Phone ";
+
+                        // if (resultEmailBilling && resultEmailBilling.nextElementSibling.tagName == "INPUT") {
+                        //     resultEmailBilling.innerText = "*" + resultEmailBilling.innerText;
+                        //     angular.element(resultEmailBilling).context.setAttribute('style', "color:red!important;");
+
+                        //     // email address => Cannot be empty (at least 1 character); Standard email validation of structure such as contains @, .
+                        //     var emailInput = angular.element(resultEmailBilling.nextElementSibling);
+                        //     emailInput.context.setAttribute('minlength', '1');
+                        //     emailInput.attr("required", "required");
+                        //     emailInput.attr("type", "email");
+                        // }
+
+
+                        // // Address 1, Town, Postcode => Cannot be empty (at least 1 character)
+                        // if (resultAddressBilling && resultAddressBilling.nextElementSibling.tagName == "INPUT") {
+                        //     resultAddressBilling.innerText = "*" + resultAddressBilling.innerText;
+                        //     angular.element(resultAddressBilling).context.setAttribute('style', "color:red!important;");
+                        //     var addInput = angular.element(resultAddressBilling.nextElementSibling);
+                        //     addInput.context.setAttribute('minlength', '1');
+                        //     addInput.attr("required", "required");
+                        // }
+
+                        // if (resultPostcodeBilling && resultPostcodeBilling.nextElementSibling.tagName == "INPUT") {
+                        //     resultPostcodeBilling.innerText = "*" + resultPostcodeBilling.innerText;
+                        //     angular.element(resultPostcodeBilling).context.setAttribute('style', "color:red!important;");
+
+                        //     var codeInput = angular.element(resultPostcodeBilling.nextElementSibling);
+                        //     codeInput.context.setAttribute('minlength', '1');
+                        //     codeInput.attr("required", "required");
+                        // }
+
+                        // if (resultTownBilling && resultTownBilling.nextElementSibling.tagName == "INPUT") {
+                        //     resultTownBilling.innerText = "*" + resultTownBilling.innerText;
+
+                        //     angular.element(resultTownBilling).context.setAttribute('style', "color:red!important;");
+
+                        //     var townInput = angular.element(resultTownBilling.nextElementSibling);
+                        //     townInput.context.setAttribute('minlength', '1');
+                        //     townInput.attr("required", "required");
+                        // }
+                        //#endregion
                     }
-
-
-                    // Address 1, Town, Postcode => Cannot be empty (at least 1 character)
-                    // if (resultAddress) {
-                    //     if (resultAddress.nextElementSibling.tagName == "INPUT") {
-                    //         resultAddress.innerText = "*" + resultAddress.innerText;
-                    //         angular.element(resultAddress).context.setAttribute('style', "color:red!important;");
-                    //         var addInput = angular.element(resultAddress.nextElementSibling);
-                    //         addInput.context.setAttribute('minlength', '1');
-                    //         addInput.attr("required", "required");
-                    //     }
-                    // }
-
-                    // if (resultPostcode) {
-                    //     if (resultPostcode.nextElementSibling.tagName == "INPUT") {
-                    //         resultPostcode.innerText = "*" + resultPostcode.innerText;
-                    //         angular.element(resultPostcode).context.setAttribute('style', "color:red!important;");
-
-                    //         var codeInput = angular.element(resultPostcode.nextElementSibling);
-                    //         codeInput.context.setAttribute('minlength', '1');
-                    //         codeInput.attr("required", "required");
-                    //     }
-                    // }
-
-                    // if (resultTown) {
-                    //     if (resultTown.nextElementSibling.tagName == "INPUT") {
-                    //         resultTown.innerText = "*" + resultTown.innerText;
-
-                    //         angular.element(resultTown).context.setAttribute('style', "color:red!important;");
-
-                    //         var townInput = angular.element(resultTown.nextElementSibling);
-                    //         townInput.context.setAttribute('minlength', '1');
-                    //         townInput.attr("required", "required");
-                    //     }
-                    // }
-                    //#endregion
-
-                    //#region Billing address
-                    // Look for another fields ... 
-                    // var resultEmailBilling = searchTreeWithParent(node, "Email", "Billing Address");
-
-                    // var resultAddressBilling = searchTreeWithParent(node, "Address 1", "Billing Address");
-
-                    // var resultPostcodeBilling = searchTreeWithParent(node, "Postcode", "Billing Address");
-                    // var resultTownBilling = searchTreeWithParent(node, "Town", "Billing Address");
-
-                    // var resultAddBilling = searchTreeWithParent(node, "Address", "Billing Address");
-                    // var resultPhoneBilling = searchTreeWithParent(node, "Phone", "Billing Address");
-
-                    ///
-                    // if (resultAddBilling) angular.element(resultAddBilling).context.setAttribute('style', "font-size:13px!important;");
-                    // if (resultPhoneBilling) resultPhoneBilling.innerText = "Phone ";
-
-                    // if (resultEmailBilling && resultEmailBilling.nextElementSibling.tagName == "INPUT") {
-                    //     resultEmailBilling.innerText = "*" + resultEmailBilling.innerText;
-                    //     angular.element(resultEmailBilling).context.setAttribute('style', "color:red!important;");
-
-                    //     // email address => Cannot be empty (at least 1 character); Standard email validation of structure such as contains @, .
-                    //     var emailInput = angular.element(resultEmailBilling.nextElementSibling);
-                    //     emailInput.context.setAttribute('minlength', '1');
-                    //     emailInput.attr("required", "required");
-                    //     emailInput.attr("type", "email");
-                    // }
-
-
-                    // Address 1, Town, Postcode => Cannot be empty (at least 1 character)
-                    // if (resultAddressBilling && resultAddressBilling.nextElementSibling.tagName == "INPUT") {
-                    //     resultAddressBilling.innerText = "*" + resultAddressBilling.innerText;
-                    //     angular.element(resultAddressBilling).context.setAttribute('style', "color:red!important;");
-                    //     var addInput = angular.element(resultAddressBilling.nextElementSibling);
-                    //     addInput.context.setAttribute('minlength', '1');
-                    //     addInput.attr("required", "required");
-                    // }
-
-                    // if (resultPostcodeBilling && resultPostcodeBilling.nextElementSibling.tagName == "INPUT") {
-                    //     resultPostcodeBilling.innerText = "*" + resultPostcodeBilling.innerText;
-                    //     angular.element(resultPostcodeBilling).context.setAttribute('style', "color:red!important;");
-
-                    //     var codeInput = angular.element(resultPostcodeBilling.nextElementSibling);
-                    //     codeInput.context.setAttribute('minlength', '1');
-                    //     codeInput.attr("required", "required");
-                    // }
-
-                    // if (resultTownBilling && resultTownBilling.nextElementSibling.tagName == "INPUT") {
-                    //     resultTownBilling.innerText = "*" + resultTownBilling.innerText;
-
-                    //     angular.element(resultTownBilling).context.setAttribute('style', "color:red!important;");
-
-                    //     var townInput = angular.element(resultTownBilling.nextElementSibling);
-                    //     townInput.context.setAttribute('minlength', '1');
-                    //     townInput.attr("required", "required");
-                    // }
-                    //#endregion
-                }
-            }
-        }
-
-    };
-
-    const observer = new MutationObserver(callback);
-
-    setTimeout(function () {
-        const targetNode = document.getElementsByClassName("opened-modules")[0];
-        observer.observe(targetNode, config);
-    }, 2000);
-});
-
-
-
-let openOrderServ1;
-let compIdent1;
-let netInvoiceIdent1;
-
-var CompleteButtopPlaceholder = function ($q, $scope, $element, controlService, openOrdersService) {
-    const items = [{
-        key: "vatNumber",
-        labelClass: "margin-none margin-top labelFont label-VatNumber",
-        inputClass: "fill-width disabled-transparent",
-        label: "VAT Number",
-        onBlurMethod: "valueChanged",
-        text: ""
-    }];
-
-    let orderScope = $scope.$parent.$parent.$parent;
-    openOrderServ1 = openOrdersService;
-
-    this.getItems = function () {
-        return items;
-    }
-    this.valueChanged = async function (itemKey, val) { }
-
-    this.setVATNumberInput = async function () { }
-
-    this.initialize = async (data) => {
-        try {
-            if (checkIdentifierExists1(orderScope, 'ORDER_COMPLETE') && checkIdentifierExists1(orderScope, 'NET_INVOICE') && orderScope.order.GeneralInfo.Source === "DIRECT") {
-                setCompleteButton1(orderScope, $element);
-            }
-        } catch (e) {
-            HandleError1("VAT ID", e);
-        }
-    }
-}
-
-var CompleteButtopPlaceholder2 = function ($q, $scope, $element, controlService, openOrdersService) {
-    const items = [{
-        key: "shippingAddressPH",
-        labelClass: "hidden",
-        inputClass: "hidden",
-        label: "",
-        onBlurMethod: "valueChanged",
-        text: ""
-    }];
-
-    let orderScope = $scope.$parent.$parent.$parent;
-    openOrderServ1 = openOrdersService;
-
-    this.initialize = async (data) => {
-        if (checkIdentifierExists1(orderScope, 'ORDER_COMPLETE') && checkIdentifierExists1(orderScope, 'NET_INVOICE') && orderScope.order.GeneralInfo.Source === "DIRECT") {
-            setCompleteButton1(orderScope, $element);
-        }
-    }
-
-    this.getItems = function () { return items; }
-
-    this.valueChanged = async function (itemKey, val) { }
-}
-
-function checkIdentifierExists1(orderScope, tag) {
-    if (IsNullOrEmpty1(compIdent1) || IsNullOrEmpty1(netInvoiceIdent1)) {
-        for (const [key, value] of Object.entries(orderScope.identifiers.identifiers)) {
-            if (value.Tag === tag && tag === 'ORDER_COMPLETE') {
-                compIdent1 = value;
-                return true;
-            }
-            else if (value.Tag === tag && tag === 'NET_INVOICE') {
-                netInvoiceIdent1 = value;
-                return true;
-            }
-        }
-        return false;
-    } else {
-        return true;
-    }
-}
-
-function isIdentifierAssigned1(localScope, tag) {
-    for (let i = 0; i < localScope.order.GeneralInfo.Identifiers.length; i++) {
-        if (localScope.order.GeneralInfo.Identifiers[i].Tag === tag) {
-            return true;
-        }
-    }
-    return false;
-}
-
-function setCompleteButton1(localScope, $element) {
-    let completeOdrBtn = angular.element($element).find('#completeOdrBtn');
-    if (completeOdrBtn[0] === undefined || completeOdrBtn[0] === null) {
-        setBtnLogic($element, 'completeOdrBtn');
-        let completeOdrBtn = angular.element($element).find('#completeOdrBtn');
-        completeOdrBtn[0].onclick = async function () {
-            this.disabled = true;
-
-
-
-
-
-            var e = document.getElementById('OpenOrderCloseButton');
-            if (e) {
-                var scp = angular.element(e).scope();
-
-                var address = scp.order.CustomerInfo.Address;
-
-                // TODO - Email validation
-
-                var isValidEmailAddress = scp.validateEmail(address.EmailAddress);
-
-                var isValidAddress = address.EmailAddress.length > 1 && isValidEmailAddress && address.Address1.length > 1 && address.Town.length > 1
-                    && address.PostCode.length > 1 && (address.Company.length > 1 || address.FullName.length > 1);
-
-                address = scp.order.CustomerInfo.BillingAddress;
-
-                var isValidEmailBillingAddress = scp.validateEmail(address.EmailAddress);
-
-                var isValidBilling = address.EmailAddress.length > 1 && isValidEmailBillingAddress && address.Address1.length > 1 && address.Town.length > 1
-                    && address.PostCode.length > 1 && (address.Company.length > 1 || address.FullName.length > 1);
-
-                var haveItems = scp.order.Items != null && scp.order.Items.length > 0;
-
-                var isGeneralInfo = scp.order.GeneralInfo.SubSource != '' && scp.order.GeneralInfo.SubSource != null;
-
-                var is_saving = isValidAddress && isValidBilling && haveItems && isGeneralInfo;
-                if (is_saving) {
-                    if (!localScope.locking.is_locked)
-                        localScope.locking.toggle_locked();
-
-                    for (let i = 0; i < localScope.order.Items.length; i++) {
-                        if (IsNullOrEmpty1(localScope.order.Items[i].AdditionalInfo))
-                            localScope.order.Items[i].AdditionalInfo = [];
-                    }
-                    if (!isIdentifierAssigned1(localScope, 'ORDER_COMPLETE') && !IsNullOrEmpty1(compIdent1)) {
-                        try {
-                            await openOrderServ1.assignOrderIdentifier({ order_ids: [localScope.order.OrderId], tag: compIdent1.Tag });
-                        } catch (e) {
-                            handleDefaultError("Error Adding Identifier");
-                            return;
-                        }
-                    }
-
-                    await localScope.saving.save_all();
-                    this.disabled = false;
-                    if (localScope.locking.is_locked)
-                        localScope.locking.toggle_locked();
-                    localScope.saving.close();
-                }
-                else {
-                    scp.whatToFill(scp.order);
-                    this.disabled = false;
-                    return;
                 }
             }
 
         };
-    }
-}
 
+        const observer = new MutationObserver(callback);
 
-function setBtnLogic($element, button) {
-    let navItems = angular.element($element).find('.navigation-item');
-
-    for (let i = navItems.length - 1; i >= 0; i--) {
-        if (button === 'completeOdrBtn' && navItems[i].innerText == "Close") {
-            navItems[i].parentNode.insertAdjacentHTML('afterbegin', cptOdrString);
-        }
-    }
-}
-
-function IsNullOrEmpty1(val) {
-    return val === undefined || val === null || val === "";
-}
-
-function HandleError1(title, error) {
-    if (!error) {
-        error = title;
-        title = "Error";
-    }
-
-    controlService.notifyError({
-        title: title,
-        message: error,
-        duration: 3
+        setTimeout(function () {
+            const targetNode = document.getElementsByClassName("opened-modules")[0];
+            observer.observe(targetNode, config);
+        }, 2000);
     });
 
-    var stack = new Error().stack;
-    console.error(stack);
-}
 
-let cptOdrString = `<div class="navigation-item tight">
+
+    let openOrderServ1;
+    let compIdent1;
+    let netInvoiceIdent1;
+
+    var CompleteButtopPlaceholder = function ($q, $scope, $element, controlService, openOrdersService) {
+        const items = [{
+            key: "vatNumber",
+            labelClass: "margin-none margin-top labelFont label-VatNumber",
+            inputClass: "fill-width disabled-transparent",
+            label: "VAT Number",
+            onBlurMethod: "valueChanged",
+            text: ""
+        }];
+
+        let orderScope = $scope.$parent.$parent.$parent;
+        openOrderServ1 = openOrdersService;
+
+        this.getItems = function () {
+            return items;
+        }
+        this.valueChanged = async function (itemKey, val) { }
+
+        this.setVATNumberInput = async function () { }
+
+        this.initialize = async (data) => {
+            try {
+                if (checkIdentifierExists1(orderScope, 'ORDER_COMPLETE') && checkIdentifierExists1(orderScope, 'NET_INVOICE') && orderScope.order.GeneralInfo.Source === "DIRECT") {
+                    setCompleteButton1(orderScope, $element);
+                }
+            } catch (e) {
+                HandleError1("VAT ID", e);
+            }
+        }
+    }
+
+    var CompleteButtopPlaceholder2 = function ($q, $scope, $element, controlService, openOrdersService) {
+        const items = [{
+            key: "shippingAddressPH",
+            labelClass: "hidden",
+            inputClass: "hidden",
+            label: "",
+            onBlurMethod: "valueChanged",
+            text: ""
+        }];
+
+        let orderScope = $scope.$parent.$parent.$parent;
+        openOrderServ1 = openOrdersService;
+
+        this.initialize = async (data) => {
+            if (checkIdentifierExists1(orderScope, 'ORDER_COMPLETE') && checkIdentifierExists1(orderScope, 'NET_INVOICE') && orderScope.order.GeneralInfo.Source === "DIRECT") {
+                setCompleteButton1(orderScope, $element);
+            }
+        }
+
+        this.getItems = function () { return items; }
+
+        this.valueChanged = async function (itemKey, val) { }
+    }
+
+    function checkIdentifierExists1(orderScope, tag) {
+        if (IsNullOrEmpty1(compIdent1) || IsNullOrEmpty1(netInvoiceIdent1)) {
+            for (const [key, value] of Object.entries(orderScope.identifiers.identifiers)) {
+                if (value.Tag === tag && tag === 'ORDER_COMPLETE') {
+                    compIdent1 = value;
+                    return true;
+                }
+                else if (value.Tag === tag && tag === 'NET_INVOICE') {
+                    netInvoiceIdent1 = value;
+                    return true;
+                }
+            }
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    function isIdentifierAssigned1(localScope, tag) {
+        for (let i = 0; i < localScope.order.GeneralInfo.Identifiers.length; i++) {
+            if (localScope.order.GeneralInfo.Identifiers[i].Tag === tag) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    function setCompleteButton1(localScope, $element) {
+        let completeOdrBtn = angular.element($element).find('#completeOdrBtn');
+        if (completeOdrBtn[0] === undefined || completeOdrBtn[0] === null) {
+            setBtnLogic($element, 'completeOdrBtn');
+            let completeOdrBtn = angular.element($element).find('#completeOdrBtn');
+            completeOdrBtn[0].onclick = async function () {
+                this.disabled = true;
+
+
+
+
+
+                var e = document.getElementById('OpenOrderCloseButton');
+                if (e) {
+                    var scp = angular.element(e).scope();
+
+                    var address = scp.order.CustomerInfo.Address;
+
+                    // TODO - Email validation
+
+                    var isValidEmailAddress = scp.validateEmail(address.EmailAddress);
+
+                    var isValidAddress = address.EmailAddress.length > 1 && isValidEmailAddress && address.Address1.length > 1 && address.Town.length > 1
+                        && address.PostCode.length > 1 && (address.Company.length > 1 || address.FullName.length > 1);
+
+                    address = scp.order.CustomerInfo.BillingAddress;
+
+                    var isValidEmailBillingAddress = scp.validateEmail(address.EmailAddress);
+
+                    var isValidBilling = address.EmailAddress.length > 1 && isValidEmailBillingAddress && address.Address1.length > 1 && address.Town.length > 1
+                        && address.PostCode.length > 1 && (address.Company.length > 1 || address.FullName.length > 1);
+
+                    var haveItems = scp.order.Items != null && scp.order.Items.length > 0;
+
+                    var isGeneralInfo = scp.order.GeneralInfo.SubSource != '' && scp.order.GeneralInfo.SubSource != null;
+
+                    var is_saving = isValidAddress && isValidBilling && haveItems && isGeneralInfo;
+                    if (is_saving) {
+                        if (!localScope.locking.is_locked)
+                            localScope.locking.toggle_locked();
+
+                        for (let i = 0; i < localScope.order.Items.length; i++) {
+                            if (IsNullOrEmpty1(localScope.order.Items[i].AdditionalInfo))
+                                localScope.order.Items[i].AdditionalInfo = [];
+                        }
+                        if (!isIdentifierAssigned1(localScope, 'ORDER_COMPLETE') && !IsNullOrEmpty1(compIdent1)) {
+                            try {
+                                await openOrderServ1.assignOrderIdentifier({ order_ids: [localScope.order.OrderId], tag: compIdent1.Tag });
+                            } catch (e) {
+                                handleDefaultError("Error Adding Identifier");
+                                return;
+                            }
+                        }
+
+                        await localScope.saving.save_all();
+                        this.disabled = false;
+                        if (localScope.locking.is_locked)
+                            localScope.locking.toggle_locked();
+                        localScope.saving.close();
+                    }
+                    else {
+                        scp.whatToFill(scp.order);
+                        this.disabled = false;
+                        return;
+                    }
+                }
+
+            };
+        }
+    }
+
+
+    function setBtnLogic($element, button) {
+        let navItems = angular.element($element).find('.navigation-item');
+
+        for (let i = navItems.length - 1; i >= 0; i--) {
+            if (button === 'completeOdrBtn' && navItems[i].innerText == "Close") {
+                navItems[i].parentNode.insertAdjacentHTML('afterbegin', cptOdrString);
+            }
+        }
+    }
+
+    function IsNullOrEmpty1(val) {
+        return val === undefined || val === null || val === "";
+    }
+
+    function HandleError1(title, error) {
+        if (!error) {
+            error = title;
+            title = "Error";
+        }
+
+        controlService.notifyError({
+            title: title,
+            message: error,
+            duration: 3
+        });
+
+        var stack = new Error().stack;
+        console.error(stack);
+    }
+
+    let cptOdrString = `<div class="navigation-item tight">
                                 <button class="green" style="" id="completeOdrBtn" ng-disabled="saving.is_saving()" title="CompleteNEW"><i class="fa fa-check"></i> CompleteNEW</button>
                             </div>`;
 
-placeholderManager.register("OrderAddress_BillingFields", CompleteButtopPlaceholder);
-placeholderManager.register("OrderAddress_ShippingFields", CompleteButtopPlaceholder2);
+    placeholderManager.register("OrderAddress_BillingFields", CompleteButtopPlaceholder);
+    placeholderManager.register("OrderAddress_ShippingFields", CompleteButtopPlaceholder2);
 });
