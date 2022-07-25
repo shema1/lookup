@@ -339,7 +339,8 @@ define(function (require) {
       console.log("val", val);
     }
 
-    const test1 = elem[0]
+    console.log("$element", element)
+    const test1 = $element[0]
     if (test1) {
       console.log("test7", test1.firstChild.ownerDocument.querySelectorAll)
       const a = test1.firstChild.ownerDocument.querySelectorAll('[address-auto-complete-field="POSTALCODE"]')
