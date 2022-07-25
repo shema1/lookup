@@ -392,7 +392,7 @@ define(function (require) {
             for (const mutation of mutationsList) {
                 if (mutation.type === "childList") {
                     for (const node of mutation.addedNodes) {
-
+                        console.log("node", node)
                         //Find close button
                         var closeBtn = searchTree(node, "Close");
                         
