@@ -394,7 +394,16 @@ define(function (require) {
                     for (const node of mutation.addedNodes) {
                         console.log("node", node)
                         var resultEmail = searchTree(node, "Email");
-                        console.log("resultEmail", resultEmail);
+                        resultEmail && console.log("resultEmail", resultEmail);
+
+                        var resultPostCode = searchTree(node, "Postcode");
+                        if (resultPostCode) {
+                            console.log("resultPostCode", resultPostCode);
+                            const test = node.nextSibling
+                            console.log("test", test)
+                        }
+
+
                         // //Find close button
                         // var closeBtn = searchTree(node, "Close");
 
