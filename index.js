@@ -347,6 +347,21 @@ define(function (require) {
             return null;
         }
 
+        function searchTreeByAttribute(element, attributeName, attributeValue) {
+            if (element?.getAttribute("lw-address-auto--field") === "POSTALCODE") {
+                return element;
+            }
+            else if (element.children != null) {
+                var i;
+                var result = null;
+                for (i = 0; result == null && i < element.children.length; i++) {
+                    result = searchTree(element.children[i]);
+                }
+                return result;
+            }
+            return null;
+        }
+
         function searchTreeIncludes(element, matchingTitle) {
             if (element) {
                 if (element.innerText) {
@@ -392,12 +407,12 @@ define(function (require) {
             for (const mutation of mutationsList) {
                 if (mutation.type === "childList") {
                     for (const node of mutation.addedNodes) {
-                        console.log("node", node)
                         var resultEmail = searchTree(node, "Email");
                         resultEmail && console.log("resultEmail", resultEmail);
-
-                        var resultPostCode = searchTree(node, "Postcode");
+                        
+                        var resultPostCode = searchTreeByAttribute(node, "Postcode");
                         if (resultPostCode) {
+                            console.log("node", node)
                             console.log("resultPostCode", resultPostCode);
                             const test = node.nextSibling
                             console.log("test", test)
