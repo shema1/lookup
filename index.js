@@ -57,12 +57,17 @@ var PlaceHolder = function ($scope, $element, $http, $timeout, $compile) {
       key: "shippingAddressPH",
       labelClass: "hidden",
       inputClass: "hidden",
+      onBlurMethod: "valueChanged",
       label: "",
       text: ""
     }
     ];
   }
+  this.valueChanged = async function (itemKey, val) {
+    console.log("itemKey", itemKey);
+    console.log("val", val);
 
+  }
 
   this.initialize = async (data) => {
   }
