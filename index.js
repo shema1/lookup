@@ -349,7 +349,7 @@ define(function (require) {
         }
 
         function searchTreeByAttribute(element, attributeName, attributeValue) {
-            console.log("eeeeeleeement".element)
+            console.log("eeeeeleeement", element)
             if (element && element?.getAttribute("lw-address-auto--field") === "POSTALCODE") {
                 return element;
             }
