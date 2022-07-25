@@ -65,6 +65,14 @@ var PlaceHolder = function ($scope, $element, $http, $timeout, $compile) {
   const viewModule = angular.module("openOrdersViewService");
   console.log("viewModule", viewModule)
 
+  const testA = angular.module("NewopenOrdersViewService");
+  console.log("testA", testA);
+
+  const testB = angular.module("NewOpenOrdersViewService");
+  console.log("testB", testB);
+
+  const testC = angular.module("ssss");
+  console.log("testC", testC);
 
   viewModule.directive("div", function () {
 
