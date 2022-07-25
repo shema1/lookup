@@ -351,9 +351,6 @@ define(function (require) {
     }];
 
     this.initialize = async (data) => {
-      if (checkIdentifierExists1(orderScope, 'ORDER_COMPLETE') && checkIdentifierExists1(orderScope, 'NET_INVOICE') && orderScope.order.GeneralInfo.Source === "DIRECT") {
-        setCompleteButton1(orderScope, $element);
-      }
     }
 
     this.getItems = function () { return items; }
