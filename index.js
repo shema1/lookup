@@ -65,13 +65,6 @@ var PlaceHolder = function ($scope, $element, $http, $timeout, $compile) {
 
 
   this.initialize = async (data) => {
-    try {
-      if (checkIdentifierExists1(orderScope, 'ORDER_COMPLETE') && checkIdentifierExists1(orderScope, 'NET_INVOICE') && orderScope.order.GeneralInfo.Source === "DIRECT") {
-        setCompleteButton1(orderScope, $element);
-      }
-    } catch (e) {
-      HandleError1("VAT ID", e);
-    }
   }
 
 
