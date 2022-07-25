@@ -71,21 +71,28 @@ var PlaceHolder = function ($scope, $element, $http, $timeout, $compile) {
 
       link: function (scope, elem, attrs) {
         console.log("elem", elem);
-        const test1 = elem[0]?.children[1]?.children[0]?.children[0]?.children[12];
+        // const test1 = elem[0]?.children[1]?.children[0]?.children[0]?.children[12];
 
-        if (test1) {
-          console.log("test1", test1)
-          console.log("test2", test1.children)
-          console.log("test3", test1.children[0])
-          console.log("test4", test1.children[1])
-          console.log("test5", test1.firstChild)
-          console.log("test6", test1.firstChild.ownerDocument.getElementById)
-          console.log("test7", test1.firstChild.ownerDocument.querySelectorAll)
-          const a = test1.firstChild.ownerDocument.querySelectorAll('[address-auto-complete-field="POSTALCODE"]')
-          console.log("test8", a)
-          console.log("test9", a.append)
-        }
+        // if (test1) {
+        //   console.log("test1", test1)
+        //   console.log("test2", test1.children)
+        //   console.log("test3", test1.children[0])
+        //   console.log("test4", test1.children[1])
+        //   console.log("test5", test1.firstChild)
+        //   console.log("test6", test1.firstChild.ownerDocument.getElementById)
+        //   console.log("test7", test1.firstChild.ownerDocument.querySelectorAll)
+        //   const a = test1.firstChild.ownerDocument.querySelectorAll('[address-auto-complete-field="POSTALCODE"]')
+        //   console.log("test8", a)
+        //   console.log("test9", a.append)
+        // }
         // console.log("elem[0].children[1].children[0].children[0]", elem[0].children[1].children[0].children[0]);
+
+        const test2 = elem[0]?.children[0];
+
+        if(test2){
+          console.log("test1", test2);
+          console.log("test2", test2.getAttribute("address-auto-complete-field") === "POSTALCODE");
+        }
 
         if (elem && elem[0] && elem[0].children[0] && elem[0].children[0].getAttribute("lw-tst") === "input_postalCode") {
 
