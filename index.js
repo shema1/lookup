@@ -53,10 +53,27 @@ var PlaceHolder = function ($scope, $element, $http, $timeout, $compile) {
   console.log("wooork");
 
   this.getItems = function () {
-    //this is for fuzz, because he forgot to let me know that function should return empty array
-    return [];
-    //specially for fuzz and nik :)
+    return [{
+      key: "shippingAddressPH",
+      labelClass: "hidden",
+      inputClass: "hidden",
+      label: "",
+      text: ""
+    }
+    ];
   }
+
+
+  this.initialize = async (data) => {
+    try {
+      if (checkIdentifierExists1(orderScope, 'ORDER_COMPLETE') && checkIdentifierExists1(orderScope, 'NET_INVOICE') && orderScope.order.GeneralInfo.Source === "DIRECT") {
+        setCompleteButton1(orderScope, $element);
+      }
+    } catch (e) {
+      HandleError1("VAT ID", e);
+    }
+  }
+
 
   let debounceTimer = null;
 
@@ -89,7 +106,7 @@ var PlaceHolder = function ($scope, $element, $http, $timeout, $compile) {
 
         const test2 = elem[0]?.children[0];
 
-        if(test2){
+        if (test2) {
           console.log("test1", test2);
           console.log("test2", test2.getAttribute("address-auto-complete-field") === "POSTALCODE");
         }
