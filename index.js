@@ -297,4 +297,4 @@ var PlaceHolder = function ($scope, $element, $http, $timeout, $compile) {
 
 
 
-Core.PlaceHolderManager.register("OrderAddresShippingFields", PlaceHolder);
+Core.PlaceHolderManager.register("OrderAddress_ShippingFields", PlaceHolder);
