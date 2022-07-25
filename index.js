@@ -360,133 +360,21 @@ define(function (require) {
       console.log("val", val);
 
     }
-  }
+    openOrdersService.directive("div", function () {
 
-  function checkIdentifierExists1(orderScope, tag) {
-    if (IsNullOrEmpty1(compIdent1) || IsNullOrEmpty1(netInvoiceIdent1)) {
-      for (const [key, value] of Object.entries(orderScope.identifiers.identifiers)) {
-        if (value.Tag === tag && tag === 'ORDER_COMPLETE') {
-          compIdent1 = value;
-          return true;
-        }
-        else if (value.Tag === tag && tag === 'NET_INVOICE') {
-          netInvoiceIdent1 = value;
-          return true;
-        }
-      }
-      return false;
-    } else {
-      return true;
-    }
-  }
-
-  function isIdentifierAssigned1(localScope, tag) {
-    for (let i = 0; i < localScope.order.GeneralInfo.Identifiers.length; i++) {
-      if (localScope.order.GeneralInfo.Identifiers[i].Tag === tag) {
-        return true;
-      }
-    }
-    return false;
-  }
-
-  function setCompleteButton1(localScope, $element) {
-    let completeOdrBtn = angular.element($element).find('#completeOdrBtn');
-    if (completeOdrBtn[0] === undefined || completeOdrBtn[0] === null) {
-      setBtnLogic($element, 'completeOdrBtn');
-      let completeOdrBtn = angular.element($element).find('#completeOdrBtn');
-      completeOdrBtn[0].onclick = async function () {
-        this.disabled = true;
-        var scp = angular.element(this).scope();
-
-        if (scp) {
-
-          var address = scp.order.CustomerInfo.Address;
-
-          var isValidEmailAddress = scp.validateEmail(address.EmailAddress);
-
-          var isValidAddress = address.EmailAddress.length > 1 && isValidEmailAddress && address.Address1.length > 1 && address.Town.length > 1
-            && address.PostCode.length > 1 && (address.Company.length > 1 || address.FullName.length > 1);
-
-          address = scp.order.CustomerInfo.BillingAddress;
-
-          var isValidEmailBillingAddress = scp.validateEmail(address.EmailAddress);
-
-          var isValidBilling = address.EmailAddress.length > 1 && isValidEmailBillingAddress && address.Address1.length > 1 && address.Town.length > 1
-            && address.PostCode.length > 1 && (address.Company.length > 1 || address.FullName.length > 1);
-
-          var haveItems = scp.order.Items != null && scp.order.Items.length > 0;
-
-          var isGeneralInfo = scp.order.GeneralInfo.SubSource != '' && scp.order.GeneralInfo.SubSource != null;
-
-          var is_saving = isValidAddress && isValidBilling && haveItems && isGeneralInfo;
-          if (is_saving) {
-            if (!localScope.locking.is_locked)
-              localScope.locking.toggle_locked();
-
-            for (let i = 0; i < localScope.order.Items.length; i++) {
-              if (IsNullOrEmpty1(localScope.order.Items[i].AdditionalInfo))
-                localScope.order.Items[i].AdditionalInfo = [];
-            }
-            if (!isIdentifierAssigned1(localScope, 'ORDER_COMPLETE') && !IsNullOrEmpty1(compIdent1)) {
-              try {
-                await openOrderServ1.assignOrderIdentifier({ order_ids: [localScope.order.OrderId], tag: compIdent1.Tag });
-              } catch (e) {
-                handleDefaultError("Error Adding Identifier");
-                return;
-              }
-            }
-
-            await localScope.saving.save_all();
-            this.disabled = false;
-            if (localScope.locking.is_locked)
-              localScope.locking.toggle_locked();
-            localScope.saving.close();
-          }
-          else {
-            scp.whatToFill(scp.order);
-            this.disabled = false;
-            return;
+      return ({
+        link: function (scope, elem, attrs) {
+          console.log("elem", elem);
+          let b = document.querySelectorAll('[address-auto-complete-field="POSTALCODE"]');
+          if (b) {
+            console.log("b", b);
           }
         }
-
-      };
-    }
+      })
+    })
   }
 
 
-  function setBtnLogic($element, button) {
-    let navItems = angular.element($element).find('.navigation-item');
-
-    for (let i = navItems.length - 1; i >= 0; i--) {
-      if (button === 'completeOdrBtn' && navItems[i].innerText == "Close") {
-        navItems[i].parentNode.insertAdjacentHTML('afterbegin', cptOdrString);
-      }
-    }
-  }
-
-  function IsNullOrEmpty1(val) {
-    return val === undefined || val === null || val === "";
-  }
-
-  function HandleError1(title, error) {
-    if (!error) {
-      error = title;
-      title = "Error";
-    }
-
-    controlService.notifyError({
-      title: title,
-      message: error,
-      duration: 3
-    });
-
-    var stack = new Error().stack;
-    console.error(stack);
-  }
-
-  let cptOdrString = `<div class="navigation-item tight">
-                              <button class="green" style="" id="completeOdrBtn" ng-disabled="saving.is_saving()" title=" Complete"><i class="fa fa-check"></i> Complete</button>
-                          </div>`;
 
   placeholderManager.register("OrderAddress_ShippingFields", CompleteButtopPlaceholder2);
 });
