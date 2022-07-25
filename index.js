@@ -79,8 +79,14 @@ var PlaceHolder = function ($scope, $element, $http, $timeout, $compile) {
           console.log("test2", test1.children)
           console.log("test3", test1.children[0])
           console.log("test4", test1.children[1])
-          console.log("test5", test1.firstChild.ownerDocument.getElementById)
-          console.log("test6", test1.firstChild)
+          console.log("test5", test1.firstChild)
+          console.log("test6", test1.firstChild.ownerDocument.getElementById)
+          console.log("test7", test1.firstChild.ownerDocument.querySelectorAll)
+          const aa = test1.firstChild.ownerDocument.querySelectorAll('[address-auto-complete-field="POSTALCODE"]')
+          console.log("test8", a)
+          console.log("test9", a.append)
+
+
 
 
 
