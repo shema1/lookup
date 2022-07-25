@@ -1,355 +1,301 @@
-// let postCodeInputNew = `
+let postCodeInputNew = `
 
-// <input lw-tst="input_postalCode" list="postcodes" type="text" autocomplete="off" ng-disabled="sameAsShipping" tabindex="8" ng-model="address.PostCode" ng-change="changePostSearch()">
+<input lw-tst="input_postalCode" list="postcodes" type="text" autocomplete="off" ng-disabled="sameAsShipping" tabindex="8" ng-model="address.PostCode" ng-change="changePostSearch()">
 
-// <!----><button ng-if="!isBillingAddres" lw-tst="lookUp_postalCode" type="button" ng-click="lookUp($event,'POSTALCODE', address.PostCode);" class="btn"><i class="fa fa-search"></i></button><!---->
+<!----><button ng-if="!isBillingAddres" lw-tst="lookUp_postalCode" type="button" ng-click="lookUp($event,'POSTALCODE', address.PostCode);" class="btn"><i class="fa fa-search"></i></button><!---->
 
-// <datalist id="postcodes">
+<datalist id="postcodes">
 
-// 	<option ng-repeat="item in postcodes" value="{{item}}">
+	<option ng-repeat="item in postcodes" value="{{item}}">
 
-// </datalist>
+</datalist>
 
-// `;
+`;
 
 
 
-// const lookupControlNew = `
+const lookupControlNew = `
 
-// <div class="control-group">
+<div class="control-group">
 
-//     <label class="control-label">Lookup:</label>
+    <label class="control-label">Lookup:</label>
 
-//     <div class="controls controls-row">
+    <div class="controls controls-row">
 
-//         <div class="input-append">
+        <div class="input-append">
 
-//             <input id="lookupAddressesInput" list="lookupAddresses" type="text" autocomplete="off"
+            <input id="lookupAddressesInput" list="lookupAddresses" type="text" autocomplete="off"
 
-//                 ng-disabled="sameAsShipping || !selectedPostcode" tabindex="-1" ng-model="lookupAddress" ng-change="changeLookupAddress()">
+                ng-disabled="sameAsShipping || !selectedPostcode" tabindex="-1" ng-model="lookupAddress" ng-change="changeLookupAddress()">
 
-//             <datalist id="lookupAddresses">
+            <datalist id="lookupAddresses">
 
-// 				<option ng-repeat="item in lookupAddresses" value="{{item.formatted}}">
+				<option ng-repeat="item in lookupAddresses" value="{{item.formatted}}">
 
-//             </datalist>
+            </datalist>
 
-//         </div>
+        </div>
 
-//     </div>
+    </div>
 
-// </div>
+</div>
 
-// `;
+`;
 
 
 
-// const DEBOUNCE_TIME_NEW = 500;
+const DEBOUNCE_TIME_NEW = 500;
 
 
 
-// var PlaceHolder = function ($scope, $element, $http, $timeout, $compile) {
+var PlaceHolder = function ($scope, $element, $http, $timeout, $compile) {
 
-//   console.log("wooork");
+  console.log("wooork");
 
-//   this.getItems = function () {
-//     //this is for fuzz, because he forgot to let me know that function should return empty array
-//     return [];
-//     //specially for fuzz and nik :)
-//   }
+  this.getItems = function () {
+    //this is for fuzz, because he forgot to let me know that function should return empty array
+    return [];
+    //specially for fuzz and nik :)
+  }
 
-//   let debounceTimer = null;
+  let debounceTimer = null;
 
 
 
-//   const viewModule = angular.module("openOrdersViewService");
-//   console.log("viewModule", viewModule)
+  const viewModule = angular.module("openOrdersViewService");
+  console.log("viewModule", viewModule)
 
-//   viewModule.directive("div", function () {
+  viewModule.directive("div", function () {
 
-//     return {
+    return {
 
-//       link: function (scope, elem, attrs) {
-//         console.log("elem", elem);
-//         // const test1 = elem[0]?.children[1]?.children[0]?.children[0]?.children[12];
+      link: function (scope, elem, attrs) {
+        console.log("elem", elem);
+        // const test1 = elem[0]?.children[1]?.children[0]?.children[0]?.children[12];
 
-//         // if (test1) {
-//         //   console.log("test1", test1)
-//         //   console.log("test2", test1.children)
-//         //   console.log("test3", test1.children[0])
-//         //   console.log("test4", test1.children[1])
-//         //   console.log("test5", test1.firstChild)
-//         //   console.log("test6", test1.firstChild.ownerDocument.getElementById)
-//         //   console.log("test7", test1.firstChild.ownerDocument.querySelectorAll)
-//         //   const a = test1.firstChild.ownerDocument.querySelectorAll('[address-auto-complete-field="POSTALCODE"]')
-//         //   console.log("test8", a)
-//         //   console.log("test9", a.append)
-//         // }
-//         // console.log("elem[0].children[1].children[0].children[0]", elem[0].children[1].children[0].children[0]);
+        // if (test1) {
+        //   console.log("test1", test1)
+        //   console.log("test2", test1.children)
+        //   console.log("test3", test1.children[0])
+        //   console.log("test4", test1.children[1])
+        //   console.log("test5", test1.firstChild)
+        //   console.log("test6", test1.firstChild.ownerDocument.getElementById)
+        //   console.log("test7", test1.firstChild.ownerDocument.querySelectorAll)
+        //   const a = test1.firstChild.ownerDocument.querySelectorAll('[address-auto-complete-field="POSTALCODE"]')
+        //   console.log("test8", a)
+        //   console.log("test9", a.append)
+        // }
+        // console.log("elem[0].children[1].children[0].children[0]", elem[0].children[1].children[0].children[0]);
 
-//         const test2 = elem[0]?.children[0];
+        const test2 = elem[0]?.children[0];
 
-//         if(test2){
-//           console.log("test1", test2);
-//           console.log("test2", test2.getAttribute("address-auto-complete-field") === "POSTALCODE");
-//         }
+        if(test2){
+          console.log("test1", test2);
+          console.log("test2", test2.getAttribute("address-auto-complete-field") === "POSTALCODE");
+        }
 
-//         if (elem && elem[0] && elem[0].children[0] && elem[0].children[0].getAttribute("lw-tst") === "input_postalCode") {
+        if (elem && elem[0] && elem[0].children[0] && elem[0].children[0].getAttribute("lw-tst") === "input_postalCode") {
 
-//           elem.empty();
+          elem.empty();
 
-//           elem.append($compile(postCodeInputNew)(scope));
+          elem.append($compile(postCodeInputNew)(scope));
 
 
 
-//           $($compile(lookupControlNew)(scope)).insertAfter(elem[0].parentElement.parentElement);
+          $($compile(lookupControlNew)(scope)).insertAfter(elem[0].parentElement.parentElement);
 
 
 
-//           $timeout(function () {
+          $timeout(function () {
 
-//             scope.$apply(function () {
+            scope.$apply(function () {
 
-//               scope.postcodes = [];
+              scope.postcodes = [];
 
-//               scope.lookupAddresses = [];
+              scope.lookupAddresses = [];
 
-//               scope.selectedPostcode = undefined;
+              scope.selectedPostcode = undefined;
 
-//             });
+            });
 
-//           });
+          });
 
 
 
-//           function findAddresses(postalCode) {
+          function findAddresses(postalCode) {
 
-//             $timeout(function () {
+            $timeout(function () {
 
-//               scope.$apply(function () {
+              scope.$apply(function () {
 
-//                 scope.lookupAddresses = [];
+                scope.lookupAddresses = [];
 
-//               });
+              });
 
-//             });
+            });
 
 
 
-//             $http({
+            $http({
 
-//               method: 'GET',
+              method: 'GET',
 
-//               url: 'https://postcodelookup.prodashes.com/addresses',
+              url: 'https://postcodelookup.prodashes.com/addresses',
 
-//               params: { postalCode }
+              params: { postalCode }
 
-//             }).then(function (response) {
+            }).then(function (response) {
 
-//               const data = response.data;
+              const data = response.data;
 
 
 
-//               $timeout(function () {
+              $timeout(function () {
 
-//                 scope.$apply(function () {
+                scope.$apply(function () {
 
-//                   scope.lookupAddresses = data.map(x => Object.assign({}, x, { formatted: `${x.address1}, ${x.address2}, ${x.address3}, ${x.town}, ${x.region}, ${x.country}` }));
+                  scope.lookupAddresses = data.map(x => Object.assign({}, x, { formatted: `${x.address1}, ${x.address2}, ${x.address3}, ${x.town}, ${x.region}, ${x.country}` }));
 
-//                   scope.selectedPostcode = postalCode;
+                  scope.selectedPostcode = postalCode;
 
-//                   scope.lookupAddress = ""
+                  scope.lookupAddress = ""
 
-//                 });
+                });
 
-//               })
+              })
 
-//             });
+            });
 
-//           };
+          };
 
 
 
-//           scope.changePostSearch = function () {
+          scope.changePostSearch = function () {
 
-//             debounceTimer && $timeout.cancel(debounceTimer);
+            debounceTimer && $timeout.cancel(debounceTimer);
 
-//             debounceTimer = $timeout(function () {
+            debounceTimer = $timeout(function () {
 
-//               const postalCode = scope.address.PostCode;
+              const postalCode = scope.address.PostCode;
 
-//               const postcodes = scope.postcodes;
+              const postcodes = scope.postcodes;
 
 
 
-//               if (postcodes && postcodes.some(x => x === postalCode)) {
+              if (postcodes && postcodes.some(x => x === postalCode)) {
 
-//                 findAddresses(postalCode);
+                findAddresses(postalCode);
 
-//               }
+              }
 
-//               else {
+              else {
 
-//                 $timeout(function () {
+                $timeout(function () {
 
-//                   scope.$apply(function () {
+                  scope.$apply(function () {
 
-//                     scope.postcodes = [];
+                    scope.postcodes = [];
 
-//                   });
+                  });
 
-//                 });
+                });
 
-//                 $http({
+                $http({
 
-//                   method: 'GET',
+                  method: 'GET',
 
-//                   url: 'https://postcodelookup.prodashes.com/autocomplete',
+                  url: 'https://postcodelookup.prodashes.com/autocomplete',
 
-//                   params: { postalCode }
+                  params: { postalCode }
 
-//                 }).then(function (response) {
+                }).then(function (response) {
 
-//                   const data = response.data;
+                  const data = response.data;
 
 
 
-//                   $timeout(function () {
+                  $timeout(function () {
 
-//                     scope.$apply(function () {
+                    scope.$apply(function () {
 
-//                       scope.postcodes = data || [];
+                      scope.postcodes = data || [];
 
-//                       scope.selectedPostcode = undefined;
+                      scope.selectedPostcode = undefined;
 
-//                     });
+                    });
 
-//                     $timeout(function () {
+                    $timeout(function () {
 
-//                       if (data && Array.isArray(data) && data.some(x => x === postalCode)) {
+                      if (data && Array.isArray(data) && data.some(x => x === postalCode)) {
 
-//                         findAddresses(postalCode);
+                        findAddresses(postalCode);
 
-//                       }
+                      }
 
-//                     });
+                    });
 
-//                   })
+                  })
 
-//                 });
+                });
 
-//               }
+              }
 
-//             }, DEBOUNCE_TIME_NEW);
+            }, DEBOUNCE_TIME_NEW);
 
-//           };
+          };
 
 
 
-//           scope.changeLookupAddress = function (e) {
+          scope.changeLookupAddress = function (e) {
 
-//             const addresses = scope.lookupAddresses;
+            const addresses = scope.lookupAddresses;
 
 
 
-//             const value = scope.lookupAddress;
+            const value = scope.lookupAddress;
 
-//             const address = addresses.find(x => x.formatted === value);
+            const address = addresses.find(x => x.formatted === value);
 
-//             if (address) {
+            if (address) {
 
-//               const country = address.country;
+              const country = address.country;
 
-//               const foundCountry = scope.countries.find(c => c.CountryName === country);
+              const foundCountry = scope.countries.find(c => c.CountryName === country);
 
-//               $timeout(function () {
+              $timeout(function () {
 
-//                 scope.$apply(function () {
+                scope.$apply(function () {
 
-//                   scope.address.Address1 = address.address1;
+                  scope.address.Address1 = address.address1;
 
-//                   scope.address.Address2 = address.address2;
+                  scope.address.Address2 = address.address2;
 
-//                   scope.address.Address3 = address.address3;
+                  scope.address.Address3 = address.address3;
 
-//                   scope.address.Town = address.town;
+                  scope.address.Town = address.town;
 
-//                   scope.address.Region = address.region;
+                  scope.address.Region = address.region;
 
-//                   scope.address.CountryId = foundCountry && foundCountry.CountryId;
+                  scope.address.CountryId = foundCountry && foundCountry.CountryId;
 
-//                 });
+                });
 
-//               });
+              });
 
-//             }
+            }
 
-//           };
+          };
 
-//         }
+        }
 
-//       }
+      }
 
-//     }
-
-//   });
-
-// }
-
-
-
-// Core.PlaceHolderManager.register("OpenOrders_OrderControlButtons", PlaceHolder);
-
-"use strict"
-
-define(function (require) {
-  console.log("wooork v2")
-  const placeholderManager = require("core/placeholderManager");
-
-
-  var docDefinition;
-
-  var placeHolder = function ($scope, $element, $http, controlService) {
-
-
-
-    this.initialize = async (data) => {
-      console.log("data", data)
     }
 
-    const items = [{
-      key: "shippingAddressPH",
-      labelClass: "hidden",
-      inputClass: "hidden",
-      label: "",
-      onBlurMethod: "valueChanged",
-      text: ""
-    }];
+  });
+
+}
 
 
-    //const _this = this;
-    this.getItems = function () {
-      //this is for fuzz, because he forgot to let me know that function should return empty array
-      return items;
-      //specially for fuzz and nik :)
-    }
 
-    this.valueChanged = async function (itemKey, val) {
-      console.log("itemKey", itemKey);
-      console.log("val", val);
-    }
-
-    console.log("$element", element)
-    const test1 = $element[0]
-    if (test1) {
-      console.log("test7", test1.firstChild.ownerDocument.querySelectorAll)
-      const a = test1.firstChild.ownerDocument.querySelectorAll('[address-auto-complete-field="POSTALCODE"]')
-      console.log("test8", a)
-      console.log("test9", a.append)
-    }
-  };
-
-
-  placeholderManager.register("OrderAddress_ShippingFields", placeHolder);
-
-})
+Core.PlaceHolderManager.register("OrderAddress_ShippingFields", PlaceHolder);
