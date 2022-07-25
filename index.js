@@ -65,7 +65,7 @@ var PlaceHolder = function ($scope, $element, $http, $timeout, $compile) {
   const viewModule = angular.module("openOrdersViewService");
 
 
-
+  console.log("angular", angular);
   viewModule.directive("div", function () {
 
     return {
@@ -298,4 +298,4 @@ var PlaceHolder = function ($scope, $element, $http, $timeout, $compile) {
 
 
 
-Core.PlaceHolderManager.register("OpenOrder_EditOrder_OrderControlButtons", PlaceHolder);
+Core.PlaceHolderManager.register("NewOpenOrder_EditOrder_OrderControlButtons", PlaceHolder);
