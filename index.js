@@ -499,6 +499,10 @@ define(function (require) {
                             
                             //angular.element(closeBtn.parentNode).attr('id', );
                         }
+
+                        var postcode = searchTree(node, " Postcode ");
+                        console.log("postcode", postcode)
+
                         
                         // Find SAVE button
                         var saveTxt = searchTree(node, " Save");
