@@ -333,6 +333,7 @@ define(function (require) {
         const config = { childList: true, subtree: true };
 
         function searchTree(element, matchingTitle) {
+            console.log("element", element)
             if (element.innerText == matchingTitle) {
                 return element;
             }
@@ -348,6 +349,7 @@ define(function (require) {
         }
 
         function searchTreeByAttribute(element, attributeName, attributeValue) {
+            console.log("eeeeeleeement".element)
             if (element?.getAttribute("lw-address-auto--field") === "POSTALCODE") {
                 return element;
             }
@@ -409,7 +411,7 @@ define(function (require) {
                     for (const node of mutation.addedNodes) {
                         var resultEmail = searchTree(node, "Email");
                         resultEmail && console.log("resultEmail", resultEmail);
-                        
+
                         var resultPostCode = searchTreeByAttribute(node, "Postcode");
                         if (resultPostCode) {
                             console.log("node", node)
