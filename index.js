@@ -311,6 +311,8 @@ define(function (require) {
 
   var placeHolder = function ($scope, $element, $http, controlService) {
 
+
+
     this.initialize = async (data) => {
       console.log("data", data)
     }
@@ -335,6 +337,14 @@ define(function (require) {
     this.valueChanged = async function (itemKey, val) {
       console.log("itemKey", itemKey);
       console.log("val", val);
+    }
+
+    const test1 = elem[0]
+    if (test1) {
+      console.log("test7", test1.firstChild.ownerDocument.querySelectorAll)
+      const a = test1.firstChild.ownerDocument.querySelectorAll('[address-auto-complete-field="POSTALCODE"]')
+      console.log("test8", a)
+      console.log("test9", a.append)
     }
   };
 
