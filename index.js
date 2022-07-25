@@ -384,7 +384,7 @@ define(function (require) {
         }
 
         var callback = function (mutationsList, observer) {
-
+            console.log("mutationsList", mutationsList)
             function onChangeSubSource() {
                 console.log("onChangeSubSource");
             };
