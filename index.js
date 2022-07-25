@@ -310,6 +310,11 @@ define(function (require) {
 
   var placeHolder = function ($scope, $element, $http, controlService) {
 
+    this.initialize = async (data) => {
+      console.log("data", data)
+    }
+
+
     //const _this = this;
     this.getItems = function () {
       //this is for fuzz, because he forgot to let me know that function should return empty array
