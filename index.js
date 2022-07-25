@@ -50,6 +50,7 @@ const DEBOUNCE_TIME_NEW = 500;
 
 var PlaceHolder = function ($scope, $element, $http, $timeout, $compile) {
 
+  console.log("wooork");
 
   this.getItems = function () {
     //this is for fuzz, because he forgot to let me know that function should return empty array
@@ -57,15 +58,14 @@ var PlaceHolder = function ($scope, $element, $http, $timeout, $compile) {
     //specially for fuzz and nik :)
   }
 
-  console.log("wooork");
   let debounceTimer = null;
 
 
 
   const viewModule = angular.module("openOrdersViewService");
+  console.log("viewModule", viewModule)
 
 
-  console.log("angular", angular);
   viewModule.directive("div", function () {
 
     return {
