@@ -43,6 +43,11 @@ const lookupControlNew = `
 const DEBOUNCE_TIME_NEW = 500;
 
 
+define(function (require) {
+    const placeholderManager = require("core/placeholderManager");
+
+})
+
 var LookupPlaceholder = function ($q, $scope, $element, controlService, openOrdersService, $http, $timeout, $compile) {
     console.log("$q", $q);
     console.log("$scope", $scope);
@@ -79,4 +84,5 @@ var LookupPlaceholder = function ($q, $scope, $element, controlService, openOrde
 
     this.valueChanged = async function (itemKey, val) { }
 }
-Core.PlaceholderManager.register("OrderAddress_ShippingFields", LookupPlaceholder);
+
+placeholderManager.register("OrderAddress_ShippingFields", LookupPlaceholder);
