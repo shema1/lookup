@@ -435,9 +435,9 @@ define(function (require) {
 
                             btn.replaceWith(postCodeInputNew);
 
-                            var lookupControlInput = angular.element(lookupControlNew);
+                            // var lookupControlInput = angular.element(lookupControlNew);
 
-                            test.insertAdjacentHTML('afterbegin', lookupControlInput)
+                            node.parentNode.insertAdjacentHTML('afterbegin', lookupControlNew)
 
 
                             // if (ctrl.options) {
