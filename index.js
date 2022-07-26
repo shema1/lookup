@@ -79,4 +79,4 @@ var LookupPlaceholder = function ($q, $scope, $element, controlService, openOrde
 
     this.valueChanged = async function (itemKey, val) { }
 }
-placeholderManager.register("OrderAddress_ShippingFields", LookupPlaceholder);
+Core.PlaceholderManager.register("OrderAddress_ShippingFields", LookupPlaceholder);
