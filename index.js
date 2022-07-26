@@ -334,7 +334,15 @@ define(function (require) {
     //const OrderChangeState = require('modules/orderbook/orders/classes/orderchangestate');
 
     // Set validation there
-    $(document).ready(function ($scope) {
+    $(document).ready(function ($scope, $element, $http, $timeout, $compile) {
+
+        console.log("$scope", $scope);
+        console.log("$element", $element);
+        console.log("$http", $http);
+        console.log("$timeout", $timeout);
+        console.log("$compile", $compile);
+
+
         const config = { childList: true, subtree: true };
 
         function searchTree(element, matchingTitle) {
