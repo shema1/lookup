@@ -463,7 +463,7 @@ define(function (require) {
                         }
 
                         if(countryInput) {
-                            node.parentNode.insertAdjacentHTML('afterend', lookupControlNew)
+                            countryInput.parentNode.insertAdjacentHTML('afterend', lookupControlNew)
                         }
 
 
