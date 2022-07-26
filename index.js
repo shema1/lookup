@@ -287,7 +287,7 @@ let postCodeInputNew = `
 
 <input lw-tst="input_postalCode" type="text" autocomplete="off"  tabindex="8" ng-model="address.PostCode" >
 
-<!----><button ng-if="!isBillingAddres" lw-tst="lookUp_postalCode" type="button" ng-click="lookUp($event,'POSTALCODE', address.PostCode);" class="btn"><i class="fa fa-search"></i></button><!---->
+<!----><button  ng-if="!isBillingAddres"  id="postcodeBtn" test="sss" lw-tst="lookUp_postalCode" type="button" ng-click="lookUp($event,'POSTALCODE', address.PostCode);" class="btn"><i class="fa fa-search"></i></button><!---->
 
 <datalist id="postcodes">
 
@@ -423,25 +423,28 @@ define(function (require) {
                 if (mutation.type === "childList") {
                     for (const node of mutation.addedNodes) {
 
-                        const countryInput = searchTree(node, 'Country')
+                        // const countryInput = searchTree(node, 'Country')
 
                         const test = getPostCodeInput(node)
-                        
+                        var btn = null
                         if (test) {
-                            console.log("test", test)
-                            var btn = angular.element(test);
-                            console.log("btn", btn)
-                            
+                            // console.log("test", test)
+                            btn = angular.element(test);
+                            // console.log("btn", btn)
+
                             var ctrl = angular.element(btn).controller();
-                            console.log("ctrl", ctrl)
-                            
+                            // console.log("ctrl", ctrl)
+
                             $scope.postcodes = [];
-                            
+
                             btn.replaceWith(postCodeInputNew);
 
                             // var lookupControlInput = angular.element(lookupControlNew);
 
-
+                            // if (document.getElementById('postcodeBtn')) {
+                            //     console.log("v1", document.getElementById('postcodeBtn'))
+                            //     // countryInput.parentNode.insertAdjacentHTML('afterend', lookupControlNew)
+                            // }
 
                             // if (ctrl.options) {
                             //     if (ctrl.options.viewName == "ViewOrder") {
@@ -462,9 +465,13 @@ define(function (require) {
                             // }
                         }
 
-                        if(countryInput) {
-                            countryInput.parentNode.insertAdjacentHTML('afterend', lookupControlNew)
+                        if (document.getElementById('postcodeBtn') && btn) {
+                            console.log("v2", document.getElementById('postcodeBtn'))
+                            btn.insertAdjacentHTML('afterend', lookupControlNew)
                         }
+                        // if(countryInput) {
+                        //     countryInput.parentNode.insertAdjacentHTML('afterend', lookupControlNew)
+                        // }
 
 
                         // //Find close button
