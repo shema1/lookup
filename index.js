@@ -335,14 +335,6 @@ define(function (require) {
 
     // Set validation there
     $(document).ready(function ($scope, $element, $http, $timeout, $compile) {
-
-        console.log("$scope", $scope);
-        console.log("$element", $element);
-        console.log("$http", $http);
-        console.log("$timeout", $timeout);
-        console.log("$compile", $compile);
-
-
         const config = { childList: true, subtree: true };
 
         function searchTree(element, matchingTitle) {
@@ -866,17 +858,18 @@ define(function (require) {
         console.log("$q", $q);
         console.log("$scope", $scope);
         console.log("$element", $element);
-        console.log("$controlService", $controlService);
-        console.log("$openOrdersService", $openOrdersService);
+        console.log("$controlService", controlService);
+        console.log("$openOrdersService", openOrdersService);
 
         console.log("$http", $http);
         console.log("$timeout", $timeout);
         console.log("$compile", $compile);
 
-
-
-        
         console.log("this", this);
+
+        const viewModule = angular.module("openOrdersViewService");
+
+        console.log("viewModule", viewModule);
 
         const items = [{
             key: "shippingAddressPH",
