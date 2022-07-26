@@ -285,9 +285,9 @@
 
 let postCodeInputNew = `
 
-<input lw-tst="input_postalCode" type="text" autocomplete="off"  tabindex="8" ng-model="address.PostCode" >
+<input lw-tst="input_postalCode" list="postcodes" type="text" autocomplete="off" ng-disabled="sameAsShipping" tabindex="8" ng-model="address.PostCode" ng-change="changePostSearch()">
 
-<!----><button  ng-if="!isBillingAddres"  id="postcodeBtn" lw-tst="lookUp_postalCode" type="button" ng-click="lookUp($event,'POSTALCODE', address.PostCode);" class="btn"><i class="fa fa-search"></i></button><!---->
+<!----><button ng-if="!isBillingAddres" lw-tst="lookUp_postalCode" type="button" ng-click="lookUp($event,'POSTALCODE', address.PostCode);" class="btn"><i class="fa fa-search"></i></button><!---->
 
 <datalist id="postcodes">
 
@@ -433,12 +433,17 @@ define(function (require) {
                         }
 
                         if (postCodeInput) {
+                            $scope.postcodes = [];
+                            $scope.changePostSearch = function () {
+                                console.log("woork")
+                            }
                             btn = angular.element(postCodeInput);
                             var ctrl = angular.element(btn).controller();
-                            $scope.postcodes = [];
 
                             btn.replaceWith(postCodeInputNew);
                         }
+
+
 
                         // //Find close button
                         // var closeBtn = searchTree(node, "Close");
