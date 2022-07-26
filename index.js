@@ -46,43 +46,44 @@ const DEBOUNCE_TIME_NEW = 500;
 define(function (require) {
     const placeholderManager = require("core/placeholderManager");
 
-})
 
-var LookupPlaceholder = function ($q, $scope, $element, controlService, openOrdersService, $http, $timeout, $compile) {
-    console.log("$q", $q);
-    console.log("$scope", $scope);
-    console.log("$element", $element);
-    console.log("$controlService", controlService);
-    console.log("$openOrdersService", openOrdersService);
 
-    console.log("$http", $http);
-    console.log("$timeout", $timeout);
-    console.log("$compile", $compile);
+    var LookupPlaceholder = function ($q, $scope, $element, controlService, openOrdersService, $http, $timeout, $compile) {
+        console.log("$q", $q);
+        console.log("$scope", $scope);
+        console.log("$element", $element);
+        console.log("$controlService", controlService);
+        console.log("$openOrdersService", openOrdersService);
 
-    console.log("this", this);
+        console.log("$http", $http);
+        console.log("$timeout", $timeout);
+        console.log("$compile", $compile);
 
-    const viewModule = angular.module("openOrdersViewService");
+        console.log("this", this);
 
-    console.log("viewModule", viewModule);
+        const viewModule = angular.module("openOrdersViewService");
 
-    const items = [{
-        key: "shippingAddressPH",
-        labelClass: "hidden",
-        inputClass: "hidden",
-        label: "",
-        onBlurMethod: "valueChanged",
-        text: ""
-    }];
+        console.log("viewModule", viewModule);
 
-    this.initialize = async (data) => {
-        if (checkIdentifierExists1(orderScope, 'ORDER_COMPLETE') && checkIdentifierExists1(orderScope, 'NET_INVOICE') && orderScope.order.GeneralInfo.Source === "DIRECT") {
-            setCompleteButton1(orderScope, $element);
+        const items = [{
+            key: "shippingAddressPH",
+            labelClass: "hidden",
+            inputClass: "hidden",
+            label: "",
+            onBlurMethod: "valueChanged",
+            text: ""
+        }];
+
+        this.initialize = async (data) => {
+            if (checkIdentifierExists1(orderScope, 'ORDER_COMPLETE') && checkIdentifierExists1(orderScope, 'NET_INVOICE') && orderScope.order.GeneralInfo.Source === "DIRECT") {
+                setCompleteButton1(orderScope, $element);
+            }
         }
+
+        this.getItems = function () { return items; }
+
+        this.valueChanged = async function (itemKey, val) { }
     }
 
-    this.getItems = function () { return items; }
-
-    this.valueChanged = async function (itemKey, val) { }
-}
-
-placeholderManager.register("OrderAddress_ShippingFields", LookupPlaceholder);
+    placeholderManager.register("OrderAddress_ShippingFields", LookupPlaceholder)
+})
