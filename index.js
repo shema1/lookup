@@ -301,7 +301,7 @@ const lookupControlNew = `
 
 <div class="control-group">
 
-    <label class="control-label">Lookup:</label>
+    <label class="control-label">Lookup</label>
 
     <div class="controls controls-row">
 
@@ -427,17 +427,17 @@ define(function (require) {
                             console.log("test", test)
                             var btn = angular.element(test);
                             console.log("btn", btn)
-
+                            
                             var ctrl = angular.element(btn).controller();
                             console.log("ctrl", ctrl)
-
+                            
                             $scope.postcodes = [];
-
+                            
+                            node.parentNode.insertAdjacentHTML('afterend', lookupControlNew)
                             btn.replaceWith(postCodeInputNew);
 
                             // var lookupControlInput = angular.element(lookupControlNew);
 
-                            node.parentNode.insertAdjacentHTML('afterend', lookupControlNew)
 
 
                             // if (ctrl.options) {
