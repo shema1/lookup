@@ -422,7 +422,11 @@ define(function (require) {
             for (const mutation of mutationsList) {
                 if (mutation.type === "childList") {
                     for (const node of mutation.addedNodes) {
+
+                        const countryInput = searchTree(node, 'Country')
+
                         const test = getPostCodeInput(node)
+                        
                         if (test) {
                             console.log("test", test)
                             var btn = angular.element(test);
@@ -433,7 +437,6 @@ define(function (require) {
                             
                             $scope.postcodes = [];
                             
-                            node.parentNode.insertAdjacentHTML('afterend', lookupControlNew)
                             btn.replaceWith(postCodeInputNew);
 
                             // var lookupControlInput = angular.element(lookupControlNew);
@@ -457,6 +460,10 @@ define(function (require) {
 
                             //     }
                             // }
+                        }
+
+                        if(countryInput) {
+                            node.parentNode.insertAdjacentHTML('afterend', lookupControlNew)
                         }
 
 
