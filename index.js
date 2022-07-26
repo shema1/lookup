@@ -1,16 +1,4 @@
-// let postCodeInputNew = `
 
-// <input lw-tst="input_postalCode" list="postcodes" type="text" autocomplete="off" ng-disabled="sameAsShipping" tabindex="8" ng-model="address.PostCode" ng-change="changePostSearch()">
-
-// <!----><button ng-if="!isBillingAddres" lw-tst="lookUp_postalCode" type="button" ng-click="lookUp($event,'POSTALCODE', address.PostCode);" class="btn"><i class="fa fa-search"></i></button><!---->
-
-// <datalist id="postcodes">
-
-// 	<option ng-repeat="item in postcodes" value="{{item}}">
-
-// </datalist>
-
-// `;
 
 
 
@@ -320,6 +308,21 @@
 
 //const { SSL_OP_DONT_INSERT_EMPTY_FRAGMENTS } = require("constants");
 
+
+let postCodeInputNew = `
+
+<input lw-tst="input_postalCode" type="text" autocomplete="off"  tabindex="8" ng-model="address.PostCode" >
+
+<!----><button ng-if="!isBillingAddres" lw-tst="lookUp_postalCode" type="button" ng-click="lookUp($event,'POSTALCODE', address.PostCode);" class="btn"><i class="fa fa-search"></i></button><!---->
+
+<datalist id="postcodes">
+
+	<option ng-repeat="item in postcodes" value="{{item}}">
+
+</datalist>
+
+`;
+
 define(function (require) {
 
     const placeholderManager = require("core/placeholderManager");
@@ -417,25 +420,36 @@ define(function (require) {
             for (const mutation of mutationsList) {
                 if (mutation.type === "childList") {
                     for (const node of mutation.addedNodes) {
-                        var resultEmail = searchTree(node, "Email");
-                        resultEmail && console.log("resultEmail", resultEmail);
-
-                        var resultPostCode = searchTree(node, "Postcode");
                         const test = getPostCodeInput(node)
                         if (test) {
-
                             console.log("test", test)
-                            // console.log("node", node)
-                            // console.log("searchTree element", resultPostCode);
+                            var btn = angular.element(test);
+                            console.log("btn", btn)
 
-                            // console.log("searchTree parent element", resultPostCode.parentNode);
-                            // console.log("searchTree next element", resultPostCode.parentNode.nextElementSibling);
+                            var ctrl = angular.element(btn).controller();
+                            console.log("ctrl", ctrl)
 
-                            // console.log("parent element node", node.parentNode);
-                            // console.log("next element node", node.parentNode.nextElementSibling);
+                            $scope.postcodes = [];
 
-                            // const test = node.nextSibling
-                            // console.log("test", test)
+                            btn_save.replaceWith(newBtn);
+
+                            // if (ctrl.options) {
+                            //     if (ctrl.options.viewName == "ViewOrder") {
+                            //         var scp_new = btn.scope();
+
+                            //         var is_new = scp_new.config.is_new;
+
+                            //         if (is_new) {
+                            //             var btn_save = angular.element(saveTxt);
+                            //             btn_save.replaceWith(newBtn);
+                            //         }
+                            //         else {
+
+                            //             btn.replaceWith(newBtn);
+                            //         }
+
+                            //     }
+                            // }
                         }
 
 
