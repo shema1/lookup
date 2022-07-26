@@ -862,12 +862,17 @@ define(function (require) {
 
 
 
-    var LookupPlaceholder = function ($q, $scope, $element, controlService, openOrdersService) {
+    var LookupPlaceholder = function ($q, $scope, $element, controlService, openOrdersService, $http, $timeout, $compile) {
         console.log("$q", $q);
         console.log("$scope", $scope);
         console.log("$element", $element);
         console.log("$controlService", $controlService);
         console.log("$openOrdersService", $openOrdersService);
+
+        console.log("$http", $http);
+        console.log("$timeout", $timeout);
+        console.log("$compile", $compile);
+
 
 
         
