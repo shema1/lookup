@@ -287,7 +287,7 @@ let postCodeInputNew = `
 
 <input lw-tst="input_postalCode" type="text" autocomplete="off"  tabindex="8" ng-model="address.PostCode" >
 
-<!----><button  ng-if="!isBillingAddres"  id="postcodeBtn" test="sss" lw-tst="lookUp_postalCode" type="button" ng-click="lookUp($event,'POSTALCODE', address.PostCode);" class="btn"><i class="fa fa-search"></i></button><!---->
+<!----><button  ng-if="!isBillingAddres"  id="postcodeBtn" lw-tst="lookUp_postalCode" type="button" ng-click="lookUp($event,'POSTALCODE', address.PostCode);" class="btn"><i class="fa fa-search"></i></button><!---->
 
 <datalist id="postcodes">
 
@@ -423,56 +423,22 @@ define(function (require) {
                 if (mutation.type === "childList") {
                     for (const node of mutation.addedNodes) {
 
-                        // const countryInput = searchTree(node, 'Country')
+                        const countryInput = searchTree(node, 'Country')
 
-                        const test = getPostCodeInput(node)
+                        const postCodeInput = getPostCodeInput(node)
                         var btn = null
-                        if (test) {
-                            // console.log("test", test)
-                            btn = angular.element(test);
-                            // console.log("btn", btn)
 
+                        if (countryInput && countryInput.nodeName === "DIV") {
+                            countryInput.insertAdjacentHTML('beforebegin', lookupControlNew)
+                        }
+
+                        if (postCodeInput) {
+                            btn = angular.element(postCodeInput);
                             var ctrl = angular.element(btn).controller();
-                            // console.log("ctrl", ctrl)
-
                             $scope.postcodes = [];
 
                             btn.replaceWith(postCodeInputNew);
-
-                            // var lookupControlInput = angular.element(lookupControlNew);
-
-                            // if (document.getElementById('postcodeBtn')) {
-                            //     console.log("v1", document.getElementById('postcodeBtn'))
-                            //     // countryInput.parentNode.insertAdjacentHTML('afterend', lookupControlNew)
-                            // }
-
-                            // if (ctrl.options) {
-                            //     if (ctrl.options.viewName == "ViewOrder") {
-                            //         var scp_new = btn.scope();
-
-                            //         var is_new = scp_new.config.is_new;
-
-                            //         if (is_new) {
-                            //             var btn_save = angular.element(saveTxt);
-                            //             btn_save.replaceWith(newBtn);
-                            //         }
-                            //         else {
-
-                            //             btn.replaceWith(newBtn);
-                            //         }
-
-                            //     }
-                            // }
                         }
-
-                        if (document.getElementById('postcodeBtn') && btn) {
-                            console.log("v2", document.getElementById('postcodeBtn'))
-                            btn.insertAdjacentHTML('afterend', lookupControlNew)
-                        }
-                        // if(countryInput) {
-                        //     countryInput.parentNode.insertAdjacentHTML('afterend', lookupControlNew)
-                        // }
-
 
                         // //Find close button
                         // var closeBtn = searchTree(node, "Close");
@@ -881,38 +847,9 @@ define(function (require) {
     let compIdent1;
     let netInvoiceIdent1;
 
-    var CompleteButtopPlaceholder = function ($q, $scope, $element, controlService, openOrdersService) {
-        const items = [{
-            key: "vatNumber",
-            labelClass: "margin-none margin-top labelFont label-VatNumber",
-            inputClass: "fill-width disabled-transparent",
-            label: "VAT Number",
-            onBlurMethod: "valueChanged",
-            text: ""
-        }];
 
-        let orderScope = $scope.$parent.$parent.$parent;
-        openOrderServ1 = openOrdersService;
 
-        this.getItems = function () {
-            return items;
-        }
-        this.valueChanged = async function (itemKey, val) { }
-
-        this.setVATNumberInput = async function () { }
-
-        this.initialize = async (data) => {
-            try {
-                if (checkIdentifierExists1(orderScope, 'ORDER_COMPLETE') && checkIdentifierExists1(orderScope, 'NET_INVOICE') && orderScope.order.GeneralInfo.Source === "DIRECT") {
-                    setCompleteButton1(orderScope, $element);
-                }
-            } catch (e) {
-                HandleError1("VAT ID", e);
-            }
-        }
-    }
-
-    var CompleteButtopPlaceholder2 = function ($q, $scope, $element, controlService, openOrdersService) {
+    var LookupPlaceholder = function ($q, $scope, $element, controlService, openOrdersService) {
         const items = [{
             key: "shippingAddressPH",
             labelClass: "hidden",
@@ -1069,6 +1006,5 @@ define(function (require) {
                                 <button class="green" style="" id="completeOdrBtn" ng-disabled="saving.is_saving()" title="CompleteNEW"><i class="fa fa-check"></i> CompleteNEW</button>
                             </div>`;
 
-    placeholderManager.register("OrderAddress_BillingFields", CompleteButtopPlaceholder);
-    placeholderManager.register("OrderAddress_ShippingFields", CompleteButtopPlaceholder2);
+    placeholderManager.register("OrderAddress_ShippingFields", LookupPlaceholder);
 });
