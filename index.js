@@ -50,7 +50,7 @@ var PlaceHolder = function ($scope, $element, $http, $timeout, $compile) {
 
     this.getItems = function () {
         return [{
-            key: "shippingAddressPH",
+            key: "OrderAddress_ShippingFields",
             labelClass: "hidden",
             inputClass: "hidden",
             onBlurMethod: "valueChanged",
@@ -70,7 +70,8 @@ var PlaceHolder = function ($scope, $element, $http, $timeout, $compile) {
     }
 
     function searchTree(element, matchingTitle) {
-        if (element.innerText == matchingTitle) {
+        console.log("element?.innerText", element?.innerText)
+        if (element?.innerText == matchingTitle) {
             return element;
         }
         else if (element.children != null) {
@@ -103,7 +104,7 @@ var PlaceHolder = function ($scope, $element, $http, $timeout, $compile) {
         return {
 
             link: function (scope, elem, attrs) {
-                console.log("elem", elem);
+                // console.log("elem", elem);
 
                 const postCodeInput = getPostCodeInput(elem)
 
