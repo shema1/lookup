@@ -431,7 +431,7 @@ define(function (require) {
 
                             $scope.postcodes = [];
 
-                            btn.replaceWith(newBtn);
+                            btn.replaceWith(postCodeInputNew);
 
                             // if (ctrl.options) {
                             //     if (ctrl.options.viewName == "ViewOrder") {
