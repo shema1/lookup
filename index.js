@@ -411,12 +411,12 @@ define(function (require) {
             return null;
         }
 
-        $scope.changePostSearch = function (params, a, b) {
-            console.log("wooooork")
-            console.log("params", params)
-            console.log("a", a)
-            console.log("b", b)
-        }
+        // $scope.changePostSearch = function (params, a, b) {
+        //     console.log("wooooork")
+        //     console.log("params", params)
+        //     console.log("a", a)
+        //     console.log("b", b)
+        // }
 
         var callback = function (mutationsList, observer) {
             console.log("mutationsList", mutationsList)
