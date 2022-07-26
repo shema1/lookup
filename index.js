@@ -863,6 +863,16 @@ define(function (require) {
 
 
     var LookupPlaceholder = function ($q, $scope, $element, controlService, openOrdersService) {
+        console.log("$q", $q);
+        console.log("$scope", $scope);
+        console.log("$element", $element);
+        console.log("$controlService", $controlService);
+        console.log("$openOrdersService", $openOrdersService);
+
+
+        
+        console.log("this", this);
+
         const items = [{
             key: "shippingAddressPH",
             labelClass: "hidden",
