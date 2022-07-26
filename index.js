@@ -333,7 +333,6 @@ define(function (require) {
         const config = { childList: true, subtree: true };
 
         function searchTree(element, matchingTitle) {
-            console.log("element", element)
             if (element.innerText == matchingTitle) {
                 return element;
             }
@@ -412,12 +411,19 @@ define(function (require) {
                         var resultEmail = searchTree(node, "Email");
                         resultEmail && console.log("resultEmail", resultEmail);
 
-                        var resultPostCode = searchTreeByAttribute(node, "Postcode");
+                        var resultPostCode = searchTree(node, "Postcode");
                         if (resultPostCode) {
                             console.log("node", node)
-                            console.log("resultPostCode", resultPostCode);
-                            const test = node.nextSibling
-                            console.log("test", test)
+                            console.log("searchTree element", resultPostCode);
+
+                            console.log("searchTree parent element", resultPostCode.parentNode);
+                            console.log("searchTree next element", resultPostCode.parentNode.nextElementSibling);
+
+                            console.log("parent element node", node.parentNode);
+                            console.log("next element node", node.parentNode.nextElementSibling);
+
+                            // const test = node.nextSibling
+                            // console.log("test", test)
                         }
 
 
