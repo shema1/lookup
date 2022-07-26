@@ -2,33 +2,7 @@
 
 
 
-// const lookupControlNew = `
 
-// <div class="control-group">
-
-//     <label class="control-label">Lookup:</label>
-
-//     <div class="controls controls-row">
-
-//         <div class="input-append">
-
-//             <input id="lookupAddressesInput" list="lookupAddresses" type="text" autocomplete="off"
-
-//                 ng-disabled="sameAsShipping || !selectedPostcode" tabindex="-1" ng-model="lookupAddress" ng-change="changeLookupAddress()">
-
-//             <datalist id="lookupAddresses">
-
-// 				<option ng-repeat="item in lookupAddresses" value="{{item.formatted}}">
-
-//             </datalist>
-
-//         </div>
-
-//     </div>
-
-// </div>
-
-// `;
 
 
 
@@ -323,6 +297,34 @@ let postCodeInputNew = `
 
 `;
 
+const lookupControlNew = `
+
+<div class="control-group">
+
+    <label class="control-label">Lookup:</label>
+
+    <div class="controls controls-row">
+
+        <div class="input-append">
+
+            <input id="lookupAddressesInput" list="lookupAddresses" type="text" autocomplete="off"
+
+                ng-disabled="sameAsShipping || !selectedPostcode" tabindex="-1" ng-model="lookupAddress" ng-change="changeLookupAddress()">
+
+            <datalist id="lookupAddresses">
+
+				<option ng-repeat="item in lookupAddresses" value="{{item.formatted}}">
+
+            </datalist>
+
+        </div>
+
+    </div>
+
+</div>
+
+`;
+
 define(function (require) {
 
     const placeholderManager = require("core/placeholderManager");
@@ -432,6 +434,11 @@ define(function (require) {
                             $scope.postcodes = [];
 
                             btn.replaceWith(postCodeInputNew);
+
+                            var lookupControlInput = angular.element(lookupControlNew);
+
+                            test.insertAdjacentHTML('afterbegin', lookupControlInput)
+
 
                             // if (ctrl.options) {
                             //     if (ctrl.options.viewName == "ViewOrder") {
