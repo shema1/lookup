@@ -347,6 +347,15 @@ define(function (require) {
             return null;
         }
 
+        function getPostCodeInput(element) {
+            const resultPostCode = searchTree(element, "Postcode");
+            if (resultPostCode?.parentNode?.nextElementSibling) {
+
+                return resultPostCode.parentNode.nextElementSibling
+            }
+            return null
+        }
+
         function searchTreeByAttribute(element, attributeName, attributeValue) {
             console.log("eeeeeleeement", element)
             if (element && element?.getAttribute("lw-address-auto--field") === "POSTALCODE") {
@@ -412,15 +421,18 @@ define(function (require) {
                         resultEmail && console.log("resultEmail", resultEmail);
 
                         var resultPostCode = searchTree(node, "Postcode");
-                        if (resultPostCode) {
-                            console.log("node", node)
-                            console.log("searchTree element", resultPostCode);
+                        const test = getPostCodeInput(node)
+                        if (test) {
 
-                            console.log("searchTree parent element", resultPostCode.parentNode);
-                            console.log("searchTree next element", resultPostCode.parentNode.nextElementSibling);
+                            console.log("test", test)
+                            // console.log("node", node)
+                            // console.log("searchTree element", resultPostCode);
 
-                            console.log("parent element node", node.parentNode);
-                            console.log("next element node", node.parentNode.nextElementSibling);
+                            // console.log("searchTree parent element", resultPostCode.parentNode);
+                            // console.log("searchTree next element", resultPostCode.parentNode.nextElementSibling);
+
+                            // console.log("parent element node", node.parentNode);
+                            // console.log("next element node", node.parentNode.nextElementSibling);
 
                             // const test = node.nextSibling
                             // console.log("test", test)
