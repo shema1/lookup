@@ -309,9 +309,9 @@
 //const { SSL_OP_DONT_INSERT_EMPTY_FRAGMENTS } = require("constants");
 
 
-let postCodeInputNew = `
+let postCodeInput = `
 
-<input lw-tst="input_postalCode" type="text" autocomplete="off"  tabindex="8" ng-model="address.PostCode" >
+<input lw-tst="input_postalCode" list="postcodes" type="text" autocomplete="off" ng-disabled="sameAsShipping" tabindex="8" ng-model="address.PostCode" ng-change="changePostSearch()">
 
 <!----><button ng-if="!isBillingAddres" lw-tst="lookUp_postalCode" type="button" ng-click="lookUp($event,'POSTALCODE', address.PostCode);" class="btn"><i class="fa fa-search"></i></button><!---->
 
@@ -409,6 +409,13 @@ define(function (require) {
                 return result;
             }
             return null;
+        }
+
+        $scope.changePostSearch = function (params, a, b) {
+            console.log("wooooork")
+            console.log("params", params)
+            console.log("a", a)
+            console.log("b", b)
         }
 
         var callback = function (mutationsList, observer) {
