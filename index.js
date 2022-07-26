@@ -437,7 +437,7 @@ define(function (require) {
 
                             // var lookupControlInput = angular.element(lookupControlNew);
 
-                            node.parentNode.insertAdjacentHTML('afterbegin', lookupControlNew)
+                            node.parentNode.insertAdjacentHTML('afterend', lookupControlNew)
 
 
                             // if (ctrl.options) {
