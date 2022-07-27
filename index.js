@@ -94,9 +94,9 @@ var PlaceHolder = function ($scope, $element, $http, $timeout, $compile) {
                 if (postCode) {
                     console.log("elem", elem)
                     console.log("elem[0].parentElement.parentElement", elem[0].parentElement.parentElement)
-                    elem.empty();
+                    // elem.empty();
 
-                    elem.append($compile(postCodeInputNew)(scope));
+                    // elem.append($compile(postCodeInputNew)(scope));
 
 
 
