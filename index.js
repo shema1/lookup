@@ -121,16 +121,15 @@ var PlaceHolder = function($scope, $element, $http, $timeout, $compile) {
                         console.log("findAddresses postalCode:", postalCode)
 
                         $timeout(function() {
-
+                            console.log("11111111")
                             scope.$apply(function() {
-
+                                console.log("222222222")
                                 scope.lookupAddresses = [];
-
                             });
 
                         });
 
-
+                        console.log("http", $http)
 
                         $http({
 
