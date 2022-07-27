@@ -47,50 +47,52 @@ const lookupControlNew = `
 const DEBOUNCE_TIME_NEW = 500;
 
 
+define(function (require) {
 
-var PlaceHolder = function ($scope, $element, $http, $timeout, $compile) {
+    const placeholderManager = require("core/placeholderManager");
 
-
-    this.getItems = function () {
-        //this is for fuzz, because he forgot to let me know that function should return empty array
-        return [
-            {
-                key: "test",
-                labelClass: "hidden",
-                inputClass: "hidden",
-                label: "",
-                onBlurMethod: "valueChanged",
-                text: ""
-            }
-        ];
-        //specially for fuzz and nik :)
-    }
-
-    this.initialize = async (data) => {
-
-    }
-
-    this.valueChanged = async function (itemKey, val) {}
-
-    let debounceTimer = null;
-
-    const viewModule = angular.module("openOrdersViewService");
-    console.log("viewModule", viewModule);
+    var PlaceHolder = function ($scope, $element, $http, $timeout, $compile) {
 
 
-    viewModule.directive("div", function () {
+        this.getItems = function () {
+            //this is for fuzz, because he forgot to let me know that function should return empty array
+            return [
+                {
+                    key: "test",
+                    labelClass: "hidden",
+                    inputClass: "hidden",
+                    label: "",
+                    onBlurMethod: "valueChanged",
+                    text: ""
+                }
+            ];
+            //specially for fuzz and nik :)
+        }
 
-        return {
-            link: function (scope, elem, attrs) {
-                console.log("elem", elem)
-            }
+        this.initialize = async (data) => {
 
         }
 
-    });
+        this.valueChanged = async function (itemKey, val) { }
 
-}
+        let debounceTimer = null;
+
+        const viewModule = angular.module("openOrdersViewService");
+        console.log("viewModule", viewModule);
 
 
+        viewModule.directive("div", function () {
 
-Core.PlaceHolderManager.register("OrderAddress_ShippingFields", PlaceHolder);
+            return {
+                link: function (scope, elem, attrs) {
+                    console.log("elem", elem)
+                }
+            }
+
+        });
+
+    }
+
+    placeHolderManager.register("OrderAddress_ShippingFields", PlaceHolder);
+
+});
