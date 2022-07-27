@@ -71,7 +71,7 @@ var PlaceHolder = function ($scope, $element, $http, $timeout, $compile) {
 
     function searchTree(element, matchingTitle) {
         // console.log("element", element == '<input type="text" autocomplete="off" address-auto-complete="" address-auto-complete-field="POSTALCODE" address-auto-complete-model="$ctrl.address.PostCode" address-auto-complete-on-item-selected="$ctrl.update_current_address(address)" class="fill-width disabled-transparent ng-pristine ng-untouched ng-valid ng-empty" ng-disabled="$ctrl.isLocked" ng-model="$ctrl.address.PostCode">')
-        // console.log("element?.textContent", element?.textContent)
+        console.log("element?.textContent", element)
 
         const test = element?.getAttribute("address-auto-complete-field") === "POSTALCODE"
         test && console.log("element", element)
@@ -91,30 +91,30 @@ var PlaceHolder = function ($scope, $element, $http, $timeout, $compile) {
         return null;
     }
 
-    function getPostCodeInput(element) {
-        const resultPostCode = searchTree(element, "Postcode");
-        if (resultPostCode?.parentNode?.nextElementSibling) {
+    // function getPostCodeInput(element) {
+    //     const resultPostCode = searchTree(element, "Postcode");
+    //     if (resultPostCode?.parentNode?.nextElementSibling) {
 
-            return resultPostCode.parentNode.nextElementSibling
-        }
-        return null
-    }
+    //         return resultPostCode.parentNode.nextElementSibling
+    //     }
+    //     return null
+    // }
 
-    function getItemByAttribute(element, attributeName, attributeValue) {
-        // console.log("elem", elem)
-        if (element?.getAttribute(attributeName) === attributeValue) {
-            return element;
-        }
-        else if (element.children != null) {
-            var i;
-            var result = null;
-            for (i = 0; result == null && i < element.children.length; i++) {
-                result = getItemByAttribute(element.children[i], attributeName, attributeValue);
-            }
-            return result;
-        }
-        return null;
-    }
+    // function getItemByAttribute(element, attributeName, attributeValue) {
+    //     // console.log("elem", elem)
+    //     if (element?.getAttribute(attributeName) === attributeValue) {
+    //         return element;
+    //     }
+    //     else if (element.children != null) {
+    //         var i;
+    //         var result = null;
+    //         for (i = 0; result == null && i < element.children.length; i++) {
+    //             result = getItemByAttribute(element.children[i], attributeName, attributeValue);
+    //         }
+    //         return result;
+    //     }
+    //     return null;
+    // }
 
 
     let debounceTimer = null;
@@ -127,12 +127,12 @@ var PlaceHolder = function ($scope, $element, $http, $timeout, $compile) {
         return {
 
             link: function (scope, elem, attrs) {
-                console.log("elem[0]", elem[0]);
+                // console.log("elem[0]", elem[0]);
 
-                // const postCodeInput = getPostCodeInput(elem[0])
-                // if (postCodeInput) {
-                //     console.log("postCodeInput", postCodeInput)
-                // }
+                const postCodeInput = searchTree(elem[0]);
+                if (postCodeInput) {
+                    console.log("postCodeInput", postCodeInput);
+                }
 
                 // const country = searchTree(elem[0], 'Country')
                 // const postCodeInput = getItemByAttribute(elem[0], 'address-auto-complete-field', 'POSTALCODE')
