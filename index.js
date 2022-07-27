@@ -31,15 +31,14 @@ var PlaceHolder = function ($scope, $element, $http, $timeout, $compile) {
     console.log("viewModule", viewModule);
 
 
-    viewModule.directive("div", function () {
-
-        return {
+    viewModule.directive("div", () => (
+        {
             link: function (scope, elem, attrs) {
-                console.log("elem", elem)
+
+                console.log(elem)
             }
         }
-
-    });
+    ))
 
 }
 
