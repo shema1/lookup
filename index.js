@@ -43,6 +43,9 @@ const lookupControlNew = `
 </div>
 
 `;
+
+const DEBOUNCE_TIME_NEW = 500;
+
 var PlaceHolder = function ($scope, $element, $http, $timeout, $compile) {
 
 
@@ -229,7 +232,7 @@ var PlaceHolder = function ($scope, $element, $http, $timeout, $compile) {
 
                             }
 
-                        }, DEBOUNCE_TIME);
+                        }, DEBOUNCE_TIME_NEW);
 
                     };
 
