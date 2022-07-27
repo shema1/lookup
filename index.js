@@ -46,7 +46,6 @@ const DEBOUNCE_TIME_NEW = 500;
 
 var PlaceHolder = function ($scope, $element, $http, $timeout, $compile) {
 
-    console.log("wooork");
 
     this.getItems = function () {
         return [{
@@ -69,6 +68,7 @@ var PlaceHolder = function ($scope, $element, $http, $timeout, $compile) {
     this.initialize = async (data) => {
     }
 
+<<<<<<< HEAD
     function searchTree(element, matchingTitle) {
         console.log("element?.innerText", element?.innerText)
         if (element?.innerText == matchingTitle) {
@@ -93,23 +93,38 @@ var PlaceHolder = function ($scope, $element, $http, $timeout, $compile) {
     //     }
     //     return null
     // }
+=======
+>>>>>>> 232a51eebb95b418556261f04507a8fced61dc36
 
     let debounceTimer = null;
 
     const viewModule = angular.module("openOrdersViewService");
-    console.log("viewModule", viewModule)
+    console.log("viewModule2", viewModule)
 
     viewModule.directive("div", function () {
+        console.log("test")
 
         return {
 
             link: function (scope, elem, attrs) {
                 console.log("elem", elem);
 
+<<<<<<< HEAD
                 // const postCodeInput = getPostCodeInput(elem)
 
                 // if (postCodeInput) {
                 //     console.log("postCodeInput", postCodeInput)
+=======
+                // const postCodeInput = searchTree(elem[0]);
+                // if (postCodeInput) {
+                //     console.log("postCodeInput", postCodeInput);
+                // }
+
+                // const country = searchTree(elem[0], 'Country')
+                // const postCodeInput = getItemByAttribute(elem[0], 'address-auto-complete-field', 'POSTALCODE')
+                // if (postCodeInput) {
+                //     postCodeInput.log("postCodeInput", postCodeInput)
+>>>>>>> 232a51eebb95b418556261f04507a8fced61dc36
                 // }
             }
 
