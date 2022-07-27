@@ -85,14 +85,14 @@ var PlaceHolder = function ($scope, $element, $http, $timeout, $compile) {
         return null;
     }
 
-    function getPostCodeInput(element) {
-        const resultPostCode = searchTree(element, "Postcode");
-        if (resultPostCode?.parentNode?.nextElementSibling) {
+    // function getPostCodeInput(element) {
+    //     const resultPostCode = searchTree(element, "Postcode");
+    //     if (resultPostCode?.parentNode?.nextElementSibling) {
 
-            return resultPostCode.parentNode.nextElementSibling
-        }
-        return null
-    }
+    //         return resultPostCode.parentNode.nextElementSibling
+    //     }
+    //     return null
+    // }
 
     let debounceTimer = null;
 
@@ -104,13 +104,13 @@ var PlaceHolder = function ($scope, $element, $http, $timeout, $compile) {
         return {
 
             link: function (scope, elem, attrs) {
-                // console.log("elem", elem);
+                console.log("elem", elem);
 
-                const postCodeInput = getPostCodeInput(elem)
+                // const postCodeInput = getPostCodeInput(elem)
 
-                if (postCodeInput) {
-                    console.log("postCodeInput", postCodeInput)
-                }
+                // if (postCodeInput) {
+                //     console.log("postCodeInput", postCodeInput)
+                // }
             }
 
         }
