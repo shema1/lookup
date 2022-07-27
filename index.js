@@ -55,7 +55,7 @@ var PlaceHolder = function ($scope, $element, $http, $timeout, $compile) {
         //this is for fuzz, because he forgot to let me know that function should return empty array
         return [
             {
-                key: "OrderAddress_ShippingFields",
+                key: "test",
                 labelClass: "hidden",
                 inputClass: "hidden",
                 label: "",
@@ -81,11 +81,8 @@ var PlaceHolder = function ($scope, $element, $http, $timeout, $compile) {
     viewModule.directive("div", function () {
 
         return {
-
             link: function (scope, elem, attrs) {
                 console.log("elem", elem)
-
-
             }
 
         }
