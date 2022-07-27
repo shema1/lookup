@@ -70,8 +70,14 @@ var PlaceHolder = function ($scope, $element, $http, $timeout, $compile) {
     }
 
     function searchTree(element, matchingTitle) {
-        console.log("element?.innerText", element?.innerText)
-        if (element?.innerText == matchingTitle) {
+        // console.log("element", element == '<input type="text" autocomplete="off" address-auto-complete="" address-auto-complete-field="POSTALCODE" address-auto-complete-model="$ctrl.address.PostCode" address-auto-complete-on-item-selected="$ctrl.update_current_address(address)" class="fill-width disabled-transparent ng-pristine ng-untouched ng-valid ng-empty" ng-disabled="$ctrl.isLocked" ng-model="$ctrl.address.PostCode">')
+        // console.log("element?.textContent", element?.textContent)
+
+        const test = element?.getAttribute("address-auto-complete-field") === "POSTALCODE"
+        test && console.log("element", element)
+        // console.log("element?.textContent", element?.textContent)
+
+        if (element?.textContent == matchingTitle) {
             return element;
         }
         else if (element.children != null) {
@@ -94,6 +100,21 @@ var PlaceHolder = function ($scope, $element, $http, $timeout, $compile) {
         return null
     }
 
+    function getByAttribute(element, attributeName, attributeValue) {
+        if (element?.getAttribute(attributeName) === attributeValue) {
+            return element;
+        }
+        else if (element.children != null) {
+            var i;
+            var result = null;
+            for (i = 0; result == null && i < element.children.length; i++) {
+                result = getByAttribute(element.children[i], attributeName, attributeValue);
+            }
+            return result;
+        }
+        return null;
+    }
+
     let debounceTimer = null;
 
     const viewModule = angular.module("openOrdersViewService");
@@ -104,12 +125,17 @@ var PlaceHolder = function ($scope, $element, $http, $timeout, $compile) {
         return {
 
             link: function (scope, elem, attrs) {
-                // console.log("elem", elem);
+                console.log("elem", elem[0]);
 
-                const postCodeInput = getPostCodeInput(elem)
+                // const postCodeInput = getPostCodeInput(elem[0])
+                // if (postCodeInput) {
+                //     console.log("postCodeInput", postCodeInput)
+                // }
 
+                // const country = searchTree(elem[0], 'Country')
+                const postCodeInput = getByAttribute(elem[0], )
                 if (postCodeInput) {
-                    console.log("postCodeInput", postCodeInput)
+                    postCodeInput.log("postCodeInput", postCodeInput)
                 }
             }
 
