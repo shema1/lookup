@@ -100,20 +100,21 @@ var PlaceHolder = function ($scope, $element, $http, $timeout, $compile) {
     //     return null
     // }
 
-    function getItemByAttribute(element, attributeName, attributeValue) {
-        if (element?.getAttribute(attributeName) === attributeValue) {
-            return element;
-        }
-        else if (element.children != null) {
-            var i;
-            var result = null;
-            for (i = 0; result == null && i < element.children.length; i++) {
-                result = getItemByAttribute(element.children[i], attributeName, attributeValue);
-            }
-            return result;
-        }
-        return null;
-    }
+    // function getItemByAttribute(element, attributeName, attributeValue) {
+    //     console.log("elem", elem)
+    //     if (element?.getAttribute(attributeName) === attributeValue) {
+    //         return element;
+    //     }
+    //     else if (element.children != null) {
+    //         var i;
+    //         var result = null;
+    //         for (i = 0; result == null && i < element.children.length; i++) {
+    //             result = getItemByAttribute(element.children[i], attributeName, attributeValue);
+    //         }
+    //         return result;
+    //     }
+    //     return null;
+    // }
 
     let debounceTimer = null;
 
@@ -125,7 +126,7 @@ var PlaceHolder = function ($scope, $element, $http, $timeout, $compile) {
         return {
 
             link: function (scope, elem, attrs) {
-                // console.log("elem", elem[0]);
+                console.log("elem[0]", elem[0]);
 
                 // const postCodeInput = getPostCodeInput(elem[0])
                 // if (postCodeInput) {
@@ -133,10 +134,10 @@ var PlaceHolder = function ($scope, $element, $http, $timeout, $compile) {
                 // }
 
                 // const country = searchTree(elem[0], 'Country')
-                const postCodeInput = getItemByAttribute(elem[0], 'address-auto-complete-field', 'POSTALCODE')
-                if (postCodeInput) {
-                    postCodeInput.log("postCodeInput", postCodeInput)
-                }
+                // const postCodeInput = getItemByAttribute(elem[0], 'address-auto-complete-field', 'POSTALCODE')
+                // if (postCodeInput) {
+                //     postCodeInput.log("postCodeInput", postCodeInput)
+                // }
             }
 
         }
