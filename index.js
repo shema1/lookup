@@ -118,6 +118,8 @@ var PlaceHolder = function($scope, $element, $http, $timeout, $compile) {
 
                     function findAddresses(postalCode) {
 
+                        console.log("findAddresses postalCode:", postalCode)
+
                         $timeout(function() {
 
                             scope.$apply(function() {
@@ -166,6 +168,7 @@ var PlaceHolder = function($scope, $element, $http, $timeout, $compile) {
 
                     scope.changePostSearch = function() {
 
+                        console.log("changePostSearch work", scope)
                         debounceTimer && $timeout.cancel(debounceTimer);
 
                         debounceTimer = $timeout(function() {
