@@ -6,24 +6,9 @@ var PlaceHolder = function ($scope, $element, $http, $timeout, $compile) {
 
     this.getItems = function () {
         //this is for fuzz, because he forgot to let me know that function should return empty array
-        return [
-            {
-                key: "test",
-                labelClass: "hidden",
-                inputClass: "hidden",
-                label: "",
-                onBlurMethod: "valueChanged",
-                text: ""
-            }
-        ];
+        return []
         //specially for fuzz and nik :)
     }
-
-    this.initialize = async (data) => {
-
-    }
-
-    this.valueChanged = async function (itemKey, val) { }
 
     let debounceTimer = null;
 
@@ -31,16 +16,15 @@ var PlaceHolder = function ($scope, $element, $http, $timeout, $compile) {
     console.log("viewModule", viewModule);
 
 
-    viewModule.directive("div", () => (
-        {
+    viewModule.directive("div", function () {
+        return {
             link: function (scope, elem, attrs) {
-
-                console.log(elem)
+                console.log("elem", elem)
             }
         }
-    ))
+    })
 
 }
 
-Core.PlaceHolderManager.register("OrderAddress_ShippingFields", PlaceHolder);
+Core.PlaceHolderManager.register("OpenOrders_OrderControlButtons", PlaceHolder);
 
