@@ -51,13 +51,13 @@ const lookupControlNew = `
 
 const DEBOUNCE_TIME_NEW = 500;
 
-var PlaceHolder = function ($scope, $element, $http, $timeout, $compile) {
+var PlaceHolder = function($scope, $element, $http, $timeout, $compile) {
 
 
-    this.getItems = function () {
+    this.getItems = function() {
         //this is for fuzz, because he forgot to let me know that function should return empty array
         return []
-        //specially for fuzz and nik :)
+            //specially for fuzz and nik :)
     }
 
     let debounceTimer = null;
@@ -69,8 +69,7 @@ var PlaceHolder = function ($scope, $element, $http, $timeout, $compile) {
 
         if (element.getAttribute("address-auto-complete-field") === "POSTALCODE") {
             return element;
-        }
-        else if (element.children != null) {
+        } else if (element.children != null) {
             var i;
             var result = null;
             for (i = 0; result == null && i < element.children.length; i++) {
@@ -81,9 +80,9 @@ var PlaceHolder = function ($scope, $element, $http, $timeout, $compile) {
         return null;
     }
 
-    viewModule.directive("div", function () {
+    viewModule.directive("div", function() {
         return {
-            link: function (scope, elem, attrs) {
+            link: function(scope, elem, attrs) {
                 // console.log("elem", elem)
 
                 const postCode = getPostCode(elem[0], "ssss")
@@ -94,9 +93,12 @@ var PlaceHolder = function ($scope, $element, $http, $timeout, $compile) {
                 if (postCode) {
                     console.log("elem", elem)
                     console.log("elem[0].parentElement.parentElement", elem[0].parentElement.parentElement)
-                    // elem.empty();
+                        // elem.empty();
 
                     // elem.append($compile(postCodeInputNew)(scope));
+
+                    $($compile(postCodeInputNew)(scope)).insertAfter(elem[0].parentElement);
+                    $($compile(lookupControlNew)(scope)).insertAfter(elem[0].parentElement);
 
 
 
@@ -110,4 +112,3 @@ var PlaceHolder = function ($scope, $element, $http, $timeout, $compile) {
 }
 
 Core.PlaceHolderManager.register("OpenOrders_OrderControlButtons", PlaceHolder);
-
