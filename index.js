@@ -1,4 +1,4 @@
-let postCodeInput = `
+let postCodeInputNew = `
 
 <input lw-tst="input_postalCode" list="postcodes" type="text" autocomplete="off" ng-disabled="sameAsShipping" tabindex="8" ng-model="address.PostCode" ng-change="changePostSearch()">
 
@@ -14,7 +14,7 @@ let postCodeInput = `
 
 
 
-const lookupControl = `
+const lookupControlNew = `
 
 <div class="control-group">
 
@@ -44,7 +44,7 @@ const lookupControl = `
 
 
 
-const DEBOUNCE_TIME = 500;
+const DEBOUNCE_TIME_NEW = 500;
 
 
 
@@ -76,11 +76,11 @@ var PlaceHolder = function ($scope, $element, $http, $timeout, $compile) {
 
 					elem.empty();
 
-					elem.append($compile(postCodeInput)(scope));
+					elem.append($compile(postCodeInputNew)(scope));
 
 
 
-					$($compile(lookupControl)(scope)).insertAfter(elem[0].parentElement.parentElement);
+					$($compile(lookupControlNew)(scope)).insertAfter(elem[0].parentElement.parentElement);
 
 
 
@@ -218,7 +218,7 @@ var PlaceHolder = function ($scope, $element, $http, $timeout, $compile) {
 
 							}
 
-						}, DEBOUNCE_TIME);
+						}, DEBOUNCE_TIME_NEW);
 
 					};
 
