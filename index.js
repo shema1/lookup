@@ -10,13 +10,14 @@ let postCodeInputNew = `
 
 <!----><button ng-if="!isBillingAddres" lw-tst="lookUp_postalCode" type="button" ng-click="lookUp($event,'POSTALCODE', address.PostCode);" class="btn"><i class="fa fa-search"></i></button><!---->
 
-<datalist id="postcodes" class="raised-higher column fill-height scroll-y-auto white">
- <option ng-repeat="item in postcodes" value="{{item}}">{{item}}</option>
+<datalist id="postcodesNew" class="raised-higher column fill-height scroll-y-auto white">
+    <div ng-repeat="item in postcodes" value="{{item}}" ng-click="onSelectPostalCode($event, item)">{{item}}</div>
 </datalist>
 
 `;
+onSelectPostalCode
 
-
+{ /* <option ng-repeat="item in postcodes" value="{{item}}">{{item}}</option> */ }
 
 const lookupControlNew = `
 
@@ -28,11 +29,11 @@ const lookupControlNew = `
 
         <div class="input-append">
 
-            <input id="lookupAddressesInput" list="lookupAddresses" type="text" autocomplete="off"
+            <input id="lookupAddressesInputNew" list="lookupAddresses" type="text" autocomplete="off"
 
                 ng-disabled="sameAsShipping || !selectedPostcode" tabindex="-1" ng-model="lookupAddress" ng-change="changeLookupAddress()">
 
-            <datalist id="lookupAddresses">
+            <datalist id="lookupAddressesNew">
 
 				<option ng-repeat="item in lookupAddresses" value="{{item.formatted}}">
 
@@ -161,6 +162,16 @@ var PlaceHolder = function($scope, $element, $http, $timeout, $compile) {
                     };
 
 
+                    scope.onSelectPostalCode = function(value, value2) {
+                        console.log("value", value);
+                        console.log("value2", value2);
+
+                        $timeout(function() {
+                            scope.$apply(function() {
+                                scope.address.PostCode = "test";
+                            });
+                        })
+                    }
 
                     scope.changePostSearch = function() {
 
@@ -203,7 +214,7 @@ var PlaceHolder = function($scope, $element, $http, $timeout, $compile) {
 
                                     const data = response.data;
 
-
+                                    console.log("changePostSearch".data)
 
                                     $timeout(function() {
 
