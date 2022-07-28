@@ -32,7 +32,7 @@ const lookupControlNew = `
 
                 ng-disabled="sameAsShipping || !selectedPostcode" tabindex="-1" ng-model="lookupAddress" ng-change="changeLookupAddress()">
 
-            <datalist id="lookupAddressesNew">
+            <datalist id="lookupAddressesNew" class="raised-higher column fill-height scroll-y-auto white">
 
 				<option ng-repeat="item in lookupAddresses" value="{{item.formatted}}">
 
