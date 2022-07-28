@@ -6,7 +6,7 @@ let postCodeInputNew = `
                     </h6><!---->
                     <!---->
                 </div>
-<input ng-blur="onBlurPostcodeInput()" ng-focus="onFocusPostcodeInput()" lw-tst="input_postalCode" list="postcodes" type="text" autocomplete="off" class='disabled-transparent ng-pristine ng-valid ng-empty ng-touched' ng-disabled="sameAsShipping" tabindex="8" ng-model="address.PostCode" ng-change="changePostSearch()">
+<input ng-blur="onBlurPostcodeInput($event)" ng-focus="onFocusPostcodeInput()" lw-tst="input_postalCode" list="postcodes" type="text" autocomplete="off" class='disabled-transparent ng-pristine ng-valid ng-empty ng-touched' ng-disabled="sameAsShipping" tabindex="8" ng-model="address.PostCode" ng-change="changePostSearch()">
 
 <!----><button ng-if="!isBillingAddres" lw-tst="lookUp_postalCode" type="button" ng-click="lookUp($event,'POSTALCODE', address.PostCode);" class="btn"><i class="fa fa-search"></i></button><!---->
 
@@ -263,8 +263,8 @@ var PlaceHolder = function($scope, $element, $http, $timeout, $compile) {
                     }
 
 
-                    scope.onBlurPostcodeInput = function() {
-                        console.log("onBlurPostcodeInput");
+                    scope.onBlurPostcodeInput = function(event) {
+                        console.log("onBlurPostcodeInput", event);
                         scope.isActivePostCodeInput = false;
                     }
 
