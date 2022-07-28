@@ -257,16 +257,16 @@ var PlaceHolder = function($scope, $element, $http, $timeout, $compile) {
 
                     };
 
-                    scope.test1() = function() {
+                    scope.test1 = function() {
                         console.log("test11111111")
                     }
-                    scope.test2() = function() {
+                    scope.test2 = function() {
                         console.log("test2")
                     }
-                    scope.test3() = function() {
+                    scope.test3 = function() {
                         console.log("test2")
                     }
-                    scope.test4() = function() {
+                    scope.test4 = function() {
                         console.log("test2")
                     }
 
