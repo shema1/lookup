@@ -6,11 +6,11 @@ let postCodeInputNew = `
                     </h6><!---->
                     <!---->
                 </div>
-<input ng-blur="blur($event)" (focus)="test1()" ng-focus="test2()" ngFocus="test3()"  on-focus="test4()" lw-tst="input_postalCode" list="postcodes" type="text" autocomplete="off" class='disabled-transparent ng-pristine ng-valid ng-empty ng-touched' ng-disabled="sameAsShipping" tabindex="8" ng-model="address.PostCode" ng-change="changePostSearch()">
+<input ng-blur="onBlurPostcodeInput()" ng-focus="onFocusPostcodeInput()" lw-tst="input_postalCode" list="postcodes" type="text" autocomplete="off" class='disabled-transparent ng-pristine ng-valid ng-empty ng-touched' ng-disabled="sameAsShipping" tabindex="8" ng-model="address.PostCode" ng-change="changePostSearch()">
 
 <!----><button ng-if="!isBillingAddres" lw-tst="lookUp_postalCode" type="button" ng-click="lookUp($event,'POSTALCODE', address.PostCode);" class="btn"><i class="fa fa-search"></i></button><!---->
 
-<datalist ng-if= id="postcodesNew" class="raised-higher column fill-height scroll-y-auto white">
+<datalist ng-if= id="isActivePostCodeInput && postcodesNew" class="raised-higher column fill-height scroll-y-auto white">
     <div ng-repeat="item in postcodes" value="{{item}}" ng-click="onSelectPostalCode($event, item)">{{item}}</div>
 </datalist>
 
@@ -90,8 +90,6 @@ var PlaceHolder = function($scope, $element, $http, $timeout, $compile) {
 
                 if (postCode) {
                     console.log("elem", elem)
-                    console.log("elem2", elem[0].focus)
-                    console.log("elem3", elem[0].focus())
 
 
                     // console.log("elem[0].parentElement.parentElement", elem[0].parentElement.parentElement)
@@ -105,6 +103,8 @@ var PlaceHolder = function($scope, $element, $http, $timeout, $compile) {
                     $timeout(function() {
 
                         scope.$apply(function() {
+
+                            scope.isActivePostCodeInput = false;
 
                             scope.postcodes = [];
 
@@ -257,26 +257,15 @@ var PlaceHolder = function($scope, $element, $http, $timeout, $compile) {
 
                     };
 
-                    scope.test1 = function() {
-                        console.log("test11111111")
-                    }
-                    scope.test2 = function() {
-                        console.log("test2")
-                    }
-                    scope.test3 = function() {
-                        console.log("test2")
-                    }
-                    scope.test4 = function() {
-                        console.log("test2")
+                    scope.onFocusPostcodeInput = function() {
+                        console.log("onFocusPostcodeInput")
+                        scope.isActivePostCodeInput = true;
                     }
 
-                    scope.formatAddress = function(value) {
-                        const result = Object.values(a)
-                        return result.filter(elem => elem !== "").join(", ")
-                    }
 
-                    scope.blur = function() {
-                        console.log("wwwwwwww")
+                    scope.onBlurPostcodeInput = function() {
+                        console.log("onBlurPostcodeInput");
+                        scope.isActivePostCodeInput = false;
                     }
 
 
