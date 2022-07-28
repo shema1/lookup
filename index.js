@@ -10,7 +10,7 @@ let postCodeInputNew = `
 
 <!----><button ng-if="!isBillingAddres" lw-tst="lookUp_postalCode" type="button" ng-click="lookUp($event,'POSTALCODE', address.PostCode);" class="btn"><i class="fa fa-search"></i></button><!---->
 
-<datalist ng-if= id="isActivePostCodeInput && postcodesNew" class="raised-higher column fill-height scroll-y-auto white">
+<datalist ng-if= id="isActivePostCodeInput" class="raised-higher column fill-height scroll-y-auto white">
     <div ng-repeat="item in postcodes" value="{{item}}" ng-click="onSelectPostalCode($event, item)">{{item}}</div>
 </datalist>
 
