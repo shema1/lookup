@@ -161,13 +161,13 @@ var PlaceHolder = function($scope, $element, $http, $timeout, $compile) {
                     };
 
 
-                    scope.onSelectPostalCode = function(value, value2) {
+                    scope.onSelectPostalCode = function(event, value) {
+                        console.log("event", event);
                         console.log("value", value);
-                        console.log("value2", value2);
 
                         $timeout(function() {
                             scope.$apply(function() {
-                                scope.address.PostCode = "test";
+                                scope.address.PostCode = value;
                             });
                         })
                     }
