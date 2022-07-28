@@ -15,7 +15,6 @@ let postCodeInputNew = `
 </datalist>
 
 `;
-onSelectPostalCode
 
 { /* <option ng-repeat="item in postcodes" value="{{item}}">{{item}}</option> */ }
 
