@@ -140,7 +140,7 @@ var PlaceHolder = function($scope, $element, $http, $timeout, $compile) {
 
                             const data = response.data;
 
-                            console.log("data", data);
+                            console.log("findAddresses data ", data);
 
                             $timeout(function() {
 
@@ -213,7 +213,7 @@ var PlaceHolder = function($scope, $element, $http, $timeout, $compile) {
 
                                     const data = response.data;
 
-                                    console.log("changePostSearch".data)
+                                    console.log("changePostSearch", data)
 
                                     $timeout(function() {
 
