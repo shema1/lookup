@@ -169,6 +169,13 @@ var PlaceHolder = function($scope, $element, $http, $timeout, $compile) {
                             scope.$apply(function() {
                                 scope.address.PostCode = value;
                             });
+
+                            const data = scope.postcodes;
+                            console.log("data", data);
+                            data && console.log('test', data.some(x => x === value))
+                            if (data && Array.isArray(data) && data.some(x => x === value)) {
+                                findAddresses(postalCode);
+                            }
                         })
                     }
 
