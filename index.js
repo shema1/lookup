@@ -11,7 +11,7 @@ let postCodeInputNew = `
 <!----><button ng-if="!isBillingAddres" lw-tst="lookUp_postalCode" type="button" ng-click="lookUp($event,'POSTALCODE', address.PostCode);" class="btn"><i class="fa fa-search"></i></button><!---->
 
 <datalist id="postcodesNew" class="raised-higher column fill-height scroll-y-auto white">
-    <div ng-repeat="item in postcodes" value="{{item}}" ng-click="onSelectPostalCode($event, item)">{{item}}</div>
+    <div ng-repeat="item in postcodes" value="{{item}}" ng-click="onSelectPostalCode($event, item)">{{formatAddress(item)}}</div>
 </datalist>
 
 `;
@@ -34,7 +34,7 @@ const lookupControlNew = `
 
             <datalist id="lookupAddressesNew" class="raised-higher column fill-height scroll-y-auto white">
 
-				<option ng-repeat="item in lookupAddresses" value="{{item.formatted}}">
+				<div ng-repeat="item in lookupAddresses" value="{{item.formatted</option>}}">{{}}</div>
 
             </datalist>
 
@@ -46,6 +46,7 @@ const lookupControlNew = `
 
 `;
 
+{ /* <option ng-repeat="item in lookupAddresses" value="{{item.formatted</option>}}"> */ }
 const DEBOUNCE_TIME_NEW = 500;
 
 var PlaceHolder = function($scope, $element, $http, $timeout, $compile) {
@@ -251,6 +252,11 @@ var PlaceHolder = function($scope, $element, $http, $timeout, $compile) {
                         }, DEBOUNCE_TIME_NEW);
 
                     };
+
+                    scope.formatAddress = function(value) {
+                        const result = Object.values(a)
+                        return result.filter(elem => elem !== "").join(", ")
+                    }
 
 
 
