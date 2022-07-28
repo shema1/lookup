@@ -226,7 +226,7 @@ var PlaceHolder = function($scope, $element, $http, $timeout, $compile) {
                                         });
 
                                         $timeout(function() {
-
+                                            console.log("data.some(x => x === postalCode)", data.some(x => x === postalCode))
                                             if (data && Array.isArray(data) && data.some(x => x === postalCode)) {
 
                                                 findAddresses(postalCode);
