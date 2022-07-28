@@ -1,4 +1,4 @@
-"use strict"; { /* <option ng-repeat="item in postcodes" value="{{item}}"> */ } { /* <option ng-repeat="item in postcodes" value="{{item}}"></option> */ }
+"use strict";
 let postCodeInputNew = `
 <div ng-class="{'translucent margin-none margin-top': $ctrl.isLocked}">
                     <!----><h6 ng-if="!$ctrl.isLocked">
@@ -11,7 +11,7 @@ let postCodeInputNew = `
 <!----><button ng-if="!isBillingAddres" lw-tst="lookUp_postalCode" type="button" ng-click="lookUp($event,'POSTALCODE', address.PostCode);" class="btn"><i class="fa fa-search"></i></button><!---->
 
 <datalist id="postcodes" class="raised-higher column fill-height scroll-y-auto white">
-        <div ng-repeat="item in postcodes">{{item}}</div>
+ <option ng-repeat="item in postcodes" value="{{item}}">{{item}}</option>
 </datalist>
 
 `;
