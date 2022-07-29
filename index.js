@@ -39,6 +39,13 @@ let postCodeInputNew = `
             <input type="text" ng-model="searchPattern"/>
             <autocomplete values="tags" search="searchPattern" suggestions="suggestions" selected="selectedTags" ></autocomplete>
         </div>
+        <ul>
+        <li ng-repeat="suggestion in suggestions">
+           {{suggestion}}
+           &nbsp;
+           <b ng-click="addToSelectedTags($index)"><i>add</i></b>
+         </li>
+      </ul>
 
 `;
 
@@ -310,6 +317,14 @@ var PlaceHolder = function($scope, $element, $http, $timeout, $compile) {
                         scope.searchPattern = newValue;
                         scope.search();
                     });
+
+                    scope.addToSelectedTags = function(index) {
+                        console.log("index", index);
+                        if ($scope.selectedTags.indexOf($scope.suggestions[index]) === -1) {
+                            $scope.selectedTags.push($scope.suggestions[index]);
+                            $scope.searchPattern = "";
+                        }
+                    }
 
                     scope.changeLookupAddress = function(e) {
 
