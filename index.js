@@ -297,7 +297,19 @@ var PlaceHolder = function($scope, $element, $http, $timeout, $compile) {
                         scope.isActivePostCodeInput = false;
                     }
 
+                    scope.search = function() {
+                        scope.suggestions = scope.values.filter(function(value) {
+                            console.log('woork1', value)
+                            return value.indexOf(scope.searchPattern) !== -1;
+                        });
+                    }
 
+                    /* Executes a new search when the pattern has changed */
+                    scope.$watch('searchPattern', function(newValue, oldValue) {
+                        console.log("woork2", newValue, oldValue)
+                        scope.searchPattern = newValue;
+                        scope.search();
+                    });
 
                     scope.changeLookupAddress = function(e) {
 
