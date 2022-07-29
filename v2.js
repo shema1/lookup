@@ -1,7 +1,31 @@
 "use strict";
-let postCodeInputNew = `
+// let postCodeInputNew = `
+// <div ng-class="{'translucent margin-none margin-top': $ctrl.isLocked}">
+//                     <!----><h6 ng-if="!$ctrl.isLocked">
+//                         Postcode
+//                     </h6><!---->
+//                     <!---->
+//                 </div>
+// <input ng-blur="onBlurPostcodeInput($event)" ng-focus="onFocusPostcodeInput()" lw-tst="input_postalCode" list="postcodes" type="text" autocomplete="off" class='disabled-transparent ng-pristine ng-valid ng-empty ng-touched' ng-disabled="sameAsShipping" tabindex="8" ng-model="address.PostCode" ng-change="changePostSearch()">
 
-<input  lw-tst="input_postalCode" list="postcodes" type="text" autocomplete="off" ng-disabled="sameAsShipping" tabindex="8" ng-model="address.PostCode" ng-change="changePostSearch()">
+// <!----><button ng-if="!isBillingAddres" lw-tst="lookUp_postalCode" type="button" ng-click="lookUp($event,'POSTALCODE', address.PostCode);" class="btn"><i class="fa fa-search"></i></button><!---->
+
+// <datalist ng-if='isActivePostCodeInput' id="postcodesNew" class="raised-higher column fill-height scroll-y-auto white">
+//     <div ng-repeat="item in postcodes" value="{{item}}" ng-click="onSelectPostalCode($event, item)">{{item}}</div>
+// </datalist>
+
+// `;
+
+
+let postCodeInputNew = `
+ <div ng-class="{'translucent margin-none margin-top': $ctrl.isLocked}">
+                     <!----><h6 ng-if="!$ctrl.isLocked">
+                         Postcode
+                     </h6><!---->
+                     <!---->
+                 </div>
+
+<input focus-out="testX()" lw-tst="input_postalCode" list="postcodes" type="text" autocomplete="off" ng-disabled="sameAsShipping" tabindex="8" ng-model="address.PostCode" ng-change="changePostSearch()">
 
 <!----><button ng-if="!isBillingAddres" lw-tst="lookUp_postalCode" type="button" ng-click="lookUp($event,'POSTALCODE', address.PostCode);" class="btn"><i class="fa fa-search"></i></button><!---->
 
@@ -10,13 +34,25 @@ let postCodeInputNew = `
 	<option ng-repeat="item in postcodes" value="{{item}}">
 
 </datalist>
+<div>
+            <label>Search: </label>
+            <input type="text" ng-model="searchPattern"/>
+            <autocomplete values="tags" search="searchPattern" suggestions="suggestions" selected="selectedTags" ></autocomplete>
+        </div>
+        <ul>
+        <li ng-repeat="suggestion in suggestions">
+           {{suggestion}}
+           &nbsp;
+           <b ng-click="addToSelectedTags($index)"><i>add</i></b>
+         </li>
+      </ul>
 
-<input type="text" autocomplete="off" address-auto-complete="" address-auto-complete-field="POSTALCODE" address-auto-complete-model="address.PostCode" address-auto-complete-on-item-selected="update_current_address(address)" class="fill-width disabled-transparent ng-valid ng-not-empty ng-dirty ng-valid-parse ng-touched" ng-disabled="" ng-model="address.PostCode" data-hj-ignore-attributes="">
+      <div angucomplete-altid="txtCountries" placeholder="Country" pause="100" selected-object="Search"
+        focus-out="Validate()" local-data="Countries" search-fields="Country" title-field="Country"
+        minlength="1" input-class="form-control" match-class="highlight">
+    </div>
 
 `;
-
-
-
 
 const lookupControlNew = `
 
@@ -273,10 +309,30 @@ var LookupPlaceHolder = function($scope, $element, $http, $timeout, $compile) {
                         scope.isActivePostCodeInput = false;
                     }
 
-                    scope.update_current_address = function(a, b, c) {
-                        console.log("log a", a);
-                        console.log("log b", b);
-                        console.log("log c", c);
+                    scope.search = function() {
+                        scope.suggestions = scope.tags.filter(function(value) {
+                            console.log('woork1', value)
+                            return value.indexOf(scope.searchPattern) !== -1;
+                        });
+                    }
+
+                    /* Executes a new search when the pattern has changed */
+                    scope.$watch('searchPattern', function(newValue, oldValue) {
+                        console.log("woork2", newValue, oldValue)
+                        scope.searchPattern = newValue;
+                        scope.search();
+                    });
+
+                    scope.addToSelectedTags = function(index) {
+                        console.log("index", index);
+                        if ($scope.selectedTags.indexOf($scope.suggestions[index]) === -1) {
+                            $scope.selectedTags.push($scope.suggestions[index]);
+                            $scope.searchPattern = "";
+                        }
+                    }
+
+                    scope.testX = function() {
+                        console.log("testX work");
                     }
 
                     scope.changeLookupAddress = function(e) {
