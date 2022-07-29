@@ -85,7 +85,7 @@ const lookupControlNew = `
 { /* <option ng-repeat="item in lookupAddresses" value="{{item.formatted</option>}}"> */ }
 const DEBOUNCE_TIME_NEW = 500;
 
-var PlaceHolder = function($scope, $element, $http, $timeout, $compile) {
+var LookupPlaceHolder = function($scope, $element, $http, $timeout, $compile) {
 
 
     this.getItems = function() {
@@ -381,4 +381,4 @@ var PlaceHolder = function($scope, $element, $http, $timeout, $compile) {
 
 }
 
-Core.PlaceHolderManager.register("OpenOrders_OrderControlButtons", PlaceHolder);
+Core.PlaceHolderManager.register("OpenOrders_OrderControlButtons", LookupPlaceHolder);
