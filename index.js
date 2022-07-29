@@ -11,7 +11,7 @@ let postCodeInputNew = `
 
 </datalist>
 
-<input type="text" autocomplete="off" address-auto-complete="teeest()" address-auto-complete-field="POSTALCODE" address-auto-complete-model="address.PostCode" address-auto-complete-on-item-selected="update_current_address(address)" class="fill-width disabled-transparent ng-valid ng-not-empty ng-dirty ng-valid-parse ng-touched" ng-disabled="" ng-model="address.PostCode" data-hj-ignore-attributes="">
+<input type="text" autocomplete="off" address-auto-complete="teeest()" ng-change=changePostSearch() address-auto-complete-field="POSTALCODE" address-auto-complete-model="address.PostCode" address-auto-complete-on-item-selected="update_current_address(address)" class="fill-width disabled-transparent ng-valid ng-not-empty ng-dirty ng-valid-parse ng-touched" ng-disabled="" ng-model="address.PostCode" data-hj-ignore-attributes="">
 
 `;
 
