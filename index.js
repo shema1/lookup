@@ -47,6 +47,11 @@ let postCodeInputNew = `
          </li>
       </ul>
 
+      <div angucomplete-altid="txtCountries" placeholder="Country" pause="100" selected-object="Search"
+        focus-out="Validate()" local-data="Countries" search-fields="Country" title-field="Country"
+        minlength="1" input-class="form-control" match-class="highlight">
+    </div>
+
 `;
 
 const lookupControlNew = `
