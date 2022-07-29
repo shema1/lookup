@@ -34,6 +34,11 @@ let postCodeInputNew = `
 	<option ng-repeat="item in postcodes" value="{{item}}">
 
 </datalist>
+<div>
+            <label>Search: </label>
+            <input type="text" ng-model="searchPattern"/>
+            <autocomplete values="tags" search="searchPattern" suggestions="suggestions" selected="selectedTags" ></autocomplete>
+        </div>
 
 `;
 
@@ -130,6 +135,11 @@ var PlaceHolder = function($scope, $element, $http, $timeout, $compile) {
                             scope.lookupAddresses = [];
 
                             scope.selectedPostcode = undefined;
+
+                            scope.searchPattern = "";
+                            scope.selectedTags = [];
+                            scope.suggestions = [];
+                            scope.tags = ['Mercury', 'Venus', 'Earth', 'Mars', 'Saturn', 'Uranus', 'Neptun', 'Pluto']
 
                         });
 
