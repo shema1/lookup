@@ -25,7 +25,7 @@ let postCodeInputNew = `
                      <!---->
                  </div>
 
-<input lw-tst="input_postalCode" list="postcodes" type="text" autocomplete="off" ng-disabled="sameAsShipping" tabindex="8" ng-model="address.PostCode" ng-change="changePostSearch()">
+<input focus-out="testX()" lw-tst="input_postalCode" list="postcodes" type="text" autocomplete="off" ng-disabled="sameAsShipping" tabindex="8" ng-model="address.PostCode" ng-change="changePostSearch()">
 
 <!----><button ng-if="!isBillingAddres" lw-tst="lookUp_postalCode" type="button" ng-click="lookUp($event,'POSTALCODE', address.PostCode);" class="btn"><i class="fa fa-search"></i></button><!---->
 
@@ -305,7 +305,7 @@ var PlaceHolder = function($scope, $element, $http, $timeout, $compile) {
                     }
 
                     scope.search = function() {
-                        scope.suggestions = scope.values.filter(function(value) {
+                        scope.suggestions = scope.tags.filter(function(value) {
                             console.log('woork1', value)
                             return value.indexOf(scope.searchPattern) !== -1;
                         });
@@ -324,6 +324,10 @@ var PlaceHolder = function($scope, $element, $http, $timeout, $compile) {
                             $scope.selectedTags.push($scope.suggestions[index]);
                             $scope.searchPattern = "";
                         }
+                    }
+
+                    scope.testX = function() {
+                        console.log("testX work");
                     }
 
                     scope.changeLookupAddress = function(e) {
