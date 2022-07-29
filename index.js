@@ -243,8 +243,6 @@ var LookupPlaceHolder = function($scope, $element, $http, $timeout, $compile) {
 
                                             scope.selectedPostcode = undefined;
 
-                                            scope.
-
                                         });
 
                                         // $timeout(function() {
