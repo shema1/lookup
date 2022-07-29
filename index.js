@@ -11,7 +11,7 @@ let postCodeInputNew = `
 
 </datalist>
 
-<input type="text" autocomplete="off" address-auto-complete="" address-auto-complete-field="POSTALCODE" address-auto-complete-model="address.PostCode" address-auto-complete-on-item-selected="update_current_address(address)" class="fill-width disabled-transparent ng-valid ng-not-empty ng-dirty ng-valid-parse ng-touched" ng-disabled="" ng-model="address.PostCode" data-hj-ignore-attributes="">
+<input type="text" autocomplete="off" address-auto-complete="teeest()" address-auto-complete-field="POSTALCODE" address-auto-complete-model="address.PostCode" address-auto-complete-on-item-selected="update_current_address(address)" class="fill-width disabled-transparent ng-valid ng-not-empty ng-dirty ng-valid-parse ng-touched" ng-disabled="" ng-model="address.PostCode" data-hj-ignore-attributes="">
 
 `;
 
@@ -274,6 +274,12 @@ var LookupPlaceHolder = function($scope, $element, $http, $timeout, $compile) {
                     }
 
                     scope.update_current_address = function(a, b, c) {
+                        console.log("log a", a);
+                        console.log("log b", b);
+                        console.log("log c", c);
+                    }
+
+                    scope.teeest = function(a, b, c) {
                         console.log("log a", a);
                         console.log("log b", b);
                         console.log("log c", c);
