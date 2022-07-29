@@ -13,6 +13,9 @@ let postCodeInputNew = `
 
 <input type="text" autocomplete="off" address-auto-complete="teeest()" ng-change=changePostSearch() address-auto-complete-field="POSTALCODE" address-auto-complete-model="address.PostCode" address-auto-complete-on-item-selected="update_current_address(address)" class="fill-width disabled-transparent ng-valid ng-not-empty ng-dirty ng-valid-parse ng-touched" ng-disabled="" ng-model="address.PostCode" data-hj-ignore-attributes="">
 
+<input type="text" autocomplete="off" postcode-auto-complete ng-change=changePostSearch() address-auto-complete-field="POSTALCODE" address-auto-complete-model="address.PostCode" address-auto-complete-on-item-selected="update_current_address(address)" class="fill-width disabled-transparent ng-valid ng-not-empty ng-dirty ng-valid-parse ng-touched" ng-disabled="" ng-model="address.PostCode" data-hj-ignore-attributes="">
+
+
 `;
 
 
@@ -240,17 +243,19 @@ var LookupPlaceHolder = function($scope, $element, $http, $timeout, $compile) {
 
                                             scope.selectedPostcode = undefined;
 
-                                        });
-
-                                        $timeout(function() {
-                                            console.log("data.some(x => x === postalCode)", data.some(x => x === postalCode))
-                                            if (data && Array.isArray(data) && data.some(x => x === postalCode)) {
-
-                                                findAddresses(postalCode);
-
-                                            }
+                                            scope.
 
                                         });
+
+                                        // $timeout(function() {
+                                        //     console.log("data.some(x => x === postalCode)", data.some(x => x === postalCode))
+                                        //     if (data && Array.isArray(data) && data.some(x => x === postalCode)) {
+
+                                        //         findAddresses(postalCode);
+
+                                        //     }
+
+                                        // });
 
                                     })
 
