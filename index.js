@@ -4,7 +4,7 @@
 
 let postCodeInputNew = `
 
-<input lw-tst="input_postalCode" list="postcodes" type="text" autocomplete="off" ng-disabled="sameAsShipping" tabindex="8" ng-model="address.PostCode" ng-change="">
+<input lw-tst="input_postalCode" list="postcodes" type="text" autocomplete="off" ng-disabled="sameAsShipping" tabindex="8" ng-model="address.PostCode" ng-change="changePostSearch()">
 
 <!----><button ng-if="!isBillingAddres" lw-tst="lookUp_postalCode" type="button" ng-click="lookUp($event,'POSTALCODE', address.PostCode);" class="btn"><i class="fa fa-search"></i></button><!---->
 
@@ -149,8 +149,8 @@ define(function(require) {
                         if (postCodeInput) {
                             console.log("postCodeInput", postCodeInput)
                             $scope.postcodes = [];
-                            $scope.changePostSearch = function() {
-                                console.log("woork")
+                            $scope.changePostSearch = function(e) {
+                                console.log("woork", e)
                             }
                             btn = angular.element(postCodeInput);
                             var ctrl = angular.element(btn).controller();
