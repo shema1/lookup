@@ -58,7 +58,7 @@ var LookupPlaceHolder = function($scope, $element, $http, $timeout, $compile) {
     console.log("viewModule", viewModule);
 
     const items = [{
-        key: "shippingAddressPH",
+        key: "NewOpenOrder_EditOrder_OrderControlButtons",
         labelClass: "hidden",
         inputClass: "hidden",
         label: "",
