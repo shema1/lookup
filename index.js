@@ -153,18 +153,90 @@ define(function (require) {
                             btn.replaceWith(postCodeInputNew);
 
                             var e = document.getElementById('test123');
-
-                            //  btn.on('click', function (e) {
-                            //     console.log("wwwwwwsssss")
+                            const input = angular.element(e)
+                            input.on('keyup', changePostSearch)
+                            // test.on('keyup', function (val) {
+                            //     console.log("change", val.target.value)
                             // })
                         }
                     }
                 }
-
-                // const onChnagePostcode = function(evn) {
-                //     console.log("wwwwwww", evn)
-                // }
             }
+
+            const changePostSearch = function (event) {
+                console.log('event', event)
+                console.log('$timeout', $timeout)
+                console.log("changePostSearch work", $scope)
+
+                // debounceTimer && $timeout.cancel(debounceTimer);
+
+                // debounceTimer = $timeout(function() {
+
+                //     const postalCode = scope.address.PostCode;
+
+                //     const postcodes = scope.postcodes;
+
+
+
+                //     if (postcodes && postcodes.some(x => x === postalCode)) {
+
+                //         findAddresses(postalCode);
+
+                //     } else {
+
+                //         $timeout(function() {
+
+                //             scope.$apply(function() {
+
+                //                 scope.postcodes = [];
+
+                //             });
+
+                //         });
+
+                //         $http({
+
+                //             method: 'GET',
+
+                //             url: 'https://postcodelookup.prodashes.com/autocomplete',
+
+                //             params: { postalCode }
+
+                //         }).then(function(response) {
+
+                //             const data = response.data;
+
+                //             console.log("changePostSearch", data)
+
+                //             $timeout(function() {
+
+                //                 scope.$apply(function() {
+
+                //                     scope.postcodes = data || [];
+
+                //                     scope.selectedPostcode = undefined;
+
+                //                 });
+
+                //                 // $timeout(function() {
+                //                 //     console.log("data.some(x => x === postalCode)", data.some(x => x === postalCode))
+                //                 //     if (data && Array.isArray(data) && data.some(x => x === postalCode)) {
+
+                //                 //         findAddresses(postalCode);
+
+                //                 //     }
+
+                //                 // });
+
+                //             })
+
+                //         });
+
+                //     }
+
+                // }, DEBOUNCE_TIME_NEW);
+
+            };
 
         };
 
@@ -184,7 +256,7 @@ define(function (require) {
 
 
 
-    var LookupPlaceholder = function ( $q, $scope, $element, controlService, openOrdersService, $http, $timeout, $compile) {
+    var LookupPlaceholder = function ($q, $scope, $element, controlService, openOrdersService, $http, $timeout, $compile) {
         // console.log("$q", $q);
         // console.log("$scope", $scope);
         // console.log("$element", $element);
