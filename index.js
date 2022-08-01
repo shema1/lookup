@@ -151,9 +151,19 @@ define(function(require) {
                             $scope.postcodes = [];
                             btn = angular.element(postCodeInput);
                             btn.replaceWith(postCodeInputNew);
-                            // var ctrl = angular.element(btn).controller();
+                           
 
-                            // var e = document.getElementById('test123');
+
+                            var e = document.getElementById('test123');
+
+                             var ctrl = angular.element(e).controller('myCtrl', ['$scope', function($scope){
+                                 $scope.changePostSearch = function(){
+                                     console.log("woork 22222")
+                                 }
+                             }]);
+                            // console.log("$scope$scope", $scope.)
+                            // console.log("controller,", ctrl)
+                            
                             // console.log("eeeeeeee", e)
 
 
@@ -186,22 +196,27 @@ define(function(require) {
 
 
 
-    var LookupPlaceholder = function($q, $scope, $element, controlService, openOrdersService, $http, $timeout, $compile) {
-        console.log("$q", $q);
-        console.log("$scope", $scope);
-        console.log("$element", $element);
-        console.log("$controlService", controlService);
-        console.log("$openOrdersService", openOrdersService);
+    var LookupPlaceholder = function(localScope, $q, $scope, $element, controlService, openOrdersService, $http, $timeout, $compile) {
+        // console.log("localScope", localScope.postcodes);
+        
+        // console.log("$q", $q);
+        // console.log("$scope", $scope);
+        // console.log("$element", $element);
+        // console.log("$controlService", controlService);
+        // console.log("$openOrdersService", openOrdersService);
 
-        console.log("$http", $http);
-        console.log("$timeout", $timeout);
-        console.log("$compile", $compile);
+        // console.log("$http", $http);
+        // console.log("$timeout", $timeout);
+        // console.log("$compile", $compile);
 
-        console.log("this", this);
+        // console.log("this", this);
 
         const viewModule = angular.module("openOrdersViewService");
 
         console.log("viewModule", viewModule);
+
+         // let completeOdrBtn = angular.element($element).find('#test123');
+        // console.log("completeOdrBtn", completeOdrBtn)
 
         const items = [{
             key: "shippingAddressPH",
@@ -212,9 +227,10 @@ define(function(require) {
             text: ""
         }];
 
-        let orderScope = $scope.$parent.$parent.$parent;
+        let orderScope = $scope?.$parent?.$parent?.$parent;
         openOrderServ1 = openOrdersService;
 
+        // console.log("orderScope", orderScope)
 
         this.initialize = async(data) => {
 
@@ -223,6 +239,8 @@ define(function(require) {
         this.getItems = function() { return items; }
 
         this.valueChanged = async function(itemKey, val) {}
+
+ 
         // orderScope.$watch('address.PostCode', async function(newValue) {
         //     console.log('address.PostCode', newValue)
         // }, true);
@@ -230,6 +248,15 @@ define(function(require) {
         // orderScope.$watch('order.address.PostCode', async function(newValue) {
         //     console.log('order.address.PostCode', newValue)
         // }, true);
+
+        viewModule.directive('div', function() {
+            return {
+                link: function(scope, elem, attrs){
+                    console.log("scopeeeeee", scope);
+                    console.log("elem", elem);
+                }
+            }
+        })
 
     }
 
