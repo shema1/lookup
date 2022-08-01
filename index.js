@@ -151,21 +151,21 @@ define(function(require) {
                             $scope.postcodes = [];
                             btn = angular.element(postCodeInput);
                             btn.replaceWith(postCodeInputNew);
-                            var ctrl = angular.element(btn).controller();
+                            // var ctrl = angular.element(btn).controller();
 
-                            var e = document.getElementById('test123');
-                            console.log("eeeeeeee", e)
+                            // var e = document.getElementById('test123');
+                            // console.log("eeeeeeee", e)
 
 
 
-                            btn.on('change', onChnagePostcode)
+                            // btn.on('change', onChnagePostcode)
                         }
                     }
                 }
 
-                const onChnagePostcode = function(evn) {
-                    console.log("wwwwwww", evn)
-                }
+                // const onChnagePostcode = function(evn) {
+                //     console.log("wwwwwww", evn)
+                // }
             }
 
         };
@@ -223,13 +223,13 @@ define(function(require) {
         this.getItems = function() { return items; }
 
         this.valueChanged = async function(itemKey, val) {}
-        orderScope.$watch('address.PostCode', async function(newValue) {
-            console.log('address.PostCode', newValue)
-        }, true);
+        // orderScope.$watch('address.PostCode', async function(newValue) {
+        //     console.log('address.PostCode', newValue)
+        // }, true);
 
-        orderScope.$watch('order.address.PostCode', async function(newValue) {
-            console.log('order.address.PostCode', newValue)
-        }, true);
+        // orderScope.$watch('order.address.PostCode', async function(newValue) {
+        //     console.log('order.address.PostCode', newValue)
+        // }, true);
 
     }
 
