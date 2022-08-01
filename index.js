@@ -72,7 +72,7 @@ define(function(require) {
 
         function getPostCodeInput(element) {
             const resultPostCode = searchTree(element, "Postcode");
-            if (resultPostCode ? .parentNode ? .nextElementSibling) {
+            if (resultPostCode?.parentNode?.nextElementSibling) {
 
                 return resultPostCode.parentNode.nextElementSibling
             }
