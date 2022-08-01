@@ -44,7 +44,7 @@ const lookupControlNew = `
 
 `;
 
-define(function(require) {
+define(function (require) {
 
     const placeholderManager = require("core/placeholderManager");
     const Window = require("core/Window");
@@ -53,7 +53,7 @@ define(function(require) {
     //const OrderChangeState = require('modules/orderbook/orders/classes/orderchangestate');
 
     // Set validation there
-    $(document).ready(function($scope, $element, $http, $timeout, $compile) {
+    $(document).ready(function ($scope, $element, $http, $timeout, $compile) {
         const config = { childList: true, subtree: true };
 
         function searchTree(element, matchingTitle) {
@@ -126,7 +126,7 @@ define(function(require) {
             return null;
         }
 
-        var callback = function(mutationsList, observer) {
+        var callback = function (mutationsList, observer) {
             console.log("mutationsList", mutationsList)
 
             function onChangeSubSource() {
@@ -151,24 +151,12 @@ define(function(require) {
                             $scope.postcodes = [];
                             btn = angular.element(postCodeInput);
                             btn.replaceWith(postCodeInputNew);
-                           
-
 
                             var e = document.getElementById('test123');
 
-                             var ctrl = angular.element(e).controller('myCtrl', ['$scope', function($scope){
-                                 $scope.changePostSearch = function(){
-                                     console.log("woork 22222")
-                                 }
-                             }]);
-                            // console.log("$scope$scope", $scope.)
-                            // console.log("controller,", ctrl)
-                            
-                            // console.log("eeeeeeee", e)
-
-
-
-                            // btn.on('change', onChnagePostcode)
+                            //  btn.on('click', function (e) {
+                            //     console.log("wwwwwwsssss")
+                            // })
                         }
                     }
                 }
@@ -182,7 +170,7 @@ define(function(require) {
 
         const observer = new MutationObserver(callback);
 
-        setTimeout(function() {
+        setTimeout(function () {
             const targetNode = document.getElementsByClassName("opened-modules")[0];
             observer.observe(targetNode, config);
         }, 2000);
@@ -196,9 +184,7 @@ define(function(require) {
 
 
 
-    var LookupPlaceholder = function(localScope, $q, $scope, $element, controlService, openOrdersService, $http, $timeout, $compile) {
-        // console.log("localScope", localScope.postcodes);
-        
+    var LookupPlaceholder = function ( $q, $scope, $element, controlService, openOrdersService, $http, $timeout, $compile) {
         // console.log("$q", $q);
         // console.log("$scope", $scope);
         // console.log("$element", $element);
@@ -215,7 +201,7 @@ define(function(require) {
 
         console.log("viewModule", viewModule);
 
-         // let completeOdrBtn = angular.element($element).find('#test123');
+        // let completeOdrBtn = angular.element($element).find('#test123');
         // console.log("completeOdrBtn", completeOdrBtn)
 
         const items = [{
@@ -232,15 +218,15 @@ define(function(require) {
 
         // console.log("orderScope", orderScope)
 
-        this.initialize = async(data) => {
+        this.initialize = async (data) => {
 
         }
 
-        this.getItems = function() { return items; }
+        this.getItems = function () { return items; }
 
-        this.valueChanged = async function(itemKey, val) {}
+        this.valueChanged = async function (itemKey, val) { }
 
- 
+
         // orderScope.$watch('address.PostCode', async function(newValue) {
         //     console.log('address.PostCode', newValue)
         // }, true);
@@ -249,9 +235,9 @@ define(function(require) {
         //     console.log('order.address.PostCode', newValue)
         // }, true);
 
-        viewModule.directive('div', function() {
+        viewModule.directive('div', function () {
             return {
-                link: function(scope, elem, attrs){
+                link: function (scope, elem, attrs) {
                     console.log("scopeeeeee", scope);
                     console.log("elem", elem);
                 }
