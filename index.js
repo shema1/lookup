@@ -45,7 +45,7 @@ const lookupControlNew = `
 `;
 
 
-var LookupPlaceholder = function($scope, $element, $http, $timeout, $compile) {
+var LookupPlaceHolder = function($scope, $element, $http, $timeout, $compile) {
 
     console.log("$scope", $scope);
     console.log("$element", $element);
