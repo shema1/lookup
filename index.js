@@ -4,7 +4,7 @@
 
 let postCodeInputNew = `
 
-<input lw-tst="input_postalCode" list="postcodes" type="text" autocomplete="off" ng-disabled="sameAsShipping" tabindex="8" ng-model="address.PostCode" ng-change="console.log('woork 2')">
+<input lw-tst="input_postalCode" list="postcodes" type="text" autocomplete="off" ng-disabled="sameAsShipping" tabindex="8" ng-model="address.PostCode" ng-change="">
 
 <!----><button ng-if="!isBillingAddres" lw-tst="lookUp_postalCode" type="button" ng-click="lookUp($event,'POSTALCODE', address.PostCode);" class="btn"><i class="fa fa-search"></i></button><!---->
 
@@ -44,7 +44,7 @@ const lookupControlNew = `
 
 `;
 
-define(function (require) {
+define(function(require) {
 
     const placeholderManager = require("core/placeholderManager");
     const Window = require("core/Window");
@@ -53,7 +53,7 @@ define(function (require) {
     //const OrderChangeState = require('modules/orderbook/orders/classes/orderchangestate');
 
     // Set validation there
-    $(document).ready(function ($scope, $element, $http, $timeout, $compile) {
+    $(document).ready(function($scope, $element, $http, $timeout, $compile) {
         const config = { childList: true, subtree: true };
 
         function searchTree(element, matchingTitle) {
@@ -72,7 +72,7 @@ define(function (require) {
 
         function getPostCodeInput(element) {
             const resultPostCode = searchTree(element, "Postcode");
-            if (resultPostCode?.parentNode?.nextElementSibling) {
+            if (resultPostCode ? .parentNode ? .nextElementSibling) {
 
                 return resultPostCode.parentNode.nextElementSibling
             }
@@ -126,7 +126,7 @@ define(function (require) {
             return null;
         }
 
-        var callback = function (mutationsList, observer) {
+        var callback = function(mutationsList, observer) {
             console.log("mutationsList", mutationsList)
 
             function onChangeSubSource() {
@@ -149,15 +149,21 @@ define(function (require) {
                         if (postCodeInput) {
                             console.log("postCodeInput", postCodeInput)
                             $scope.postcodes = [];
-                            $scope.changePostSearch = function () {
+                            $scope.changePostSearch = function() {
                                 console.log("woork")
                             }
                             btn = angular.element(postCodeInput);
                             var ctrl = angular.element(btn).controller();
 
-                            // btn.replaceWith(postCodeInputNew);
+                            btn.replaceWith(postCodeInputNew);
+
+                            btn.on('change', onChnagePostcode)
                         }
                     }
+                }
+
+                const onChnagePostcode = function(evn) {
+                    console.log("wwwwwww", evn)
                 }
             }
 
@@ -165,7 +171,7 @@ define(function (require) {
 
         const observer = new MutationObserver(callback);
 
-        setTimeout(function () {
+        setTimeout(function() {
             const targetNode = document.getElementsByClassName("opened-modules")[0];
             observer.observe(targetNode, config);
         }, 2000);
@@ -179,7 +185,7 @@ define(function (require) {
 
 
 
-    var LookupPlaceholder = function ($q, $scope, $element, controlService, openOrdersService, $http, $timeout, $compile) {
+    var LookupPlaceholder = function($q, $scope, $element, controlService, openOrdersService, $http, $timeout, $compile) {
         console.log("$q", $q);
         console.log("$scope", $scope);
         console.log("$element", $element);
@@ -208,13 +214,13 @@ define(function (require) {
         let orderScope = $scope.$parent.$parent.$parent;
         openOrderServ1 = openOrdersService;
 
-        this.initialize = async (data) => {
+        this.initialize = async(data) => {
 
         }
 
-        this.getItems = function () { return items; }
+        this.getItems = function() { return items; }
 
-        this.valueChanged = async function (itemKey, val) { }
+        this.valueChanged = async function(itemKey, val) {}
     }
 
     placeholderManager.register("OrderAddress_ShippingFields", LookupPlaceholder);
