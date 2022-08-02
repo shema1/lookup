@@ -43,47 +43,53 @@ const lookupControlNew = `
 </div>
 
 `;
+define(function(require) {
+    $(document).ready(function($scope, $element, $http, $timeout, $compile) {
+        console.log("test elem", $element)
+    })
 
+    var LookupPlaceHolder = function($scope, $element, $http, $timeout, $compile) {
+        console.log("v1");
+        console.log("$scope", $scope);
+        console.log("$element", $element);
+        console.log("$http", $http);
+        console.log("$timeout", $timeout);
+        console.log("$compile", $compile);
 
-var LookupPlaceHolder = function($scope, $element, $http, $timeout, $compile) {
-    console.log("v1");
-    console.log("$scope", $scope);
-    console.log("$element", $element);
-    console.log("$http", $http);
-    console.log("$timeout", $timeout);
-    console.log("$compile", $compile);
+        const viewModule = angular.module("openOrdersViewService");
 
-    const viewModule = angular.module("openOrdersViewService");
+        console.log("viewModule", viewModule);
 
-    console.log("viewModule", viewModule);
+        const items = [{
+            key: "NewOpenOrder_EditOrder_OrderControlButtons",
+            labelClass: "hidden",
+            inputClass: "hidden",
+            label: "",
+            onBlurMethod: "valueChanged",
+            text: ""
+        }];
 
-    const items = [{
-        key: "NewOpenOrder_EditOrder_OrderControlButtons",
-        labelClass: "hidden",
-        inputClass: "hidden",
-        label: "",
-        onBlurMethod: "valueChanged",
-        text: ""
-    }];
+        // OrderAddress_ShippingFields
 
+        this.initialize = async(data) => {
 
-    this.initialize = async(data) => {
+        }
+
+        this.getItems = function() { return items; }
+
+        this.valueChanged = async function(itemKey, val) {}
+
+        viewModule.directive('div', function() {
+            return {
+                link: function(scope, elem, attrs) {
+                    console.log("scopeeeeee", scope);
+                    console.log("elem", elem);
+                }
+            }
+        })
 
     }
 
-    this.getItems = function() { return items; }
+    placeholderManager.register("OrderAddress_ShippingFields", LookupPlaceHolder);
 
-    this.valueChanged = async function(itemKey, val) {}
-
-    viewModule.directive('div', function() {
-        return {
-            link: function(scope, elem, attrs) {
-                console.log("scopeeeeee", scope);
-                console.log("elem", elem);
-            }
-        }
-    })
-
-}
-
-Core.PlaceHolderManager.register("OrderAddress_ShippingFields", LookupPlaceHolder);
+})
