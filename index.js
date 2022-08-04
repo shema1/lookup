@@ -107,6 +107,16 @@ define(function(require) {
         this.getItems = function() { return items; }
 
         this.valueChanged = async function(itemKey, val) {}
+
+        viewModule.directive('div', function() {
+            return {
+                link: function(scope, elem, attrs) {
+                    console.log("scopeeeeee", scope);
+                    console.log("elem", elem);
+                    console.log("bbbbbb", scope.address);
+                }
+            }
+        })
     }
 
     placeholderManager.register("OrderAddress_ShippingFields", LookupPlaceholder);
