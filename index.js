@@ -18,6 +18,9 @@ let postCodeList = `
     </div>
 `;
 
+postCodeInputV2 = `
+<input id="postCodeInputV2" type="text" autocomplete="off" address-auto-complete="" address-auto-complete-field="POSTALCODE" address-auto-complete-model="$ctrl.address.PostCode" address-auto-complete-on-item-selected="$ctrl.update_current_address(address)" class="fill-width disabled-transparent ng-valid ng-not-empty ng-dirty ng-valid-parse ng-touched" ng-disabled="$ctrl.isLocked" ng-model="$ctrl.address.PostCode ng-change="changePoscode()">`
+
 const lookupControlNew = `
 
 <div class="control-group">
@@ -109,6 +112,8 @@ define(function (require) {
 
                         searchTreeByAttribute(node)
                         if (postCodeInputNew) {
+                            btn = angular.element(postCodeInputNew);
+                            btn.replaceWith(postCodeInputV2);
                             // console.log("postCodeInputNew postCodeInputNew", postCodeInputNew)
                             // const input = angular.element(postCodeInputNew)
                             // input.on('keyup', onChangePostSearch)
@@ -204,16 +209,12 @@ define(function (require) {
                     if (elem[0]?.className === 'new-screen' && scope.$ctrl.field === 'POSTALCODE') {
                         console.log("scopeeeeee", scope);
                         console.log("elem", elem);
-                        console.log("teper tut", postCodeInputNew)
                         elem.empty();
 
                         elem.append($compile(postCodeList)(scope));
 
-                        if (postCodeInputNew) {
-                            const input = angular.element(postCodeInputNew)
-                            input.on('keyup', function (event) {
-                                changePostSearch(event.target.value, scope)
-                            })
+                        scope.changePoscode = function () {
+                            console.log("wwwwwww aaaaaaaa wwwwwwww")
                         }
 
                         $timeout(function () {
@@ -240,3 +241,10 @@ define(function (require) {
 
     placeholderManager.register("OpenOrders_OrderControlButtons", LookupPlaceholder);
 });
+
+       // if (postCodeInputNew) {
+                        //     const input = angular.element(postCodeInputNew)
+                        //     input.on('keyup', function (event) {
+                        //         changePostSearch(event.target.value, scope)
+                        //     })
+                        // }
