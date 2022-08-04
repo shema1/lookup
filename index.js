@@ -50,6 +50,14 @@ define(function(require) {
     const Window = require("core/Window");
     const inventoryService = new Services.InventoryService();
 
+    const angular = require("angular");
+    const template = require("text!./addressAutoCompleteControl.html");
+    console.log("template", template);
+
+    const ngModule = angular.module("addressAutoCompleteControl", []);
+    console.log("ngModule", ngModule);
+
+
     //const OrderChangeState = require('modules/orderbook/orders/classes/orderchangestate');
 
     // Set validation there
