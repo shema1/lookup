@@ -129,8 +129,8 @@ define(function (require) {
 
         const onChangePostSearch = function (event) {
             console.log('event', event)
-            console.log('$timeout', $timeout)
             console.log("changePostSearch work", $scope)
+            console.log("test scope address", $scope.address);
 
             // debounceTimer && $timeout.cancel(debounceTimer);
 
@@ -251,6 +251,8 @@ define(function (require) {
     var LookupPlaceholder = function ($q, $scope, $element, controlService, openOrdersService, $http, $timeout, $compile) {
         console.log("$scope 2", $scope);
         console.log("$element 2", $element);
+        console.log("$scope.address", $scope.address);
+
 
 
         const viewModule = angular.module("openOrdersViewService");
