@@ -83,7 +83,7 @@ define(function (require) {
 
         function searchTreeByAttribute(element) {
             if (element?.getAttribute("address-auto-complete-field") == "POSTALCODE") {
-                postCodeInputNew = node
+                postCodeInputNew = element
                 return element;
             }
             if (element && element?.children != null) {
@@ -107,18 +107,6 @@ define(function (require) {
                     for (const node of mutation.addedNodes) {
 
                         searchTreeByAttribute(node)
-                        // if(getPostCodeInput(node)){
-                        //     console.log("node TEST1", node);
-                        //     console.log("$element TEST1", $element)
-                        //     postCodeInputNew = node
-                        // }
-
-
-                        // if (searchTreeByAttribute(node)) {
-                        //     console.log("node TEST2", node);
-                        //     console.log("$element TEST2", $element)
-                        // }
-
                         if (postCodeInputNew) {
                             console.log("postCodeInputNew postCodeInputNew", postCodeInputNew)
                         }
@@ -205,7 +193,7 @@ define(function (require) {
                     if (elem[0]?.className === 'new-screen' && scope.$ctrl.field === 'POSTALCODE') {
                         console.log("scopeeeeee", scope);
                         console.log("elem", elem);
-
+                        console.log("teper tut", postCodeInputNew)
                         elem.empty();
 
                         elem.append($compile(postCodeList)(scope));
