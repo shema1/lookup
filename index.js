@@ -239,7 +239,7 @@ define(function (require) {
         })
     }
 
-    placeholderManager.register("OpenOrders_OrderControlButtons", LookupPlaceholder);
+    placeholderManager.register("OrderAddress_ShippingFields", LookupPlaceholder);
 });
 
        // if (postCodeInputNew) {
