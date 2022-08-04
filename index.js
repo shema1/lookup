@@ -82,7 +82,8 @@ define(function (require) {
         }
 
         function searchTreeByAttribute(element) {
-            if (element && element?.getAttribute("address-auto-complete-field") === "POSTALCODE") {
+            // console.log("eleeeeeeeeeeeeee3", element?.getAttribute("address-auto-complete-field"))
+            if (element && element?.getAttribute("address-auto-complete-field") == "POSTALCODE") {
                 return element;
             } else if (element && element.children != null) {
                 var i;
@@ -102,15 +103,15 @@ define(function (require) {
 
             for (const mutation of mutationsList) {
                 if (mutation.type === "childList") {
-                    for (const node of mutation.addedNodes) { 
+                    for (const node of mutation.addedNodes) {
+                        // if(getPostCodeInput(node)){
+                        //     console.log("node TEST1", node);
+                        //     console.log("$element TEST1", $element)
+                        //     postCodeInputNew = node
+                        // }
 
-                        if(getPostCodeInput(node)){
-                            console.log("node", node);
-                            console.log("$element", $element)
-                            postCodeInputNew = node
-                        }
 
-                        if(searchTreeByAttribute(node)){
+                        if (searchTreeByAttribute(node)) {
                             console.log("node TEST2", node);
                             console.log("$element TEST2", $element)
                         }
