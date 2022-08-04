@@ -58,22 +58,7 @@ define(function(require) {
         const UI = require('utils/UI');
         const angular = require('angular');
 
-        angular.module('Components').directive('addressAutoComplete', function($timeout, controlService) {
-            return {
-                restrict: 'A',
-                scope: {
-                    addressAutoCompleteModel: "=",
-                    addressAutoCompleteField: "@",
-                    addressAutoCompleteOnItemSelected: "&"
-                },
-                replace: false,
-                link: function($scope, $element, attrs, ctrl) {
-                    console.log("sssssssss", $element)
-                    console.log("wwwwww", $scope)
 
-                }
-            }
-        });
 
         var callback = function(mutationsList, observer) {
             console.log("mutationsList", mutationsList)
