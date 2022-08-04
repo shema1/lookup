@@ -12,7 +12,7 @@ let postCodeList = `
         }
     </style>
     <div class="raised-higher column fill-height scroll-y-auto white">
-    <div ng-repeat="item in postcodes" ng-class="{'grey': ($index % 2) == 0, 'white': ($index % 2) == 1 }" class="padding-heavy hover pointer grey" lw-help-tooltip="" text="qwerty, SomeBody co, 1231231231, 123123, UKEY, 12123, 2131, IRAQ" ng-click="$ctrl.on_select_address(item)">
+    <div ng-repeat="item in postcodes" ng-class="{'grey': ($index % 2) == 0, 'white': ($index % 2) == 1 }" class="padding-heavy hover pointer grey" ng-click="$ctrl.on_select_address(item)">
         {{item}}
     <div>
     </div>
@@ -47,6 +47,9 @@ const lookupControlNew = `
 `;
 
 
+
+let postCodeInput = null
+
 define(function (require) {
 
     const placeholderManager = require("core/placeholderManager");
@@ -56,21 +59,45 @@ define(function (require) {
     // Set validation there
     $(document).ready(function ($scope, $element, $http, $timeout, $compile) {
         const config = { childList: true, subtree: true };
-        const UI = require('utils/UI');
-        const angular = require('angular');
+
+        function searchTree(element, matchingTitle) {
+            if (element.innerText == matchingTitle) {
+                return element;
+            } else if (element.children != null) {
+                var i;
+                var result = null;
+                for (i = 0; result == null && i < element.children.length; i++) {
+                    result = searchTree(element.children[i], matchingTitle);
+                }
+                return result;
+            }
+            return null;
+        }
+
+        function getPostCodeInput(element) {
+            const resultPostCode = searchTree(element, "Postcode");
+            if (resultPostCode?.parentNode?.nextElementSibling) {
+
+                return resultPostCode.parentNode.nextElementSibling
+            }
+            return null
+        }
 
 
 
         var callback = function (mutationsList, observer) {
-            console.log("mutationsList", mutationsList)
-
-            function onChangeSubSource() {
-                console.log("onChangeSubSource");
-            };
+            console.log("mutationsList", mutationsList);
 
             for (const mutation of mutationsList) {
                 if (mutation.type === "childList") {
-                    for (const node of mutation.addedNodes) { }
+                    for (const node of mutation.addedNodes) { 
+
+                        if(getPostCodeInput(node)){
+                            console.log("node", node);
+                            console.log("$element", $element)
+                            postCodeInput = node
+                        }
+                    }
                 }
             }
 
