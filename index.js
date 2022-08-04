@@ -44,7 +44,7 @@ const lookupControlNew = `
 
 `;
 
-define(function(require) {
+define(function (require) {
 
     const placeholderManager = require("core/placeholderManager");
     const Window = require("core/Window");
@@ -53,7 +53,7 @@ define(function(require) {
     //const OrderChangeState = require('modules/orderbook/orders/classes/orderchangestate');
 
     // Set validation there
-    $(document).ready(function($scope, $element, $http, $timeout, $compile) {
+    $(document).ready(function ($scope, $element, $http, $timeout, $compile) {
         const config = { childList: true, subtree: true };
 
         function searchTree(element, matchingTitle) {
@@ -127,7 +127,7 @@ define(function(require) {
         }
 
 
-        const onChangePostSearch = function(event) {
+        const onChangePostSearch = function (event) {
             console.log('event', event)
             console.log('$timeout', $timeout)
             console.log("changePostSearch work", $scope)
@@ -202,7 +202,7 @@ define(function(require) {
 
         };
 
-        var callback = function(mutationsList, observer) {
+        var callback = function (mutationsList, observer) {
             console.log("mutationsList", mutationsList)
 
             function onChangeSubSource() {
@@ -241,14 +241,14 @@ define(function(require) {
 
         const observer = new MutationObserver(callback);
 
-        setTimeout(function() {
+        setTimeout(function () {
             const targetNode = document.getElementsByClassName("opened-modules")[0];
             observer.observe(targetNode, config);
         }, 2000);
     });
 
 
-    var LookupPlaceholder = function($q, $scope, $element, controlService, openOrdersService, $http, $timeout, $compile) {
+    var LookupPlaceholder = function ($q, $scope, $element, controlService, openOrdersService, $http, $timeout, $compile) {
         console.log("$scope 2", $scope);
         console.log("$element 2", $element);
 
@@ -256,6 +256,23 @@ define(function(require) {
         const viewModule = angular.module("openOrdersViewService");
 
         console.log("viewModule", viewModule);
+
+
+        $timeout(function () {
+
+            scope.$apply(function () {
+
+                scope.postcodes = [];
+
+                scope.lookupAddresses = [];
+
+                scope.selectedPostcode = "test";
+
+                scope.address.Address1 = 'sssssss'
+
+            });
+
+        });
 
         const items = [{
             key: "shippingAddressPH",
@@ -268,17 +285,17 @@ define(function(require) {
 
 
 
-        this.initialize = async(data) => {
+        this.initialize = async (data) => {
 
         }
 
-        this.getItems = function() { return items; }
+        this.getItems = function () { return items; }
 
-        this.valueChanged = async function(itemKey, val) {}
+        this.valueChanged = async function (itemKey, val) { }
 
-        viewModule.directive('div', function() {
+        viewModule.directive('div', function () {
             return {
-                link: function(scope, elem, attrs) {
+                link: function (scope, elem, attrs) {
                     console.log("scopeeeeee", scope);
                     console.log("elem", elem);
                 }
