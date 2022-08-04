@@ -2,18 +2,10 @@
 
 
 
-let postCodeInputNew = `
-
-<input id="test123" lw-tst="input_postalCode" list="postcodes" type="text" autocomplete="off" ng-disabled="sameAsShipping" tabindex="8" ng-model="address.PostCode" ng-change="changePostSearch()">
-
-<!----><button ng-if="!isBillingAddres" lw-tst="lookUp_postalCode" type="button" ng-click="lookUp($event,'POSTALCODE', address.PostCode);" class="btn"><i class="fa fa-search"></i></button><!---->
-
+let postCodeList = `
 <datalist id="postcodes">
-
 	<option ng-repeat="item in postcodes" value="{{item}}">
-
 </datalist>
-
 `;
 
 const lookupControlNew = `
@@ -110,7 +102,7 @@ define(function (require) {
         this.valueChanged = async function (itemKey, val) { }
 
 
-        this.changePostSearch = function (scope) {
+        const changePostSearch = function (scope) {
             console.log("changePostSearch wooork")
             let postalCode = e;
 
@@ -129,10 +121,10 @@ define(function (require) {
                 $timeout(function () {
 
                     scope.$apply(function () {
-
+                        console.log("data", data)
                         scope.$ctrl.addresses = data
+                        scope.postcodes = data;
                         // scope.postcodes = data || [];
-
                         // scope.selectedPostcode = undefined;
 
                     });
@@ -144,17 +136,30 @@ define(function (require) {
         viewModule.directive('div', function () {
             return {
                 link: function (scope, elem, attrs) {
-                    console.log("scopeeeeee", scope);
-                    console.log("elem", elem);
-                    console.log("bbbbbb", scope.address);
+                    // console.log("scopeeeeee", scope);
+                    // console.log("elem", elem);
+                    // console.log("bbbbbb", scope.address);
 
                     if (elem[0]?.className === 'new-screen' && scope.$ctrl.field === 'POSTALCODE') {
                         console.log("scopeeeeee", scope);
                         console.log("elem", elem);
 
+                        elem.empty();
+
+                        elem.append($compile(postCodeList)(scope));
+
+
+                        $timeout(function () {
+
+                            scope.$apply(function () {
+                                scope.postcodes = [];
+                            });
+
+                        });
+
                         $timeout(function () {
                             console.log("woork")
-                            this.changePostSearch(scope)
+                            changePostSearch(scope)
                             // scope.$apply(function () {
                             //     scope.addresses = []
                             // });
