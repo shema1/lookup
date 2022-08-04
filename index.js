@@ -97,9 +97,7 @@ define(function (require) {
             return null;
         }
 
-        const onChangePostSearch = function (event) {
-            console.log("event work", event)
-        }
+
 
 
         var callback = function (mutationsList, observer) {
@@ -111,9 +109,9 @@ define(function (require) {
 
                         searchTreeByAttribute(node)
                         if (postCodeInputNew) {
-                            console.log("postCodeInputNew postCodeInputNew", postCodeInputNew)
-                            const input = angular.element(postCodeInputNew)
-                            input.on('keyup', onChangePostSearch)
+                            // console.log("postCodeInputNew postCodeInputNew", postCodeInputNew)
+                            // const input = angular.element(postCodeInputNew)
+                            // input.on('keyup', onChangePostSearch)
                         }
                     }
                 }
@@ -157,9 +155,11 @@ define(function (require) {
         this.valueChanged = async function (itemKey, val) { }
 
 
-        const changePostSearch = function (scope) {
-            console.log("changePostSearch wooork")
-            let postalCode = "e";
+        const changePostSearch = function (value, scope) {
+            console.log("changePostSearch wooork", value);
+            console.log("changePostSearch scope", scope)
+
+            let postalCode = value;
 
             $http({
 
@@ -188,6 +188,12 @@ define(function (require) {
             });
         };
 
+        const onChangePostSearch = function (event, scope) {
+            console.log("event work", event)
+            console.log("event work", event)
+
+        }
+
         viewModule.directive('div', function () {
             return {
                 link: function (scope, elem, attrs) {
@@ -203,6 +209,12 @@ define(function (require) {
 
                         elem.append($compile(postCodeList)(scope));
 
+                        if (postCodeInputNew) {
+                            const input = angular.element(postCodeInputNew)
+                            input.on('keyup', function (event) {
+                                changePostSearch(event.target.value, scope)
+                            })
+                        }
 
                         $timeout(function () {
 
