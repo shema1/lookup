@@ -50,89 +50,6 @@ define(function (require) {
     const Window = require("core/Window");
     const inventoryService = new Services.InventoryService();
 
-    const angular = require("angular");
-    const template = require("text!./addressAutoCompleteControl.html");
-    console.log("template", template);
-
-    const ngModule = angular.module("addressAutoCompleteControl", []);
-    console.log("ngModule", ngModule);
-
-    ngModule.component(ngModule.name, {
-        template,
-        require: {
-            control: '^'
-        },
-        controller: function ($scope) {
-            this.field = "NAME";
-
-            this.$onInit = function () {
-                this.addresses = this.control.data.addresses;
-                this.field = this.control.data.field;
-
-                $scope.$on(`notifyControl:${this.control.id}:address`, (event, data) => {
-                    this.addresses = data;
-                    $scope.$apply();
-                });
-            }
-
-            this.on_select_address = function (address) {
-                this.control.close(address);
-            }
-
-            this.get_address_field_value = function (address) {
-                switch (this.field) {
-                    case "NAME":
-                    case "FULLNAME":
-                        return address.FullName;
-
-                    case "COMPANY":
-                        return address.Company;
-
-                    case "ADDRESS1":
-                        return address.Address1;
-
-                    case "POSTALCODE":
-                        return address.PostCode;
-
-                    case "TELEPHONE":
-                        return address.PhoneNumber;
-
-                    case "EMAIL":
-                        return address.EmailAddress;
-                }
-            }
-
-            this.get_address_string = function (address) {
-
-                var self = this;
-
-                var address_parts = [];
-
-                let add_to_address = function (field_name, data) {
-                    if (data != null && data != '' && field_name != self.field)
-                        address_parts.push(data);
-                }
-
-                add_to_address("NAME", address.FullName);
-                add_to_address("COMPANY", address.Company);
-                add_to_address("ADDRESS1", address.Address1);
-                add_to_address("ADDRESS2", address.Address2);
-                add_to_address("ADDRESS3", address.Address3);
-                add_to_address("TOWN", (address.Town || "").toUpperCase());
-                add_to_address("REGION", (address.Region || "").toUpperCase());
-                add_to_address("POSTCODE", (address.PostCode || "").toUpperCase());
-                add_to_address("COUNTRY", (address.Country || "").toUpperCase());
-
-                return address_parts.join(", ");
-            }
-        }
-    });
-
-    return {
-        exports: ngModule.name,
-        selector: "address-auto-complete-control"
-    };
-
     // Set validation there
     $(document).ready(function ($scope, $element, $http, $timeout, $compile) {
         const config = { childList: true, subtree: true };
@@ -191,6 +108,90 @@ define(function (require) {
         this.getItems = function () { return items; }
 
         this.valueChanged = async function (itemKey, val) { }
+
+        const angular = require("angular");
+        const template = require("text!./addressAutoCompleteControl.html");
+        console.log("template", template);
+
+        const ngModule = angular.module("addressAutoCompleteControl", []);
+        console.log("ngModule", ngModule);
+
+        ngModule.component(ngModule.name, {
+            template,
+            require: {
+                control: '^'
+            },
+            controller: function ($scope) {
+                this.field = "NAME";
+
+                this.$onInit = function () {
+                    console.log("wooork")
+                    this.addresses = this.control.data.addresses;
+                    this.field = this.control.data.field;
+
+                    $scope.$on(`notifyControl:${this.control.id}:address`, (event, data) => {
+                        this.addresses = data;
+                        $scope.$apply();
+                    });
+                }
+
+                this.on_select_address = function (address) {
+                    this.control.close(address);
+                }
+
+                this.get_address_field_value = function (address) {
+                    switch (this.field) {
+                        case "NAME":
+                        case "FULLNAME":
+                            return address.FullName;
+
+                        case "COMPANY":
+                            return address.Company;
+
+                        case "ADDRESS1":
+                            return address.Address1;
+
+                        case "POSTALCODE":
+                            return address.PostCode;
+
+                        case "TELEPHONE":
+                            return address.PhoneNumber;
+
+                        case "EMAIL":
+                            return address.EmailAddress;
+                    }
+                }
+
+                this.get_address_string = function (address) {
+
+                    var self = this;
+
+                    var address_parts = [];
+
+                    let add_to_address = function (field_name, data) {
+                        if (data != null && data != '' && field_name != self.field)
+                            address_parts.push(data);
+                    }
+
+                    add_to_address("NAME", address.FullName);
+                    add_to_address("COMPANY", address.Company);
+                    add_to_address("ADDRESS1", address.Address1);
+                    add_to_address("ADDRESS2", address.Address2);
+                    add_to_address("ADDRESS3", address.Address3);
+                    add_to_address("TOWN", (address.Town || "").toUpperCase());
+                    add_to_address("REGION", (address.Region || "").toUpperCase());
+                    add_to_address("POSTCODE", (address.PostCode || "").toUpperCase());
+                    add_to_address("COUNTRY", (address.Country || "").toUpperCase());
+
+                    return address_parts.join(", ");
+                }
+            }
+        });
+
+        return {
+            exports: ngModule.name,
+            selector: "address-auto-complete-control"
+        };
     }
 
     placeholderManager.register("OrderAddress_ShippingFields", LookupPlaceholder);
