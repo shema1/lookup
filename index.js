@@ -97,6 +97,9 @@ define(function (require) {
             return null;
         }
 
+        const onChangePostSearch = function (event) {
+            console.log("event work", event)
+        }
 
 
         var callback = function (mutationsList, observer) {
@@ -109,6 +112,8 @@ define(function (require) {
                         searchTreeByAttribute(node)
                         if (postCodeInputNew) {
                             console.log("postCodeInputNew postCodeInputNew", postCodeInputNew)
+                            const input = angular.element(postCodeInputNew)
+                            input.on('keyup', onChangePostSearch)
                         }
                     }
                 }
