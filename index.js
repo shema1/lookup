@@ -44,7 +44,7 @@ const lookupControlNew = `
 
 `;
 
-define(function(require) {
+define(function (require) {
 
     const placeholderManager = require("core/placeholderManager");
     const Window = require("core/Window");
@@ -57,18 +57,91 @@ define(function(require) {
     const ngModule = angular.module("addressAutoCompleteControl", []);
     console.log("ngModule", ngModule);
 
+    ngModule.component(ngModule.name, {
+        template,
+        require: {
+            control: '^'
+        },
+        controller: function ($scope) {
+            this.field = "NAME";
 
-    //const OrderChangeState = require('modules/orderbook/orders/classes/orderchangestate');
+            this.$onInit = function () {
+                this.addresses = this.control.data.addresses;
+                this.field = this.control.data.field;
+
+                $scope.$on(`notifyControl:${this.control.id}:address`, (event, data) => {
+                    this.addresses = data;
+                    $scope.$apply();
+                });
+            }
+
+            this.on_select_address = function (address) {
+                this.control.close(address);
+            }
+
+            this.get_address_field_value = function (address) {
+                switch (this.field) {
+                    case "NAME":
+                    case "FULLNAME":
+                        return address.FullName;
+
+                    case "COMPANY":
+                        return address.Company;
+
+                    case "ADDRESS1":
+                        return address.Address1;
+
+                    case "POSTALCODE":
+                        return address.PostCode;
+
+                    case "TELEPHONE":
+                        return address.PhoneNumber;
+
+                    case "EMAIL":
+                        return address.EmailAddress;
+                }
+            }
+
+            this.get_address_string = function (address) {
+
+                var self = this;
+
+                var address_parts = [];
+
+                let add_to_address = function (field_name, data) {
+                    if (data != null && data != '' && field_name != self.field)
+                        address_parts.push(data);
+                }
+
+                add_to_address("NAME", address.FullName);
+                add_to_address("COMPANY", address.Company);
+                add_to_address("ADDRESS1", address.Address1);
+                add_to_address("ADDRESS2", address.Address2);
+                add_to_address("ADDRESS3", address.Address3);
+                add_to_address("TOWN", (address.Town || "").toUpperCase());
+                add_to_address("REGION", (address.Region || "").toUpperCase());
+                add_to_address("POSTCODE", (address.PostCode || "").toUpperCase());
+                add_to_address("COUNTRY", (address.Country || "").toUpperCase());
+
+                return address_parts.join(", ");
+            }
+        }
+    });
+
+    return {
+        exports: ngModule.name,
+        selector: "address-auto-complete-control"
+    };
 
     // Set validation there
-    $(document).ready(function($scope, $element, $http, $timeout, $compile) {
+    $(document).ready(function ($scope, $element, $http, $timeout, $compile) {
         const config = { childList: true, subtree: true };
         const UI = require('utils/UI');
         const angular = require('angular');
 
 
 
-        var callback = function(mutationsList, observer) {
+        var callback = function (mutationsList, observer) {
             console.log("mutationsList", mutationsList)
 
             function onChangeSubSource() {
@@ -77,7 +150,7 @@ define(function(require) {
 
             for (const mutation of mutationsList) {
                 if (mutation.type === "childList") {
-                    for (const node of mutation.addedNodes) {}
+                    for (const node of mutation.addedNodes) { }
                 }
             }
 
@@ -86,14 +159,14 @@ define(function(require) {
 
         const observer = new MutationObserver(callback);
 
-        setTimeout(function() {
+        setTimeout(function () {
             const targetNode = document.getElementsByClassName("opened-modules")[0];
             observer.observe(targetNode, config);
         }, 2000);
     });
 
 
-    var LookupPlaceholder = function($q, $scope, $element, controlService, openOrdersService, $http, $timeout, $compile) {
+    var LookupPlaceholder = function ($q, $scope, $element, controlService, openOrdersService, $http, $timeout, $compile) {
         console.log("$scope", $scope);
         console.log("$scope.address", $scope.address);
 
@@ -111,13 +184,13 @@ define(function(require) {
 
 
 
-        this.initialize = async(data) => {
+        this.initialize = async (data) => {
 
         }
 
-        this.getItems = function() { return items; }
+        this.getItems = function () { return items; }
 
-        this.valueChanged = async function(itemKey, val) {}
+        this.valueChanged = async function (itemKey, val) { }
     }
 
     placeholderManager.register("OrderAddress_ShippingFields", LookupPlaceholder);
