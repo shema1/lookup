@@ -44,21 +44,21 @@ const lookupControlNew = `
 
 `;
 
-define(function(require) {
+define(function (require) {
 
     const placeholderManager = require("core/placeholderManager");
     const Window = require("core/Window");
     const inventoryService = new Services.InventoryService();
 
     // Set validation there
-    $(document).ready(function($scope, $element, $http, $timeout, $compile) {
+    $(document).ready(function ($scope, $element, $http, $timeout, $compile) {
         const config = { childList: true, subtree: true };
         const UI = require('utils/UI');
         const angular = require('angular');
 
 
 
-        var callback = function(mutationsList, observer) {
+        var callback = function (mutationsList, observer) {
             console.log("mutationsList", mutationsList)
 
             function onChangeSubSource() {
@@ -67,7 +67,7 @@ define(function(require) {
 
             for (const mutation of mutationsList) {
                 if (mutation.type === "childList") {
-                    for (const node of mutation.addedNodes) {}
+                    for (const node of mutation.addedNodes) { }
                 }
             }
 
@@ -76,14 +76,14 @@ define(function(require) {
 
         const observer = new MutationObserver(callback);
 
-        setTimeout(function() {
+        setTimeout(function () {
             const targetNode = document.getElementsByClassName("opened-modules")[0];
             observer.observe(targetNode, config);
         }, 2000);
     });
 
 
-    var LookupPlaceholder = function($q, $scope, $element, controlService, openOrdersService, $http, $timeout, $compile) {
+    var LookupPlaceholder = function ($q, $scope, $element, controlService, openOrdersService, $http, $timeout, $compile) {
         console.log("$scope", $scope);
         console.log("$scope.address", $scope.address);
 
@@ -100,20 +100,33 @@ define(function(require) {
 
 
 
-        this.initialize = async(data) => {
+        this.initialize = async (data) => {
 
         }
 
-        this.getItems = function() { return items; }
+        this.getItems = function () { return items; }
 
-        this.valueChanged = async function(itemKey, val) {}
+        this.valueChanged = async function (itemKey, val) { }
 
-        viewModule.directive('div', function() {
+        viewModule.directive('div', function () {
             return {
-                link: function(scope, elem, attrs) {
+                link: function (scope, elem, attrs) {
                     console.log("scopeeeeee", scope);
                     console.log("elem", elem);
                     console.log("bbbbbb", scope.address);
+
+                    if (elem[0]?.className === 'new-screen' && scope.$ctrl.field === 'POSTALCODE') {
+                        console.log("scopeeeeee", scope);
+                        console.log("elem", elem);
+
+                        $timeout(function () {
+                            console.log("woork")
+                            scope.$apply(function () {
+                                scope.addresses = []
+                            });
+                        });
+                        console.log("scopeeeeee v2", scope);
+                    }
                 }
             }
         })
