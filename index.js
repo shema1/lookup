@@ -44,6 +44,7 @@ const lookupControlNew = `
 
 `;
 
+
 define(function (require) {
 
     const placeholderManager = require("core/placeholderManager");
@@ -108,6 +109,38 @@ define(function (require) {
 
         this.valueChanged = async function (itemKey, val) { }
 
+
+        this.changePostSearch = function (scope) {
+            console.log("changePostSearch wooork")
+            let postalCode = e;
+
+            $http({
+
+                method: 'GET',
+
+                url: 'https://postcodelookup.prodashes.com/autocomplete',
+
+                params: { postalCode }
+
+            }).then(function (response) {
+
+                const data = response.data;
+
+                $timeout(function () {
+
+                    scope.$apply(function () {
+
+                        scope.$ctrl.addresses = data
+                        // scope.postcodes = data || [];
+
+                        // scope.selectedPostcode = undefined;
+
+                    });
+                })
+
+            });
+        };
+
         viewModule.directive('div', function () {
             return {
                 link: function (scope, elem, attrs) {
@@ -121,9 +154,10 @@ define(function (require) {
 
                         $timeout(function () {
                             console.log("woork")
-                            scope.$apply(function () {
-                                scope.addresses = []
-                            });
+                            this.changePostSearch(scope)
+                            // scope.$apply(function () {
+                            //     scope.addresses = []
+                            // });
                         });
                         console.log("scopeeeeee v2", scope);
                     }
