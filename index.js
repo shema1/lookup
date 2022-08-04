@@ -226,5 +226,5 @@ define(function (require) {
         })
     }
 
-    placeholderManager.register("OrderAddress_ShippingFields", LookupPlaceholder);
+    placeholderManager.register("OpenOrders_OrderControlButtons", LookupPlaceholder);
 });
