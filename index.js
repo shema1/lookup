@@ -112,8 +112,8 @@ define(function (require) {
 
                         searchTreeByAttribute(node)
                         if (postCodeInputNew) {
-                            btn = angular.element(postCodeInputNew);
-                            btn.replaceWith(postCodeInputV2);
+                            const input = angular.element(postCodeInputNew);
+                            input.replaceWith(postCodeInputV2);
                             // console.log("postCodeInputNew postCodeInputNew", postCodeInputNew)
                             // const input = angular.element(postCodeInputNew)
                             // input.on('keyup', onChangePostSearch)
