@@ -53,8 +53,6 @@ let postCodeInputNew = null
 define(function (require) {
 
     const placeholderManager = require("core/placeholderManager");
-    const Window = require("core/Window");
-    const inventoryService = new Services.InventoryService();
 
     // Set validation there
     $(document).ready(function ($scope, $element, $http, $timeout, $compile) {
@@ -83,6 +81,20 @@ define(function (require) {
             return null
         }
 
+        function searchTreeByAttribute(element) {
+            if (element && element?.getAttribute("address-auto-complete-field") === "POSTALCODE") {
+                return element;
+            } else if (element && element.children != null) {
+                var i;
+                var result = null;
+                for (i = 0; result == null && i < element.children.length; i++) {
+                    result = searchTreeByAttribute(element.children[i]);
+                }
+                return result;
+            }
+            return null;
+        }
+
 
 
         var callback = function (mutationsList, observer) {
@@ -96,6 +108,11 @@ define(function (require) {
                             console.log("node", node);
                             console.log("$element", $element)
                             postCodeInputNew = node
+                        }
+
+                        if(searchTreeByAttribute(node)){
+                            console.log("node TEST2", node);
+                            console.log("$element TEST2", $element)
                         }
                     }
                 }
