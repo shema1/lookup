@@ -260,15 +260,14 @@ define(function (require) {
 
         $timeout(function () {
 
-            scope.$apply(function () {
+            $scope.$apply(function () {
 
-                scope.postcodes = [];
+                $scope.postcodes = [];
 
-                scope.lookupAddresses = [];
+                $scope.lookupAddresses = [];
 
-                scope.selectedPostcode = "test";
+                $scope.selectedPostcode = "test";
 
-                scope.address.Address1 = 'sssssss'
 
             });
 
@@ -298,6 +297,7 @@ define(function (require) {
                 link: function (scope, elem, attrs) {
                     console.log("scopeeeeee", scope);
                     console.log("elem", elem);
+                    console.log("bbbbbb", scope.address);
                 }
             }
         })
