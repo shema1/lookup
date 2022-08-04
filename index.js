@@ -48,7 +48,7 @@ const lookupControlNew = `
 
 
 
-let postCodeInput = null
+let postCodeInputNew = null
 
 define(function (require) {
 
@@ -95,7 +95,7 @@ define(function (require) {
                         if(getPostCodeInput(node)){
                             console.log("node", node);
                             console.log("$element", $element)
-                            postCodeInput = node
+                            postCodeInputNew = node
                         }
                     }
                 }
