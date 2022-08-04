@@ -3,8 +3,21 @@
 
 
 let postCodeList = `
+<style>
+        address-auto-complete-control {
+            position: absolute;
+            width: 300px;
+            height: 280px;
+            z-index: 20;
+        }
+    </style>
 <datalist id="postcodes">
-	<option ng-repeat="item in postcodes" value="{{item}}">
+	// <option ng-repeat="item in postcodes" value="{{item}}">
+    <div class="raised-higher column fill-height scroll-y-auto white">
+    <div ng-repeat="item in postcodes" ng-class="{'grey': ($index % 2) == 0, 'white': ($index % 2) == 1 }" class="padding-heavy hover pointer grey" lw-help-tooltip="" text="qwerty, SomeBody co, 1231231231, 123123, UKEY, 12123, 2131, IRAQ" ng-click="$ctrl.on_select_address(item)">
+        {{item}}
+    <div>
+    </div>
 </datalist>
 `;
 
@@ -104,7 +117,7 @@ define(function (require) {
 
         const changePostSearch = function (scope) {
             console.log("changePostSearch wooork")
-            let postalCode = e;
+            let postalCode = "e";
 
             $http({
 
