@@ -82,10 +82,11 @@ define(function (require) {
         }
 
         function searchTreeByAttribute(element) {
-            // console.log("eleeeeeeeeeeeeee3", element?.getAttribute("address-auto-complete-field"))
-            if (element && element?.getAttribute("address-auto-complete-field") == "POSTALCODE") {
+            if (element?.getAttribute("address-auto-complete-field") == "POSTALCODE") {
+                postCodeInputNew = node
                 return element;
-            } else if (element && element.children != null) {
+            }
+            if (element && element?.children != null) {
                 var i;
                 var result = null;
                 for (i = 0; result == null && i < element.children.length; i++) {
@@ -104,6 +105,8 @@ define(function (require) {
             for (const mutation of mutationsList) {
                 if (mutation.type === "childList") {
                     for (const node of mutation.addedNodes) {
+
+                        searchTreeByAttribute(node)
                         // if(getPostCodeInput(node)){
                         //     console.log("node TEST1", node);
                         //     console.log("$element TEST1", $element)
@@ -111,9 +114,13 @@ define(function (require) {
                         // }
 
 
-                        if (searchTreeByAttribute(node)) {
-                            console.log("node TEST2", node);
-                            console.log("$element TEST2", $element)
+                        // if (searchTreeByAttribute(node)) {
+                        //     console.log("node TEST2", node);
+                        //     console.log("$element TEST2", $element)
+                        // }
+
+                        if (postCodeInputNew) {
+                            console.log("postCodeInputNew postCodeInputNew", postCodeInputNew)
                         }
                     }
                 }
