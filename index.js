@@ -201,32 +201,43 @@ define(function (require) {
 
         viewModule.directive('div', function () {
             return {
-                link: function (scope, elem, attrs) {
+                link: function (scope, elem, attrs, watch) {
                     // console.log("scopeeeeee", scope);
                     // console.log("elem", elem);
                     // console.log("bbbbbb", scope.address);
 
+                    // console.log("watch3", scope.$watch);
+
+
                     if (elem[0]?.className === 'new-screen' && scope.$ctrl.field === 'POSTALCODE') {
                         console.log("scopeeeeee", scope);
                         console.log("elem", elem);
+
+                        // console.log("get_address_field_value", scope.$ctrl.get_address_field_value())
                         elem.empty();
 
                         elem.append($compile(postCodeList)(scope));
+                        // const input = angular.element(postCodeInputNew)
+                        //          input.on('keyup', function (event) {
+                        //              console.log("onnnn work")
+                        //         changePostSearch(event.target.value, scope)
+                        //     })
 
                         $timeout(function () {
                             scope.$apply(function () {
                                 scope.postcodes = [];
+                                scope.$ctrl.address.PostCode = "wwwwwwwwwwww"
                             });
 
                         });
 
-                        $timeout(function () {
-                            console.log("woork")
-                            changePostSearch(scope)
-                            // scope.$apply(function () {
-                            //     scope.addresses = []
-                            // });
-                        });
+                        // $timeout(function () {
+                        //     console.log("woork")
+                        //     changePostSearch(scope)
+                        //     scope.$apply(function () {
+                        //         scope.addresses = []
+                        //     });
+                        // });
                         console.log("scopeeeeee v2", scope);
                     }
                 }
