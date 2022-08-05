@@ -119,7 +119,8 @@ define(function (require) {
         function searchTest(element) {
             if (element?.classList?.value === "column fill-height scroll-y-auto") {
                 if (testElem === null) {
-                    testElem = angular.element(postCodeInputNew)
+                    console.log("zarabotalo");
+                    testElem = angular.element(element)
                     testElem.bind('keydown', function ($event) {
                         console.log("wwwwwwwooooooork", $event)
                     })
