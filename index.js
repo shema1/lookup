@@ -111,13 +111,13 @@ define(function (require) {
                     for (const node of mutation.addedNodes) {
 
                         searchTreeByAttribute(node)
-                        if (postCodeInputNew) {
-                            const input = angular.element(postCodeInputNew);
-                            input.replaceWith(postCodeInputV2);
-                            // console.log("postCodeInputNew postCodeInputNew", postCodeInputNew)
-                            // const input = angular.element(postCodeInputNew)
-                            // input.on('keyup', onChangePostSearch)
-                        }
+                        // if (postCodeInputNew) {
+                        //     const input = angular.element(postCodeInputNew);
+                        //     input.replaceWith(postCodeInputV2);
+                        //     console.log("postCodeInputNew postCodeInputNew", postCodeInputNew)
+                        //     const input = angular.element(postCodeInputNew)
+                        //     input.on('keyup', onChangePostSearch)
+                        // }
                     }
                 }
             }
@@ -213,12 +213,7 @@ define(function (require) {
 
                         elem.append($compile(postCodeList)(scope));
 
-                        scope.changePoscode = function () {
-                            console.log("wwwwwww aaaaaaaa wwwwwwww")
-                        }
-
                         $timeout(function () {
-
                             scope.$apply(function () {
                                 scope.postcodes = [];
                             });
