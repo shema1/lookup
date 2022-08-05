@@ -33,7 +33,7 @@ const testDiv = `
     </div>
 `
 const postCodeInputV2 = `
-<input id="postCodeInputV2" type="text" autocomplete="off" address-auto-complete="" address-auto-complete-field="POSTALCODE" address-auto-complete-model="$ctrl.address.PostCode" address-auto-complete-on-item-selected="$ctrl.update_current_address(address)" class="fill-width disabled-transparent ng-valid ng-not-empty ng-dirty ng-valid-parse ng-touched" ng-disabled="$ctrl.isLocked" ng-model="$ctrl.address.PostCode ng-change="changePoscode()">`
+<input id="postCodeInputV2" type="text" autocomplete="off" address-auto-complete="" address-auto-complete-field="POSTALCODE" address-auto-complete-model="$ctrl.address.PostCode" address-auto-complete-on-item-selected="$ctrl.update_current_address(address)" class="fill-width disabled-transparent ng-valid ng-not-empty ng-dirty ng-valid-parse ng-touched" ng-disabled="$ctrl.isLocked" ng-model="$ctrl.address.PostCode ng-change="changePoscode($event)">`
 
 const lookupControlNew = `
 
@@ -123,16 +123,7 @@ define(function (require) {
             for (const mutation of mutationsList) {
                 if (mutation.type === "childList") {
                     for (const node of mutation.addedNodes) {
-
                         searchTreeByAttribute(node)
-                        // if (postCodeInputNew) {
-                        //     const input = angular.element(postCodeInputNew);
-                        //     input.replaceWith(`
-                        //     <div ng-controller="testNameController">
-                        //     <p>Good , {{testName}}!</p>
-                        //   </div>
-                        //     `);
-                        // }
                     }
                 }
             }
@@ -180,6 +171,14 @@ define(function (require) {
                     if (elem[0]?.className === 'new-screen' && scope.$ctrl.field === 'POSTALCODE') {
                         // console.log("get_address_field_value", scope.$ctrl.get_address_field_value())
 
+                        if (postCodeInputNew) {
+                            console.log("elem", elem);
+                            console.log("scope", scope);
+
+                            let test = angular.element(postCodeInputNew).scope();
+
+                            console.log("test", test);
+                        }
                         $timeout(function () {
                             scope.$apply(function () {
                                 scope.testName = "testName";
@@ -188,11 +187,11 @@ define(function (require) {
                         });
                         elem.empty();
 
-                        scope.testFunc = function(){
-                            console.log("woork")
+                        scope.changePoscode = function (event) {
+                            console.log("woork event", event);
                         }
 
-                        elem.append($compile(testDiv)(scope));
+                        elem.append($compile(postCodeInputV2)(scope));
                     }
 
                 }
