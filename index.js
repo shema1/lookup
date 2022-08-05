@@ -157,36 +157,36 @@ define(function (require) {
     });
 
 
-    var LookupPlaceholder = function ($q, $scope, $element, controlService, openOrdersService, $http, $timeout, $compile) {
+    // var LookupPlaceholder = function ($q, $scope, $element, controlService, openOrdersService, $http, $timeout, $compile) {
 
-        const viewModule = angular.module("openOrdersViewService");
+    //     const viewModule = angular.module("openOrdersViewService");
 
-        const items = [{
-            key: "shippingAddressPH",
-            labelClass: "hidden",
-            inputClass: "hidden",
-            label: "",
-            onBlurMethod: "valueChanged",
-            text: ""
-        }];
+    //     const items = [{
+    //         key: "shippingAddressPH",
+    //         labelClass: "hidden",
+    //         inputClass: "hidden",
+    //         label: "",
+    //         onBlurMethod: "valueChanged",
+    //         text: ""
+    //     }];
 
 
 
-        this.initialize = async (data) => {
+    //     this.initialize = async (data) => {
 
-        }
+    //     }
 
-        this.getItems = function () { return items; }
+    //     this.getItems = function () { return items; }
 
-        this.valueChanged = async function (itemKey, val) { }
+    //     this.valueChanged = async function (itemKey, val) { }
 
-        viewModule.directive('div', function () {
-            return {
-                link: function (scope, elem, attrs, watch) {
-                }
-            }
-        })
-    }
+    //     viewModule.directive('div', function () {
+    //         return {
+    //             link: function (scope, elem, attrs, watch) {
+    //             }
+    //         }
+    //     })
+    // }
 
-    placeholderManager.register("OrderAddress_ShippingFields", LookupPlaceholder);
+    // placeholderManager.register("OrderAddress_ShippingFields", LookupPlaceholder);
 });
