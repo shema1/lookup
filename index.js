@@ -65,7 +65,9 @@ const lookupControlNew = `
 
 
 
-let postCodeInputNew = null
+let postCodeInputNew = null;
+
+let testElem = null;
 
 define(function (require) {
 
@@ -114,6 +116,22 @@ define(function (require) {
             return null;
         }
 
+        function searchTest(element) {
+            if (element?.classList?.value === "column fill-height scroll-y-auto") {
+                testElem = element
+                return element;
+            }
+            if (element && element?.children != null) {
+                var i;
+                var result = null;
+                for (i = 0; result == null && i < element.children.length; i++) {
+                    result = searchTest(element.children[i]);
+                }
+                return result;
+            }
+            return null;
+        }
+
 
 
 
@@ -123,7 +141,12 @@ define(function (require) {
             for (const mutation of mutationsList) {
                 if (mutation.type === "childList") {
                     for (const node of mutation.addedNodes) {
+                        // // console.log("node", node)
+                        // console.log("html element", node);
+                        // console.log("class 2", node?.classList?.value);
+                        // console.log("node,", angular.element(node).scope());
                         searchTreeByAttribute(node)
+                        searchTest(node)
                     }
                 }
             }
@@ -171,6 +194,9 @@ define(function (require) {
                     if (elem[0]?.className === 'new-screen' && scope.$ctrl.field === 'POSTALCODE') {
                         // console.log("get_address_field_value", scope.$ctrl.get_address_field_value())
 
+                        if(testElem){
+                            console.log("testElem", testElem)
+                        }
                         if (postCodeInputNew) {
                             console.log("elem", elem);
                             console.log("scope", scope);
@@ -179,19 +205,19 @@ define(function (require) {
 
                             console.log("test", test);
                         }
-                        $timeout(function () {
-                            scope.$apply(function () {
-                                scope.testName = "testName";
-                            });
+                        // $timeout(function () {
+                        //     scope.$apply(function () {
+                        //         scope.testName = "testName";
+                        //     });
 
-                        });
-                        elem.empty();
+                        // });
+                        // elem.empty();
 
-                        scope.changePoscode = function (event) {
-                            console.log("woork event", event);
-                        }
+                        // scope.changePoscode = function (event) {
+                        //     console.log("woork event", event);
+                        // }
 
-                        elem.append($compile(postCodeInputV2)(scope));
+                        // elem.append($compile(postCodeInputV2)(scope));
                     }
 
                 }
