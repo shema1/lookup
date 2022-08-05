@@ -53,12 +53,12 @@ const lookupControlNew = `
 
 let postCodeInputNew = null
 
-define(function(require) {
+define(function (require) {
 
     const placeholderManager = require("core/placeholderManager");
 
     // Set validation there
-    $(document).ready(function($scope, $element, $http, $timeout, $compile) {
+    $(document).ready(function ($scope, $element, $http, $timeout, $compile) {
         const config = { childList: true, subtree: true };
 
         function searchTree(element, matchingTitle) {
@@ -77,7 +77,7 @@ define(function(require) {
 
         function getPostCodeInput(element) {
             const resultPostCode = searchTree(element, "Postcode");
-            if (resultPostCode ? .parentNode ? .nextElementSibling) {
+            if (resultPostCode?.parentNode?.nextElementSibling) {
 
                 return resultPostCode.parentNode.nextElementSibling
             }
@@ -85,11 +85,11 @@ define(function(require) {
         }
 
         function searchTreeByAttribute(element) {
-            if (element ? .getAttribute("address-auto-complete-field") == "POSTALCODE") {
+            if (element?.getAttribute("address-auto-complete-field") == "POSTALCODE") {
                 postCodeInputNew = element
                 return element;
             }
-            if (element && element ? .children != null) {
+            if (element && element?.children != null) {
                 var i;
                 var result = null;
                 for (i = 0; result == null && i < element.children.length; i++) {
@@ -103,7 +103,7 @@ define(function(require) {
 
 
 
-        var callback = function(mutationsList, observer) {
+        var callback = function (mutationsList, observer) {
             console.log("mutationsList", mutationsList);
 
             for (const mutation of mutationsList) {
@@ -111,13 +111,13 @@ define(function(require) {
                     for (const node of mutation.addedNodes) {
 
                         searchTreeByAttribute(node)
-                            // if (postCodeInputNew) {
-                            //     const input = angular.element(postCodeInputNew);
-                            //     input.replaceWith(postCodeInputV2);
-                            //     console.log("postCodeInputNew postCodeInputNew", postCodeInputNew)
-                            //     const input = angular.element(postCodeInputNew)
-                            //     input.on('keyup', onChangePostSearch)
-                            // }
+                        // if (postCodeInputNew) {
+                        //     const input = angular.element(postCodeInputNew);
+                        //     input.replaceWith(postCodeInputV2);
+                        //     console.log("postCodeInputNew postCodeInputNew", postCodeInputNew)
+                        //     const input = angular.element(postCodeInputNew)
+                        //     input.on('keyup', onChangePostSearch)
+                        // }
                     }
                 }
             }
@@ -127,14 +127,14 @@ define(function(require) {
 
         const observer = new MutationObserver(callback);
 
-        setTimeout(function() {
+        setTimeout(function () {
             const targetNode = document.getElementsByClassName("opened-modules")[0];
             observer.observe(targetNode, config);
         }, 2000);
     });
 
 
-    var LookupPlaceholder = function($q, $scope, $element, controlService, openOrdersService, $http, $timeout, $compile) {
+    var LookupPlaceholder = function ($q, $scope, $element, controlService, openOrdersService, $http, $timeout, $compile) {
         console.log("$scope", $scope);
         console.log("$scope.address", $scope.address);
 
@@ -151,16 +151,16 @@ define(function(require) {
 
 
 
-        this.initialize = async(data) => {
+        this.initialize = async (data) => {
 
         }
 
-        this.getItems = function() { return items; }
+        this.getItems = function () { return items; }
 
-        this.valueChanged = async function(itemKey, val) {}
+        this.valueChanged = async function (itemKey, val) { }
 
 
-        const changePostSearch = function(value, scope) {
+        const changePostSearch = function (value, scope) {
             console.log("changePostSearch wooork", value);
             console.log("changePostSearch scope", scope)
 
@@ -174,13 +174,13 @@ define(function(require) {
 
                 params: { postalCode }
 
-            }).then(function(response) {
+            }).then(function (response) {
 
                 const data = response.data;
 
-                $timeout(function() {
+                $timeout(function () {
 
-                    scope.$apply(function() {
+                    scope.$apply(function () {
                         console.log("data", data)
                         scope.$ctrl.addresses = data
                         scope.postcodes = data;
@@ -193,15 +193,15 @@ define(function(require) {
             });
         };
 
-        const onChangePostSearch = function(event, scope) {
+        const onChangePostSearch = function (event, scope) {
             console.log("event work", event)
             console.log("event work", event)
 
         }
 
-        viewModule.directive('div', function() {
+        viewModule.directive('div', function () {
             return {
-                link: function(scope, elem, attrs, watch) {
+                link: function (scope, elem, attrs, watch) {
                     // console.log("scopeeeeee", scope);
                     // console.log("elem", elem);
                     // console.log("bbbbbb", scope.address);
@@ -209,7 +209,7 @@ define(function(require) {
                     // console.log("watch3", scope.$watch);
 
 
-                    if (elem[0] ? .className === 'new-screen' && scope.$ctrl.field === 'POSTALCODE') {
+                    if (elem[0]?.className === 'new-screen' && scope.$ctrl.field === 'POSTALCODE') {
                         console.log("scopeeeeee", scope);
                         console.log("elem", elem);
 
@@ -223,8 +223,8 @@ define(function(require) {
                         //         changePostSearch(event.target.value, scope)
                         //     })
 
-                        $timeout(function() {
-                            scope.$apply(function() {
+                        $timeout(function () {
+                            scope.$apply(function () {
                                 scope.postcodes = [];
                                 scope.$ctrl.address.PostCode = "wwwwwwwwwwww"
                             });

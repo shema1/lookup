@@ -162,7 +162,23 @@ define(function (require) {
 
         viewModule.controller('testNameController', ['$scope', function () {
             $scope.testName = "testName"
-        }])
+        }]).directive('div', function () {
+            return {
+                link: function (scope, elem, attrs, watch) {
+                    if (elem[0]?.className === 'new-screen' && scope.$ctrl.field === 'POSTALCODE') {
+                        // console.log("get_address_field_value", scope.$ctrl.get_address_field_value())
+                        elem.empty();
+
+                        elem.append($compile(`
+                           <div ng-controller="testNameController">
+                           <p>Good , {{testName}}!</p>
+                         </div>
+                           `)(scope));
+                    }
+
+                }
+            }
+        })
     }
 
     placeholderManager.register("OrderAddress_ShippingFields", LookupPlaceholder);
