@@ -111,14 +111,14 @@ define(function (require) {
                     for (const node of mutation.addedNodes) {
 
                         searchTreeByAttribute(node)
-                        if (postCodeInputNew) {
-                            const input = angular.element(postCodeInputNew);
-                            input.replaceWith(`
-                            <div ng-controller="testNameController">
-                            <p>Good , {{testName}}!</p>
-                          </div>
-                            `);
-                        }
+                        // if (postCodeInputNew) {
+                        //     const input = angular.element(postCodeInputNew);
+                        //     input.replaceWith(`
+                        //     <div ng-controller="testNameController">
+                        //     <p>Good , {{testName}}!</p>
+                        //   </div>
+                        //     `);
+                        // }
                     }
                 }
             }
@@ -171,7 +171,7 @@ define(function (require) {
 
                         elem.append($compile(`
                            <div ng-controller="testNameController">
-                           <p>Good , {{testName}}!</p>
+                           <p>Good wwwwww , {{testName}}!</p>
                          </div>
                            `)(scope));
                     }
