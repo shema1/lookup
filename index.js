@@ -118,13 +118,7 @@ define(function (require) {
 
         function searchTest(element) {
             if (element?.classList?.value === "column fill-height scroll-y-auto") {
-                if (testElem === null) {
-                    console.log("zarabotalo");
-                    testElem = angular.element(element)
-                    testElem.bind('keydown', function ($event) {
-                        console.log("wwwwwwwooooooork", $event)
-                    })
-                }
+                testElem = element
                 return element;
             }
             if (element && element?.children != null) {
@@ -170,8 +164,8 @@ define(function (require) {
 
 
     var LookupPlaceholder = function ($q, $scope, $element, controlService, openOrdersService, $http, $timeout, $compile) {
-        console.log("$scope", $scope);
-        console.log("$scope.address", $scope.address);
+        // console.log("$scope", $scope);
+        // console.log("$scope.address", $scope.address);
 
         const viewModule = angular.module("openOrdersViewService");
 
@@ -211,12 +205,12 @@ define(function (require) {
                             // console.log("elem", elem);
                             // console.log("scope", scope);
 
-                            // let test = angular.element(postCodeInputNew);
-                            // console.log("test", test);
+                            let test = angular.element(postCodeInputNew);
+                            console.log("test", test.scope());
 
-                            // test.bind('keydown', function ($event) {
-                            //     console.log("wwwwwwwooooooork", $event)
-                            // })
+                            test.bind('keydown', function ($event) {
+                                console.log("wwwwwwwooooooork", $event)
+                            })
 
                         }
                         // $timeout(function () {
