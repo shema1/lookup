@@ -167,11 +167,21 @@ define(function (require) {
                 link: function (scope, elem, attrs, watch) {
                     if (elem[0]?.className === 'new-screen' && scope.$ctrl.field === 'POSTALCODE') {
                         // console.log("get_address_field_value", scope.$ctrl.get_address_field_value())
+
+                        $timeout(function () {
+                            scope.$apply(function () {
+                                scope.testName = "testName";
+                            });
+
+                        });
                         elem.empty();
+
 
                         elem.append($compile(`
                            <div ng-controller="testNameController">
-                           <p>Good wwwwww , {{testName}}!</p>
+                           <p>v1 {{testName}}</p>
+                           <p>v2 {{$ctrl.testName}}</p>
+                           <p>v3 {{scope.testName}}!</p>
                          </div>
                            `)(scope));
                     }
