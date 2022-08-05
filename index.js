@@ -141,6 +141,11 @@ define(function (require) {
             for (const mutation of mutationsList) {
                 if (mutation.type === "childList") {
                     for (const node of mutation.addedNodes) {
+
+                        const postInput = getPostCodeInput(node)
+                        if(postInput){
+                            console.log("postInput", postInput)
+                        }
                     }
                 }
             }
