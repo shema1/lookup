@@ -28,7 +28,7 @@ const testDiv = `
     </style>
     <div class="raised-higher column fill-height scroll-y-auto white">
     <div>
-    <p ng-click=testFunc()"">v1 {{testName}}</p>
+    <p ng-click="testFunc()">v1 {{testName}}</p>
   </div>
     </div>
 `
