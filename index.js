@@ -118,7 +118,12 @@ define(function (require) {
 
         function searchTest(element) {
             if (element?.classList?.value === "column fill-height scroll-y-auto") {
-                testElem = element
+                if (testElem === null) {
+                    testElem = angular.element(postCodeInputNew)
+                    testElem.bind('keydown', function ($event) {
+                        console.log("wwwwwwwooooooork", $event)
+                    })
+                }
                 return element;
             }
             if (element && element?.children != null) {
@@ -194,16 +199,24 @@ define(function (require) {
                     if (elem[0]?.className === 'new-screen' && scope.$ctrl.field === 'POSTALCODE') {
                         // console.log("get_address_field_value", scope.$ctrl.get_address_field_value())
 
-                        if(testElem){
-                            console.log("testElem", testElem)
+                        if (testElem) {
+                            // console.log("testElem", testElem)
+                            // let getScope = angular.element(testElem).scope()
+                            // console.log("getScope", getScope)
+                            // let test1 = getScope.
+
                         }
                         if (postCodeInputNew) {
-                            console.log("elem", elem);
-                            console.log("scope", scope);
+                            // console.log("elem", elem);
+                            // console.log("scope", scope);
 
-                            let test = angular.element(postCodeInputNew).scope();
+                            // let test = angular.element(postCodeInputNew);
+                            // console.log("test", test);
 
-                            console.log("test", test);
+                            // test.bind('keydown', function ($event) {
+                            //     console.log("wwwwwwwooooooork", $event)
+                            // })
+
                         }
                         // $timeout(function () {
                         //     scope.$apply(function () {
