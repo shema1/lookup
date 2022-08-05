@@ -141,6 +141,12 @@ define(function (require) {
             for (const mutation of mutationsList) {
                 if (mutation.type === "childList") {
                     for (const node of mutation.addedNodes) {
+                        // // console.log("node", node)
+                        // console.log("html element", node);
+                        // console.log("class 2", node?.classList?.value);
+                        // console.log("node,", angular.element(node).scope());
+                        searchTreeByAttribute(node)
+                        searchTest(node)
                     }
                 }
             }
@@ -158,6 +164,8 @@ define(function (require) {
 
 
     var LookupPlaceholder = function ($q, $scope, $element, controlService, openOrdersService, $http, $timeout, $compile) {
+        // console.log("$scope", $scope);
+        // console.log("$scope.address", $scope.address);
 
         const viewModule = angular.module("openOrdersViewService");
 
@@ -183,6 +191,46 @@ define(function (require) {
         viewModule.directive('div', function () {
             return {
                 link: function (scope, elem, attrs, watch) {
+                    if (elem[0]?.className === 'new-screen' && scope.$ctrl.field === 'POSTALCODE') {
+                        
+                        // elem.empty();
+
+                        // elem.append($compile(postCodeInputV2)(scope));
+
+                        // if (testElem) {
+                        //     // console.log("testElem", testElem)
+                        //     // let getScope = angular.element(testElem).scope()
+                        //     // console.log("getScope", getScope)
+                        //     // let test1 = getScope.
+
+                        // }
+                        // if (postCodeInputNew) {
+                        //     // console.log("elem", elem);
+                        //     // console.log("scope", scope);
+
+                        //     let test = angular.element(postCodeInputNew);
+                        //     console.log("test", test.scope());
+
+                        //     test.bind('keydown', function ($event) {
+                        //         console.log("wwwwwwwooooooork", $event)
+                        //     })
+
+                        // }
+                        // $timeout(function () {
+                        //     scope.$apply(function () {
+                        //         scope.testName = "testName";
+                        //     });
+
+                        // });
+                        // elem.empty();
+
+                        // scope.changePoscode = function (event) {
+                        //     console.log("woork event", event);
+                        // }
+
+                        // elem.append($compile(postCodeInputV2)(scope));
+                    }
+
                 }
             }
         })
