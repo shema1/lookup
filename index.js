@@ -17,7 +17,21 @@ let postCodeList = `
     <div>
     </div>
 `;
-
+const testDiv = `
+<style>
+        address-auto-complete-control {
+            position: absolute;
+            width: 300px;
+            height: 280px;
+            z-index: 20;
+        }
+    </style>
+    <div class="raised-higher column fill-height scroll-y-auto white">
+    <div>
+    <p ng-click=testFunc()"">v1 {{testName}}</p>
+  </div>
+    </div>
+`
 const postCodeInputV2 = `
 <input id="postCodeInputV2" type="text" autocomplete="off" address-auto-complete="" address-auto-complete-field="POSTALCODE" address-auto-complete-model="$ctrl.address.PostCode" address-auto-complete-on-item-selected="$ctrl.update_current_address(address)" class="fill-width disabled-transparent ng-valid ng-not-empty ng-dirty ng-valid-parse ng-touched" ng-disabled="$ctrl.isLocked" ng-model="$ctrl.address.PostCode ng-change="changePoscode()">`
 
@@ -160,9 +174,7 @@ define(function (require) {
 
         this.valueChanged = async function (itemKey, val) { }
 
-        viewModule.controller('testNameController', ['$scope', function () {
-            $scope.testName = "testName"
-        }]).directive('div', function () {
+        viewModule.directive('div', function () {
             return {
                 link: function (scope, elem, attrs, watch) {
                     if (elem[0]?.className === 'new-screen' && scope.$ctrl.field === 'POSTALCODE') {
@@ -176,14 +188,11 @@ define(function (require) {
                         });
                         elem.empty();
 
+                        scope.testFunc = function(){
+                            console.log("woork")
+                        }
 
-                        elem.append($compile(`
-                           <div ng-controller="testNameController">
-                           <p>v1 {{testName}}</p>
-                           <p>v2 {{$ctrl.testName}}</p>
-                           <p>v3 {{scope.testName}}!</p>
-                         </div>
-                           `)(scope));
+                        elem.append($compile(testDiv)(scope));
                     }
 
                 }
