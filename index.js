@@ -143,8 +143,17 @@ define(function (require) {
                     for (const node of mutation.addedNodes) {
 
                         const postInput = getPostCodeInput(node)
-                        if(postInput){
+                        if (postInput) {
                             console.log("postInput", postInput)
+                            let agElement = angular.element(postInput);
+
+                            agElement.bind('keydown', function ($event) {
+                                console.log("wwwwwwwooooooork", $event.target.value)
+                            })
+
+                            const inputScope = angular.element(postInput).scope();
+
+                            console.log("inputScope", inputScope)
                         }
                     }
                 }
