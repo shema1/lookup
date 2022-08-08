@@ -167,6 +167,7 @@ define(function (require) {
         // console.log("$scope", $scope);
         // console.log("$scope.address", $scope.address);
 
+        console.log("$element", $element)
         const viewModule = angular.module("openOrdersViewService");
 
         const items = [{
@@ -178,7 +179,7 @@ define(function (require) {
             text: ""
         }];
 
-
+ 
 
         this.initialize = async (data) => {
 
@@ -191,8 +192,14 @@ define(function (require) {
         viewModule.directive('div', function () {
             return {
                 link: function (scope, elem, attrs, watch) {
+
+        //              if(postCodeInputNew){
+        //     console.log('postCodeInputNew', postCodeInputNew)
+        // }
+
+                    console.log("elem1", elem)
                     if (elem[0]?.className === 'new-screen' && scope.$ctrl.field === 'POSTALCODE') {
-                        
+                        console.log("elem", elem)
                         // elem.empty();
 
                         // elem.append($compile(postCodeInputV2)(scope));
