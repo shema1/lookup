@@ -145,21 +145,10 @@ define(function (require) {
                         const postInput = getPostCodeInput(node)
                         if (postInput) {
                             console.log("postInput", postInput)
-                            let agElement = angular.element(postInput);
-
-                            agElement.bind('keydown', function ($event) {
-                                console.log("wwwwwwwooooooork", $event.target.value)
-                            })
-
-                            const inputScope = angular.element(postInput).scope();
-
-                            console.log("inputScope", inputScope)
                         }
                     }
                 }
             }
-
-
         };
 
         const observer = new MutationObserver(callback);
@@ -169,38 +158,4 @@ define(function (require) {
             observer.observe(targetNode, config);
         }, 2000);
     });
-
-
-    // var LookupPlaceholder = function ($q, $scope, $element, controlService, openOrdersService, $http, $timeout, $compile) {
-
-    //     const viewModule = angular.module("openOrdersViewService");
-
-    //     const items = [{
-    //         key: "shippingAddressPH",
-    //         labelClass: "hidden",
-    //         inputClass: "hidden",
-    //         label: "",
-    //         onBlurMethod: "valueChanged",
-    //         text: ""
-    //     }];
-
-
-
-    //     this.initialize = async (data) => {
-
-    //     }
-
-    //     this.getItems = function () { return items; }
-
-    //     this.valueChanged = async function (itemKey, val) { }
-
-    //     viewModule.directive('div', function () {
-    //         return {
-    //             link: function (scope, elem, attrs, watch) {
-    //             }
-    //         }
-    //     })
-    // }
-
-    // placeholderManager.register("OrderAddress_ShippingFields", LookupPlaceholder);
 });
