@@ -217,19 +217,19 @@ define(function (require) {
                         elem.empty();
 
                         elem.append($compile(postCodeList)(scope));
-                        // const input = angular.element(postCodeInputNew)
-                        //          input.on('keyup', function (event) {
-                        //              console.log("onnnn work")
-                        //         changePostSearch(event.target.value, scope)
-                        //     })
+                        const input = angular.element(postCodeInputNew)
+                        input.on('keyup', function (event) {
+                            console.log("onnnn work")
+                            changePostSearch(event.target.value, scope)
+                        })
 
-                        $timeout(function () {
-                            scope.$apply(function () {
-                                scope.postcodes = [];
-                                scope.$ctrl.address.PostCode = "wwwwwwwwwwww"
-                            });
+                        // $timeout(function () {
+                        //     scope.$apply(function () {
+                        //         scope.postcodes = [];
+                        //         scope.$ctrl.address.PostCode = "wwwwwwwwwwww"
+                        //     });
 
-                        });
+                        // });
 
                         // $timeout(function () {
                         //     console.log("woork")
