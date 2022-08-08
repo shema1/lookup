@@ -216,29 +216,15 @@ define(function (require) {
                         // console.log("get_address_field_value", scope.$ctrl.get_address_field_value())
                         elem.empty();
 
-                        elem.append($compile(postCodeList)(scope));
                         const input = angular.element(postCodeInputNew)
                         input.on('keyup', function (event) {
                             console.log("onnnn work")
                             changePostSearch(event.target.value, scope)
                         })
-
-                        // $timeout(function () {
-                        //     scope.$apply(function () {
-                        //         scope.postcodes = [];
-                        //         scope.$ctrl.address.PostCode = "wwwwwwwwwwww"
-                        //     });
-
-                        // });
-
-                        // $timeout(function () {
-                        //     console.log("woork")
-                        //     changePostSearch(scope)
-                        //     scope.$apply(function () {
-                        //         scope.addresses = []
-                        //     });
-                        // });
+                        
+                        
                         console.log("scopeeeeee v2", scope);
+                        elem.append($compile(postCodeList)(scope));
                     }
                 }
             }
