@@ -28,12 +28,8 @@ let postCodeList = `
         }
     </style>
     <div class="raised-higher column fill-height scroll-y-auto white">
-    <pre>
     <div>test1: {{postcodes}} </div>
     <div>test2: {{$ctrl.postcodes}}</div>
-    <div>test3: {{$ctrl}}</div>
-    <div>test4: </div>
-    </pre>
         <div ng-repeat="item in postcodes" ng-class="{'grey': ($index % 2) == 0, 'white': ($index % 2) == 1 }" class="padding-heavy hover pointer grey">{{item}}</div>
     </div>
 `;
