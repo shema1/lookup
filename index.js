@@ -28,8 +28,6 @@ let postCodeList = `
         }
     </style>
     <div class="raised-higher column fill-height scroll-y-auto white">
-    <div>test1: {{postcodes}} </div>
-    <div>test2: {{$ctrl.postcodes}}</div>
         <div ng-repeat="item in postcodes" ng-class="{'grey': ($index % 2) == 0, 'white': ($index % 2) == 1 }" class="padding-heavy hover pointer grey">{{item}}</div>
     </div>
 `;
@@ -194,7 +192,7 @@ define(function (require) {
 
                 const data = response.data;
 
-                $timeout(function () {
+                // $timeout(function () {
 
                     scope.$apply(function () {
                         console.log("data", data)
@@ -204,7 +202,7 @@ define(function (require) {
                         // scope.selectedPostcode = undefined;
 
                     });
-                })
+                // })
 
             });
         };
@@ -223,11 +221,6 @@ define(function (require) {
                     if (elem[0]?.className === 'new-screen' && scope.$ctrl.field === 'POSTALCODE') {
                         console.log("scopeeeeee", scope);
                         console.log("elem", elem);
-
-                        // console.log("get_address_field_value", scope.$ctrl.get_address_field_value())
-                        elem.empty();
-                        elem.append($compile(postCodeList)(scope));
-
                         $timeout(function () {
 
                             scope.$apply(function () {
@@ -236,6 +229,11 @@ define(function (require) {
                             });
     
                         });
+                        // console.log("get_address_field_value", scope.$ctrl.get_address_field_value())
+                        elem.empty();
+                        elem.append($compile(postCodeList)(scope));
+
+                      
 
                         const input = angular.element(postCodeInputNew)
                         input.on('keyup', function (event) {
