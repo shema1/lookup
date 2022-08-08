@@ -12,7 +12,7 @@ let postCodeList = `
         }
     </style>
     <div class="raised-higher column fill-height scroll-y-auto white">
-    <div ng-repeat="item in postcodes" ng-class="{'grey': ($index % 2) == 0, 'white': ($index % 2) == 1 }" class="padding-heavy hover pointer grey" ng-click="$ctrl.on_select_address(item)">
+    <div ng-repeat="item in postcodes" ng-class="{'grey': ($index % 2) == 0, 'white': ($index % 2) == 1 }" class="padding-heavy hover pointer grey">
         {{item}}
     <div>
     </div>
