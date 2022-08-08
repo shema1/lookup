@@ -381,4 +381,4 @@ var LookupPlaceHolder = function($scope, $element, $http, $timeout, $compile) {
 
 }
 
-Core.PlaceHolderManager.register("OpenOrders_OrderControlButtons", LookupPlaceHolder);
+Core.PlaceHolderManager.register("OrderAddress_ShippingFields", LookupPlaceHolder);
