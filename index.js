@@ -192,7 +192,7 @@ define(function (require) {
 
                 const data = response.data;
 
-                // $timeout(function () {
+                $timeout(function () {
 
                     scope.$apply(function () {
                         console.log("data", data)
@@ -202,7 +202,7 @@ define(function (require) {
                         // scope.selectedPostcode = undefined;
 
                     });
-                // })
+                })
 
             });
         };
