@@ -231,7 +231,7 @@ define(function (require) {
                         $timeout(function () {
 
                             scope.$apply(function () {
-                                scope.$ctrl?.postcodes = []
+                                // scope.$ctrl?.postcodes = []
                                 scope.postcodes = []; 
                             });
     
