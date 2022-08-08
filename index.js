@@ -146,8 +146,11 @@ define(function (require) {
 
                         const postInput = getPostCodeInput(node)
                         if (postInput) {
-                            console.log("postInput", postInput)
-                            console.log("$compile", $compile);
+                            console.log("postInput", postInput);
+                            var postInputAgElment = angular.element(saveTxt.parentNode);
+                            console.log("postInputAgElment", postInputAgElment);
+                            var ctrl = angular.element(postInputAgElment).controller();
+                            console.log("ctrl", ctrl);
                         }
                     }
                 }
