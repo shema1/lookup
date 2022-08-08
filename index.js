@@ -68,6 +68,8 @@ const testInput = `
 <div>{{$ctrl.test}}</div>
 <pre>
 address: {{$ctrl.address}}
+testagain: {{test}}
+scopetest: {{nnn}}
 </pre>
 
 `
@@ -168,7 +170,7 @@ define(function (require) {
                             // console.log("newInput scope", newInputScope.$apply)
                             // console.log("timeout", $timeout)
 
-                            postInputAgElment.replaceWith(testInput)
+                            postInputAgElment.append(angular.element(testInput))
 
                             if (document.getElementById('testt')) {
                                 console.log("wwwww", document.getElementById('testt'))
@@ -182,6 +184,7 @@ define(function (require) {
                                 newInputTestScope.$apply(function () {
                                     scope.test = "ssssss"
                                 });
+                                $scope.nnn = "nnn"
                                 console.log("newInputTestScope Neeew", newInputTestScope)
 
                             }
