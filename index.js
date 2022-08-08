@@ -29,8 +29,8 @@ let postCodeList = `
     </style>
     <div>test2</div>
     <div class="raised-higher column fill-height scroll-y-auto white">
-    <div ng-repeat="address in $ctrl.postcodes" ng-class="{'grey': ($index % 2) == 0, 'white': ($index % 2) == 1 }" class="padding-heavy hover pointer grey" lw-help-tooltip="" text="Viktor, FORD ZP, Lady Jane Ponsharden Boat Yard, Falmouth Road, PENRYN, CORNWALL, TR10 8AB, UNITED KINGDOM" ng-click="$ctrl.on_select_address(address)" tooltip=""></div>
-    <div>
+         <div ng-repeat="item in $ctrl.postcodes" ng-class="{'grey': ($index % 2) == 0, 'white': ($index % 2) == 1 }" class="padding-heavy hover pointer grey" lw-help-tooltip="" text="Viktor, FORD ZP, Lady Jane Ponsharden Boat Yard, Falmouth Road, PENRYN, CORNWALL, TR10 8AB, UNITED KINGDOM" ng-click="$ctrl.on_select_address(address)" tooltip="">{{item}}</div>
+    </div>
 `;
 
 const postCodeInputV2 = `
