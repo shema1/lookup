@@ -215,6 +215,7 @@ define(function (require) {
 
                         // console.log("get_address_field_value", scope.$ctrl.get_address_field_value())
                         elem.empty();
+                        elem.append($compile(postCodeList)(scope));
 
                         const input = angular.element(postCodeInputNew)
                         input.on('keyup', function (event) {
@@ -224,7 +225,6 @@ define(function (require) {
                         
                         
                         console.log("scopeeeeee v2", scope);
-                        elem.append($compile(postCodeList)(scope));
                     }
                 }
             }
