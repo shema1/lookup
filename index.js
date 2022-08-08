@@ -63,7 +63,7 @@ const lookupControlNew = `
 
 `;
 
-const testInput =  `<input ng-model='test'/>`
+const testInput =  `<input id="testt" ng-model='test'/>`
 
 
 
@@ -153,15 +153,15 @@ define(function (require) {
                             var ctrl = angular.element(postInputAgElment).controller();
                             console.log("ctrl", ctrl);
 
-                            let newInput = angular.element(testInput)
-                            console.log("newInput", newInput);
+                            // let newInput = angular.element(testInput)
+                            // console.log("newInput", newInput);
 
-                            let newInputScope = newInput.scope();
-                            console.log("newInput scope", newInputScope)
-                            console.log("newInput scope", newInputScope.$apply)
-                            console.log("timeout", $timeout)
+                            // let newInputScope = newInput.scope();
+                            // console.log("newInput scope", newInputScope)
+                            // console.log("newInput scope", newInputScope.$apply)
+                            // console.log("timeout", $timeout)
 
-                            postInputAgElment.replaceWith(newInput)
+                            postInputAgElment.replaceWith(testInput)
                         }
                     }
                 }
