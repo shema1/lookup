@@ -27,9 +27,14 @@ let postCodeList = `
             z-index: 20;
         }
     </style>
-    <div>test2</div>
     <div class="raised-higher column fill-height scroll-y-auto white">
-         <div ng-repeat="item in $ctrl.postcodes" ng-class="{'grey': ($index % 2) == 0, 'white': ($index % 2) == 1 }" class="padding-heavy hover pointer grey" lw-help-tooltip="" text="Viktor, FORD ZP, Lady Jane Ponsharden Boat Yard, Falmouth Road, PENRYN, CORNWALL, TR10 8AB, UNITED KINGDOM" ng-click="$ctrl.on_select_address(address)" tooltip="">{{item}}</div>
+    <pre>
+    <div>test1: {{postcodes}} </div>
+    <div>test2: {{$ctrl.postcodes}}</div>
+    <div>test3: {{$ctrl}}</div>
+    <div>test4: </div>
+    </pre>
+        <div ng-repeat="item in postcodes" ng-class="{'grey': ($index % 2) == 0, 'white': ($index % 2) == 1 }" class="padding-heavy hover pointer grey">{{item}}</div>
     </div>
 `;
 
