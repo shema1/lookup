@@ -73,89 +73,94 @@ define(function (require) {
 
     const placeholderManager = require("core/placeholderManager");
 
-    // // Set validation there
-    // $(document).ready(function ($scope, $element, $http, $timeout, $compile) {
-    //     const config = { childList: true, subtree: true };
+    // Set validation there
+    $(document).ready(function ($scope, $element, $http, $timeout, $compile) {
+        const config = { childList: true, subtree: true };
 
-    //     function searchTree(element, matchingTitle) {
-    //         if (element.innerText == matchingTitle) {
-    //             return element;
-    //         } else if (element.children != null) {
-    //             var i;
-    //             var result = null;
-    //             for (i = 0; result == null && i < element.children.length; i++) {
-    //                 result = searchTree(element.children[i], matchingTitle);
-    //             }
-    //             return result;
-    //         }
-    //         return null;
-    //     }
+        function searchTree(element, matchingTitle) {
+            if (element.innerText == matchingTitle) {
+                return element;
+            } else if (element.children != null) {
+                var i;
+                var result = null;
+                for (i = 0; result == null && i < element.children.length; i++) {
+                    result = searchTree(element.children[i], matchingTitle);
+                }
+                return result;
+            }
+            return null;
+        }
 
-    //     function getPostCodeInput(element) {
-    //         const resultPostCode = searchTree(element, "Postcode");
-    //         if (resultPostCode?.parentNode?.nextElementSibling) {
+        function getPostCodeInput(element) {
+            const resultPostCode = searchTree(element, "Postcode");
+            if (resultPostCode?.parentNode?.nextElementSibling) {
 
-    //             return resultPostCode.parentNode.nextElementSibling
-    //         }
-    //         return null
-    //     }
+                return resultPostCode.parentNode.nextElementSibling
+            }
+            return null
+        }
 
-    //     function searchTreeByAttribute(element) {
-    //         if (element?.getAttribute("address-auto-complete-field") == "POSTALCODE") {
-    //             postCodeInputNew = element
-    //             return element;
-    //         }
-    //         if (element && element?.children != null) {
-    //             var i;
-    //             var result = null;
-    //             for (i = 0; result == null && i < element.children.length; i++) {
-    //                 result = searchTreeByAttribute(element.children[i]);
-    //             }
-    //             return result;
-    //         }
-    //         return null;
-    //     }
+        function searchTreeByAttribute(element) {
+            if (element?.getAttribute("address-auto-complete-field") == "POSTALCODE") {
+                postCodeInputNew = element
+                return element;
+            }
+            if (element && element?.children != null) {
+                var i;
+                var result = null;
+                for (i = 0; result == null && i < element.children.length; i++) {
+                    result = searchTreeByAttribute(element.children[i]);
+                }
+                return result;
+            }
+            return null;
+        }
 
-    //     function searchTest(element) {
-    //         if (element?.classList?.value === "column fill-height scroll-y-auto") {
-    //             testElem = element
-    //             return element;
-    //         }
-    //         if (element && element?.children != null) {
-    //             var i;
-    //             var result = null;
-    //             for (i = 0; result == null && i < element.children.length; i++) {
-    //                 result = searchTest(element.children[i]);
-    //             }
-    //             return result;
-    //         }
-    //         return null;
-    //     }
-
-
+        function searchTest(element) {
+            if (element?.classList?.value === "column fill-height scroll-y-auto") {
+                testElem = element
+                return element;
+            }
+            if (element && element?.children != null) {
+                var i;
+                var result = null;
+                for (i = 0; result == null && i < element.children.length; i++) {
+                    result = searchTest(element.children[i]);
+                }
+                return result;
+            }
+            return null;
+        }
 
 
-    //     var callback = function (mutationsList, observer) {
-    //         console.log("mutationsList", mutationsList);
-
-    //         for (const mutation of mutationsList) {
-    //             if (mutation.type === "childList") {
-    //                 for (const node of mutation.addedNodes) {
-    //                 }
-    //             }
-    //         }
 
 
-    //     };
+        var callback = function (mutationsList, observer) {
+            console.log("mutationsList", mutationsList);
 
-    //     const observer = new MutationObserver(callback);
+            for (const mutation of mutationsList) {
+                if (mutation.type === "childList") {
+                    for (const node of mutation.addedNodes) {
+                        // // console.log("node", node)
+                        // console.log("html element", node);
+                        // console.log("class 2", node?.classList?.value);
+                        // console.log("node,", angular.element(node).scope());
+                        searchTreeByAttribute(node)
+                        searchTest(node)
+                    }
+                }
+            }
 
-    //     setTimeout(function () {
-    //         const targetNode = document.getElementsByClassName("opened-modules")[0];
-    //         observer.observe(targetNode, config);
-    //     }, 2000);
-    // });
 
+        };
+
+        const observer = new MutationObserver(callback);
+
+        setTimeout(function () {
+            const targetNode = document.getElementsByClassName("opened-modules")[0];
+            observer.observe(targetNode, config);
+        }, 2000);
+    });
 
 
     var LookupPlaceholder = function ($q, $scope, $element, controlService, openOrdersService, $http, $timeout, $compile) {
@@ -164,7 +169,6 @@ define(function (require) {
 
         const viewModule = angular.module("openOrdersViewService");
 
-        console.log("$element", $element)
         const items = [{
             key: "shippingAddressPH",
             labelClass: "hidden",
@@ -187,10 +191,46 @@ define(function (require) {
         viewModule.directive('div', function () {
             return {
                 link: function (scope, elem, attrs, watch) {
-                    console.log("elem", elem)
-                    // if (elem[0]?.className === 'new-screen' && scope.$ctrl.field === 'POSTALCODE') {
+                    if (elem[0]?.className === 'new-screen' && scope.$ctrl.field === 'POSTALCODE') {
+                        
+                        // elem.empty();
 
-                    // }
+                        // elem.append($compile(postCodeInputV2)(scope));
+
+                        // if (testElem) {
+                        //     // console.log("testElem", testElem)
+                        //     // let getScope = angular.element(testElem).scope()
+                        //     // console.log("getScope", getScope)
+                        //     // let test1 = getScope.
+
+                        // }
+                        // if (postCodeInputNew) {
+                        //     // console.log("elem", elem);
+                        //     // console.log("scope", scope);
+
+                        //     let test = angular.element(postCodeInputNew);
+                        //     console.log("test", test.scope());
+
+                        //     test.bind('keydown', function ($event) {
+                        //         console.log("wwwwwwwooooooork", $event)
+                        //     })
+
+                        // }
+                        // $timeout(function () {
+                        //     scope.$apply(function () {
+                        //         scope.testName = "testName";
+                        //     });
+
+                        // });
+                        // elem.empty();
+
+                        // scope.changePoscode = function (event) {
+                        //     console.log("woork event", event);
+                        // }
+
+                        // elem.append($compile(postCodeInputV2)(scope));
+                    }
+
                 }
             }
         })
