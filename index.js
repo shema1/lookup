@@ -218,32 +218,32 @@ define(function (require) {
                     // console.log("watch3", scope.$watch);
 
 
-                    if (elem[0]?.className === 'new-screen' && scope.$ctrl.field === 'POSTALCODE') {
-                        console.log("scopeeeeee", scope);
-                        console.log("elem", elem);
-                        $timeout(function () {
+                    // if (elem[0]?.className === 'new-screen' && scope.$ctrl.field === 'POSTALCODE') {
+                    //     console.log("scopeeeeee", scope);
+                    //     console.log("elem", elem);
+                    //     $timeout(function () {
 
-                            scope.$apply(function () {
-                                // scope.$ctrl?.postcodes = []
-                                scope.postcodes = []; 
-                            });
+                    //         scope.$apply(function () {
+                    //             // scope.$ctrl?.postcodes = []
+                    //             scope.postcodes = []; 
+                    //         });
     
-                        });
-                        // console.log("get_address_field_value", scope.$ctrl.get_address_field_value())
-                        elem.empty();
-                        elem.append($compile(postCodeList)(scope));
+                    //     });
+                    //     // console.log("get_address_field_value", scope.$ctrl.get_address_field_value())
+                    //     elem.empty();
+                    //     elem.append($compile(postCodeList)(scope));
 
                       
 
-                        const input = angular.element(postCodeInputNew)
-                        input.on('keyup', function (event) {
-                            console.log("onnnn work")
-                            changePostSearch(event.target.value, scope)
-                        })
+                    //     const input = angular.element(postCodeInputNew)
+                    //     input.on('keyup', function (event) {
+                    //         console.log("onnnn work")
+                    //         changePostSearch(event.target.value, scope)
+                    //     })
                         
                         
-                        console.log("scopeeeeee v2", scope);
-                    }
+                    //     console.log("scopeeeeee v2", scope);
+                    // }
                 }
             }
         })
