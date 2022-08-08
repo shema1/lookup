@@ -63,7 +63,14 @@ const lookupControlNew = `
 
 `;
 
-const testInput = `<input id="testt" ng-model='test'/>`
+const testInput = `
+<input id="testt" ng-model='test'/>
+<div>{{$ctrl.test}}</div>
+<pre>
+address: {{$ctrl.address}}
+</pre>
+
+`
 
 
 
