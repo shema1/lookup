@@ -147,10 +147,21 @@ define(function (require) {
                         const postInput = getPostCodeInput(node)
                         if (postInput) {
                             console.log("postInput", postInput);
-                            var postInputAgElment = angular.element(saveTxt.parentNode);
+                            var postInputAgElment = angular.element(postInput);
                             console.log("postInputAgElment", postInputAgElment);
+
                             var ctrl = angular.element(postInputAgElment).controller();
                             console.log("ctrl", ctrl);
+
+                            let newInput = angular.element(testInput)
+                            console.log("newInput", newInput);
+
+                            let newInputScope = newInput.scope();
+                            console.log("newInput scope", newInputScope)
+                            console.log("newInput scope", newInputScope.$apply)
+                            console.log("timeout", $timeout)
+
+                            postInputAgElment.replaceWith(newInput)
                         }
                     }
                 }
