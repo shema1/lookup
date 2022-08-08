@@ -17,23 +17,9 @@ let postCodeList = `
     <div>
     </div>
 `;
-const testDiv = `
-<style>
-        address-auto-complete-control {
-            position: absolute;
-            width: 300px;
-            height: 280px;
-            z-index: 20;
-        }
-    </style>
-    <div class="raised-higher column fill-height scroll-y-auto white">
-    <div>
-    <p ng-click="testFunc()">v1 {{testName}}</p>
-  </div>
-    </div>
-`
+
 const postCodeInputV2 = `
-<input id="postCodeInputV2" type="text" autocomplete="off" address-auto-complete="" address-auto-complete-field="POSTALCODE" address-auto-complete-model="$ctrl.address.PostCode" address-auto-complete-on-item-selected="$ctrl.update_current_address(address)" class="fill-width disabled-transparent ng-valid ng-not-empty ng-dirty ng-valid-parse ng-touched" ng-disabled="$ctrl.isLocked" ng-model="$ctrl.address.PostCode" ng-change="changePoscode($event)">`
+<input id="postCodeInputV2" type="text" autocomplete="off" address-auto-complete="" address-auto-complete-field="POSTALCODE" address-auto-complete-model="$ctrl.address.PostCode" address-auto-complete-on-item-selected="$ctrl.update_current_address(address)" class="fill-width disabled-transparent ng-valid ng-not-empty ng-dirty ng-valid-parse ng-touched" ng-disabled="$ctrl.isLocked" ng-model="$ctrl.address.PostCode ng-change="changePoscode()">`
 
 const lookupControlNew = `
 
@@ -65,9 +51,7 @@ const lookupControlNew = `
 
 
 
-let postCodeInputNew = null;
-
-let testElem = null;
+let postCodeInputNew = null
 
 define(function (require) {
 
@@ -116,22 +100,6 @@ define(function (require) {
             return null;
         }
 
-        function searchTest(element) {
-            if (element?.classList?.value === "column fill-height scroll-y-auto") {
-                testElem = element
-                return element;
-            }
-            if (element && element?.children != null) {
-                var i;
-                var result = null;
-                for (i = 0; result == null && i < element.children.length; i++) {
-                    result = searchTest(element.children[i]);
-                }
-                return result;
-            }
-            return null;
-        }
-
 
 
 
@@ -141,12 +109,15 @@ define(function (require) {
             for (const mutation of mutationsList) {
                 if (mutation.type === "childList") {
                     for (const node of mutation.addedNodes) {
-                        // // console.log("node", node)
-                        // console.log("html element", node);
-                        // console.log("class 2", node?.classList?.value);
-                        // console.log("node,", angular.element(node).scope());
+
                         searchTreeByAttribute(node)
-                        searchTest(node)
+                        // if (postCodeInputNew) {
+                        //     const input = angular.element(postCodeInputNew);
+                        //     input.replaceWith(postCodeInputV2);
+                        //     console.log("postCodeInputNew postCodeInputNew", postCodeInputNew)
+                        //     const input = angular.element(postCodeInputNew)
+                        //     input.on('keyup', onChangePostSearch)
+                        // }
                     }
                 }
             }
@@ -164,10 +135,9 @@ define(function (require) {
 
 
     var LookupPlaceholder = function ($q, $scope, $element, controlService, openOrdersService, $http, $timeout, $compile) {
-        // console.log("$scope", $scope);
-        // console.log("$scope.address", $scope.address);
+        console.log("$scope", $scope);
+        console.log("$scope.address", $scope.address);
 
-        console.log("$element", $element)
         const viewModule = angular.module("openOrdersViewService");
 
         const items = [{
@@ -179,7 +149,7 @@ define(function (require) {
             text: ""
         }];
 
- 
+
 
         this.initialize = async (data) => {
 
@@ -189,55 +159,87 @@ define(function (require) {
 
         this.valueChanged = async function (itemKey, val) { }
 
+
+        const changePostSearch = function (value, scope) {
+            console.log("changePostSearch wooork", value);
+            console.log("changePostSearch scope", scope)
+
+            let postalCode = value;
+
+            $http({
+
+                method: 'GET',
+
+                url: 'https://postcodelookup.prodashes.com/autocomplete',
+
+                params: { postalCode }
+
+            }).then(function (response) {
+
+                const data = response.data;
+
+                $timeout(function () {
+
+                    scope.$apply(function () {
+                        console.log("data", data)
+                        scope.$ctrl.addresses = data
+                        scope.postcodes = data;
+                        // scope.postcodes = data || [];
+                        // scope.selectedPostcode = undefined;
+
+                    });
+                })
+
+            });
+        };
+
+        const onChangePostSearch = function (event, scope) {
+            console.log("event work", event)
+            console.log("event work", event)
+
+        }
+
         viewModule.directive('div', function () {
             return {
                 link: function (scope, elem, attrs, watch) {
+                    // console.log("scopeeeeee", scope);
+                    // console.log("elem", elem);
+                    // console.log("bbbbbb", scope.address);
 
-        //              if(postCodeInputNew){
-        //     console.log('postCodeInputNew', postCodeInputNew)
-        // }
+                    // console.log("watch3", scope.$watch);
 
-                    console.log("elem1", elem)
+
                     if (elem[0]?.className === 'new-screen' && scope.$ctrl.field === 'POSTALCODE') {
-                        console.log("elem", elem)
-                        // elem.empty();
+                        console.log("scopeeeeee", scope);
+                        console.log("elem", elem);
 
-                        // elem.append($compile(postCodeInputV2)(scope));
+                        // console.log("get_address_field_value", scope.$ctrl.get_address_field_value())
+                        elem.empty();
 
-                        // if (testElem) {
-                        //     // console.log("testElem", testElem)
-                        //     // let getScope = angular.element(testElem).scope()
-                        //     // console.log("getScope", getScope)
-                        //     // let test1 = getScope.
-
-                        // }
-                        // if (postCodeInputNew) {
-                        //     // console.log("elem", elem);
-                        //     // console.log("scope", scope);
-
-                        //     let test = angular.element(postCodeInputNew);
-                        //     console.log("test", test.scope());
-
-                        //     test.bind('keydown', function ($event) {
-                        //         console.log("wwwwwwwooooooork", $event)
+                        elem.append($compile(postCodeList)(scope));
+                        // const input = angular.element(postCodeInputNew)
+                        //          input.on('keyup', function (event) {
+                        //              console.log("onnnn work")
+                        //         changePostSearch(event.target.value, scope)
                         //     })
 
-                        // }
+                        $timeout(function () {
+                            scope.$apply(function () {
+                                scope.postcodes = [];
+                                scope.$ctrl.address.PostCode = "wwwwwwwwwwww"
+                            });
+
+                        });
+
                         // $timeout(function () {
+                        //     console.log("woork")
+                        //     changePostSearch(scope)
                         //     scope.$apply(function () {
-                        //         scope.testName = "testName";
+                        //         scope.addresses = []
                         //     });
-
                         // });
-                        // elem.empty();
-
-                        // scope.changePoscode = function (event) {
-                        //     console.log("woork event", event);
-                        // }
-
-                        // elem.append($compile(postCodeInputV2)(scope));
+                        console.log("scopeeeeee v2", scope);
                     }
-
                 }
             }
         })
