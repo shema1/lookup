@@ -2,6 +2,22 @@
 
 
 
+// let postCodeList = `
+// <style>
+//         address-auto-complete-control {
+//             position: absolute;
+//             width: 300px;
+//             height: 280px;
+//             z-index: 20;
+//         }
+//     </style>
+//     <div class="raised-higher column fill-height scroll-y-auto white">
+//     <div ng-repeat="item in postcodes" ng-class="{'grey': ($index % 2) == 0, 'white': ($index % 2) == 1 }" class="padding-heavy hover pointer grey">
+//         {{item}}
+//     <div>
+//     </div>
+// `;
+
 let postCodeList = `
 <style>
         address-auto-complete-control {
@@ -11,7 +27,8 @@ let postCodeList = `
             z-index: 20;
         }
     </style>
-    <div class="raised-higher column fill-height scroll-y-auto white">
+    <div>test</div>
+        <div class="raised-higher column fill-height scroll-y-auto white">
     <div ng-repeat="item in postcodes" ng-class="{'grey': ($index % 2) == 0, 'white': ($index % 2) == 1 }" class="padding-heavy hover pointer grey">
         {{item}}
     <div>
