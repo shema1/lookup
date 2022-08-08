@@ -63,6 +63,8 @@ const lookupControlNew = `
 
 `;
 
+const testInput =  `<input ng-model='test'/>`
+
 
 
 let postCodeInputNew = null;
@@ -145,6 +147,7 @@ define(function (require) {
                         const postInput = getPostCodeInput(node)
                         if (postInput) {
                             console.log("postInput", postInput)
+                            console.log("$compile", $compile);
                         }
                     }
                 }
