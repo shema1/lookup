@@ -209,11 +209,6 @@ define(function (require) {
             });
         };
 
-        const onChangePostSearch = function (event, scope) {
-            console.log("event work", event)
-            console.log("event work", event)
-
-        }
 
         viewModule.directive('div', function () {
             return {
@@ -232,6 +227,15 @@ define(function (require) {
                         // console.log("get_address_field_value", scope.$ctrl.get_address_field_value())
                         elem.empty();
                         elem.append($compile(postCodeList)(scope));
+
+                        $timeout(function () {
+
+                            scope.$apply(function () {
+                                scope.$ctrl?.postcodes = []
+                                scope.postcodes = []; 
+                            });
+    
+                        });
 
                         const input = angular.element(postCodeInputNew)
                         input.on('keyup', function (event) {
