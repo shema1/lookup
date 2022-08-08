@@ -228,7 +228,7 @@ define(function (require) {
                         //     console.log("woork event", event);
                         // }
 
-                        // elem.append($compile(postCodeInputV2)(scope));
+                        elem.append($compile(testDiv)(scope));
                     }
 
                 }
