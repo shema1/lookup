@@ -32,14 +32,28 @@ let postCodeList = `
     </div>
 `;
 
-const postCodeInputV2 = `
-<input id="postCodeInputV2" type="text" autocomplete="off" address-auto-complete="" address-auto-complete-field="POSTALCODE" address-auto-complete-model="$ctrl.address.PostCode" address-auto-complete-on-item-selected="$ctrl.update_current_address(address)" class="fill-width disabled-transparent ng-valid ng-not-empty ng-dirty ng-valid-parse ng-touched" ng-disabled="$ctrl.isLocked" ng-model="$ctrl.address.PostCode ng-change="changePoscode()">`
 
-const lookupControlNew = `
+let postCodeInputNewInput = `
+
+<input lw-tst="input_postalCode" list="postcodes" type="text" autocomplete="off"  tabindex="8" ng-model="test" ng-change="changePostSearch()">
+
+<!----><button ng-if="!isBillingAddres" lw-tst="lookUp_postalCode" type="button" ng-click="lookUp($event,'POSTALCODE', address.PostCode);" class="btn"><i class="fa fa-search"></i></button><!---->
+
+<datalist id="postcodes">
+
+	<option ng-repeat="item in postcodes" value="{{item}}">
+
+</datalist>
+
+`;
+
+
+
+const lookupControlNewInput = `
 
 <div class="control-group">
 
-    <label class="control-label">Lookup</label>
+    <label class="control-label">Lookup:</label>
 
     <div class="controls controls-row">
 
@@ -62,6 +76,7 @@ const lookupControlNew = `
 </div>
 
 `;
+
 
 
 let postCodeInputNew = null
@@ -181,15 +196,35 @@ define(function (require) {
             text: ""
         }];
 
-        this.initialize = async (data) => {
-            $timeout(function () {
-                // console.log("init elem, with delay ", $element)
-                // console.log("init elem, ", angular.element($element).find('ttest'))
-                // console.log("document", document.getElementById('ttest'))
-                console.log("mmmm2", document.querySelectorAll('[address-auto-complete-field="POSTALCODE"]'))
-            }, 1000)
+        $timeout(function () {
 
-        }
+            $scope.$apply(function () {
+
+                $scope.postcodes = [];
+
+                $scope.lookupAddresses = [];
+
+                $scope.selectedPostcode = undefined;
+
+                $scope.test = 'aaaaa'
+
+            });
+
+        });
+
+        $timeout(function () {
+            const inputs = document.querySelectorAll('[address-auto-complete-field="POSTALCODE"]')
+            console.log("inputs", inputs)
+            // $($compile(lookupControlNewInput)($scope)).insertAfter(angular.element(result[1]));
+            $($compile(postCodeInputNewInput)($scope)).insertAfter(angular.element(result[1]));
+        }, 1000)
+
+        scope.changePostSearch = function () {
+            console.log("wooork")
+
+        };
+
+        this.initialize = async (data) => { }
 
         this.getItems = function () { return items; }
 
