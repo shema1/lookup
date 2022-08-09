@@ -124,7 +124,7 @@ define(function (require) {
             for (const mutation of mutationsList) {
                 if (mutation.type === "childList") {
                     for (const node of mutation.addedNodes) {
-                        var postCodeInput = getPostCodeInput()
+                        var postCodeInput = getPostCodeInput(node)
 
                         if(postCodeInput){
                             console.log("postCodeInput", postCodeInput)
@@ -132,7 +132,12 @@ define(function (require) {
                             postCodeInputElement.testFunc = () => {
                                 console.log("testFunc work")
                             }
-                            console.log("postCodeInputElement", postCodeInputElement)
+                            postCodeInputElement.postcode = 'test'
+
+                            const tInput = `<input id="ttest" type="text"  ng-model="postcode" onchange="var e = document.getElementById('ttest'); console.log('ttttest', e)">`
+                            console.log("postCodeInputElement", postCodeInputElement);
+
+                            angular.element(postCodeInput).replaceWith(tInput)
                         }
                     }
                 }
