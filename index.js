@@ -150,7 +150,7 @@ define(function (require) {
 
     var LookupPlaceholder = function ($q, $scope, $element, controlService, openOrdersService, $http, $timeout, $compile) {
         console.log("$scope", $scope);
-        console.log("$scope.address", $scope.address);
+        console.log("$element", $element);
 
         const viewModule = angular.module("openOrdersViewService");
 
@@ -212,38 +212,42 @@ define(function (require) {
             return {
                 link: function (scope, elem, attrs, watch) {
                     // console.log("scopeeeeee", scope);
-                    // console.log("elem", elem);
+                    console.log("Link elem", elem);
                     // console.log("bbbbbb", scope.address);
 
                     // console.log("watch3", scope.$watch);
 
+                    if(postCodeInputNew){
+                        console.log("postCodeInputNew", postCodeInputNew);
+                        console.log("New elem", elem);
+                        console.log("New Scope", scope)
+                    }
+                    // if (elem[0]?.className === 'new-screen' && scope.$ctrl.field === 'POSTALCODE') {
+                    //     console.log("scopeeeeee", scope);
+                    //     console.log("elem", elem);
+                    //     $timeout(function () {
 
-                    if (elem[0]?.className === 'new-screen' && scope.$ctrl.field === 'POSTALCODE') {
-                        console.log("scopeeeeee", scope);
-                        console.log("elem", elem);
-                        $timeout(function () {
-
-                            scope.$apply(function () {
-                                // scope.$ctrl?.postcodes = []
-                                scope.postcodes = []; 
-                            });
+                    //         scope.$apply(function () {
+                    //             // scope.$ctrl?.postcodes = []
+                    //             scope.postcodes = []; 
+                    //         });
     
-                        });
-                        // console.log("get_address_field_value", scope.$ctrl.get_address_field_value())
-                        elem.empty();
-                        elem.append($compile(postCodeList)(scope));
+                    //     });
+                    //     // console.log("get_address_field_value", scope.$ctrl.get_address_field_value())
+                    //     elem.empty();
+                    //     elem.append($compile(postCodeList)(scope));
 
                       
 
-                        const input = angular.element(postCodeInputNew)
-                        input.on('keyup', function (event) {
-                            console.log("onnnn work")
-                            changePostSearch(event.target.value, scope)
-                        })
+                    //     const input = angular.element(postCodeInputNew)
+                    //     input.on('keyup', function (event) {
+                    //         console.log("onnnn work")
+                    //         changePostSearch(event.target.value, scope)
+                    //     })
                         
                         
-                        console.log("scopeeeeee v2", scope);
-                    }
+                    //     console.log("scopeeeeee v2", scope);
+                    // }
                 }
             }
         })
