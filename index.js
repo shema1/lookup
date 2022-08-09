@@ -35,7 +35,7 @@ let postCodeList = `
 
 let postCodeInputNewInput = `
 
-<input lw-tst="input_postalCode" list="postcodes" type="text" autocomplete="off"  tabindex="8" ng-model="test" ng-change="changePostSearch()">
+<input lw-tst="input_postalCode" list="postcodes" type="text" autocomplete="off"  tabindex="8" ng-model="$ctrl.test" ng-change="changePostSearch()">
 
 <!----><button ng-if="!isBillingAddres" lw-tst="lookUp_postalCode" type="button" ng-click="lookUp($event,'POSTALCODE', address.PostCode);" class="btn"><i class="fa fa-search"></i></button><!---->
 
@@ -180,9 +180,9 @@ define(function (require) {
     });
 
 
-    var LookupPlaceholder = function ($scope, $element, controlService, openOrdersService, $http, $timeout, $compile) {
+    var LookupPlaceholder = function ($scope, $element, controlService, openOrdersService, $http, $timeout, $compile, $ctrl) {
         const viewModule = angular.module("openOrdersViewService");
-
+        const scope = $scope.$parent.$parent
         // console.log("$scope", $scope)
         // console.log("element", $element)
         // console.log("controlService", controlService)
@@ -198,15 +198,20 @@ define(function (require) {
 
         $timeout(function () {
 
-            $scope.$apply(function () {
+            scope.$apply(function () {
 
-                $scope.postcodes = [];
+                // console.log("scope2", $scope)
 
-                $scope.lookupAddresses = [];
+                // console.log("$ctrl $apply", $scope.$parent.$parent?.$apply)
 
-                $scope.selectedPostcode = undefined;
+                // $scope.$parent.$parent.$ctrl.address.Address1 = "333"
+                scope.$ctrl.postcodes = [];
 
-                $scope.test = 'aaaaa'
+                scope.$ctrl.lookupAddresses = [];
+
+                scope.$ctrl.selectedPostcode = undefined;
+
+                scope.$ctrl.test = 'aaaaa2222'
 
             });
 
@@ -216,7 +221,7 @@ define(function (require) {
             const inputs = document.querySelectorAll('[address-auto-complete-field="POSTALCODE"]')
             console.log("inputs", inputs)
             // $($compile(lookupControlNewInput)($scope)).insertAfter(angular.element(result[1]));
-            $($compile(postCodeInputNewInput)($scope)).insertAfter(angular.element(result[1]));
+            $($compile(postCodeInputNewInput)($scope)).insertAfter(angular.element(inputs[1]));
         }, 1000)
 
         scope.changePostSearch = function () {
@@ -238,7 +243,7 @@ define(function (require) {
         viewModule.directive('div', function () {
             return {
                 link: function (scope, elem, attrs, watch) {
-                    console.log("derective elem", elem)
+                    // console.log("derective elem", elem)
                 }
             }
         })
