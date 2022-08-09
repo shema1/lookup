@@ -124,8 +124,8 @@ define(function (require) {
             for (const mutation of mutationsList) {
                 if (mutation.type === "childList") {
                     for (const node of mutation.addedNodes) {
-                        var postCodeInput = getPostCodeInput(node)
-
+                        // var postCodeInput = getPostCodeInput(node)
+                        searchTreeByAttribute(node)
                         // if(postCodeInput){
                         //     console.log("postCodeInput", postCodeInput)
                         //     $scope.input = postCodeInput
@@ -164,10 +164,10 @@ define(function (require) {
     var LookupPlaceholder = function ($scope, $element, controlService, openOrdersService, $http, $timeout, $compile) {
         const viewModule = angular.module("openOrdersViewService");
 
-        console.log("$scope", $scope)
-        console.log("element", $element)
-        console.log("controlService", controlService)
-        console.log("openOrdersService", openOrdersService)
+        // console.log("$scope", $scope)
+        // console.log("element", $element)
+        // console.log("controlService", controlService)
+        // console.log("openOrdersService", openOrdersService)
         const items = [{
             key: "address-auto-complete",
             labelClass: "fill-width",
@@ -177,9 +177,9 @@ define(function (require) {
             text: ""
         }];
 
-
-
         this.initialize = async (data) => {
+            console.log( "init elem, ", $element)
+            console.log("postCodeInputNew", postCodeInputNew)
 
         }
 
@@ -188,6 +188,7 @@ define(function (require) {
         this.valueChanged = async function (itemKey, val) {
             console.log("valueChanged itemKey", itemKey);
             console.log("valueChanged val", val)
+            
         }
 
 
