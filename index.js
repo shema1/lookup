@@ -104,21 +104,21 @@ define(function (require) {
 
         });
 
-        $timeout(function () {
-            const inputs = document.querySelectorAll('[address-auto-complete-field="POSTALCODE"]')
-            console.log("inputs", inputs)
+        // $timeout(function () {
+        //     const inputs = document.querySelectorAll('[address-auto-complete-field="POSTALCODE"]')
+        //     console.log("inputs", inputs)
 
-            if (inputs[1]) {
-                $($compile(lookupControlNewInput)(scope)).insertAfter(angular.element(inputs[1]));
-                $($compile(postCodeInputNewInput)(scope)).insertAfter(angular.element(inputs[1]));
-            }
+        //     if (inputs[1]) {
+        //         $($compile(lookupControlNewInput)(scope)).insertAfter(angular.element(inputs[1]));
+        //         $($compile(postCodeInputNewInput)(scope)).insertAfter(angular.element(inputs[1]));
+        //     }
 
-            if (inputs[0]) {
-                $($compile(lookupControlNewInput)(scope)).insertAfter(angular.element(inputs[0]));
-                $($compile(postCodeInputNewInput)(scope)).insertAfter(angular.element(inputs[0]));
-            }
+        //     if (inputs[0]) {
+        //         $($compile(lookupControlNewInput)(scope)).insertAfter(angular.element(inputs[0]));
+        //         $($compile(postCodeInputNewInput)(scope)).insertAfter(angular.element(inputs[0]));
+        //     }
 
-        }, 1000)
+        // }, 1000)
 
         function findAddresses(postalCode) {
 
