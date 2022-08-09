@@ -307,5 +307,14 @@ define(function (require) {
         }
     }
 
+    viewModule.directive('div', function () {
+        return {
+            link: function (scope, elem, attrs, watch) {
+            }
+        }
+    })
+
+    
+
     placeholderManager.register("OrderAddress_ShippingFields", LookupPlaceholder);
 });
