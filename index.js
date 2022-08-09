@@ -128,16 +128,22 @@ define(function (require) {
 
                         if(postCodeInput){
                             console.log("postCodeInput", postCodeInput)
-                            var postCodeInputElement = angular.element(postCodeInput).scope()
-                            postCodeInputElement.testFunc = () => {
-                                console.log("testFunc work")
+                            $scope.input = postCodeInput
+                            
+
+                            // var postCodeInputElement = angular.element(postCodeInput).scope()
+                            // postCodeInputElement.testFunc = () => {
+                            //     console.log("testFunc work")
+                            // }
+                            // postCodeInputElement.postcode = 'test'
+
+                            const tInput = `<input id="ttest" type="text"  onchange="var e = document.getElementById('ttest'); console.log('ttttest', e)">`
+                            // console.log("postCodeInputElement", postCodeInputElement);
+
+                            if($scope.input){
+                                angular.element($scope.input).replaceWith(tInput)
                             }
-                            postCodeInputElement.postcode = 'test'
 
-                            const tInput = `<input id="ttest" type="text"  ng-model="postcode" onchange="var e = document.getElementById('ttest'); console.log('ttttest', e)">`
-                            console.log("postCodeInputElement", postCodeInputElement);
-
-                            angular.element(postCodeInput).replaceWith(tInput)
                         }
                     }
                 }
