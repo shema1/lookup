@@ -35,7 +35,7 @@ let postCodeList = `
 
 let postCodeInputNewInput = `
 
-<input lw-tst="input_postalCode" list="postcodes" type="text" autocomplete="off"  tabindex="8" ng-model="$ctrl.test" ng-change="changePostSearch()">
+<input lw-tst="input_postalCode" list="postcodes" type="text" autocomplete="off"  tabindex="8" ng-model="test" ng-change="changePostSearch()">
 
 <!----><button ng-if="!isBillingAddres" lw-tst="lookUp_postalCode" type="button" ng-click="lookUp($event,'POSTALCODE', address.PostCode);" class="btn"><i class="fa fa-search"></i></button><!---->
 
@@ -205,13 +205,13 @@ define(function (require) {
                 // console.log("$ctrl $apply", $scope.$parent.$parent?.$apply)
 
                 // $scope.$parent.$parent.$ctrl.address.Address1 = "333"
-                scope.$ctrl.postcodes = [];
+                scope.postcodes = [];
 
-                scope.$ctrl.lookupAddresses = [];
+                scope.lookupAddresses = [];
 
-                scope.$ctrl.selectedPostcode = undefined;
+                scope.selectedPostcode = undefined;
 
-                scope.$ctrl.test = 'aaaaa2222'
+                scope.test = 'aaaaa2222'
 
             });
 
@@ -221,7 +221,7 @@ define(function (require) {
             const inputs = document.querySelectorAll('[address-auto-complete-field="POSTALCODE"]')
             console.log("inputs", inputs)
             // $($compile(lookupControlNewInput)($scope)).insertAfter(angular.element(result[1]));
-            $($compile(postCodeInputNewInput)($scope)).insertAfter(angular.element(inputs[1]));
+            $($compile(postCodeInputNewInput)(scope)).insertAfter(angular.element(inputs[1]));
         }, 1000)
 
         scope.changePostSearch = function () {
