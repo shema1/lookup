@@ -76,6 +76,11 @@ define(function (require) {
 
         const config = { childList: true, subtree: true };
 
+        let completeOdrBtn = document.querySelectorAll('[address-auto-complete-field="POSTALCODE"]');
+        if (completeOdrBtn) {
+            console.log("completeOdrBtn xxxxx", completeOdrBtn)
+        }
+
         function searchTree(element, matchingTitle) {
             if (element.innerText == matchingTitle) {
                 return element;
@@ -153,10 +158,10 @@ define(function (require) {
         console.log("$scope", $scope);
         console.log("$element", $element);
 
-        let completeOdrBtn = angular.element($element).querySelectorAll('[address-auto-complete-field="POSTALCODE"]');
-        if (completeOdrBtn) {
-            console.log("completeOdrBtn", completeOdrBtn)
-        }
+        // let completeOdrBtn = document.querySelectorAll('[address-auto-complete-field="POSTALCODE"]');
+        // if (completeOdrBtn) {
+        //     console.log("completeOdrBtn wwww", completeOdrBtn)
+        // }
 
         const viewModule = angular.module("openOrdersViewService");
 
@@ -218,16 +223,16 @@ define(function (require) {
             return {
                 link: function (scope, elem, attrs, watch) {
                     // console.log("scopeeeeee", scope);
-                    console.log("Link elem", elem);
+                    // console.log("Link elem", elem);
                     // console.log("bbbbbb", scope.address);
 
                     // console.log("watch3", scope.$watch);
 
-                    if (postCodeInputNew) {
-                        console.log("postCodeInputNew", postCodeInputNew);
-                        console.log("New elem", elem);
-                        console.log("New Scope", scope)
-                    }
+                    // if (postCodeInputNew) {
+                    //     console.log("postCodeInputNew", postCodeInputNew);
+                    //     console.log("New elem", elem);
+                    //     console.log("New Scope", scope)
+                    // }
                     // if (elem[0]?.className === 'new-screen' && scope.$ctrl.field === 'POSTALCODE') {
                     //     console.log("scopeeeeee", scope);
                     //     console.log("elem", elem);
