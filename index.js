@@ -1,38 +1,5 @@
 "use strict";
 
-
-
-// let postCodeList = `
-// <style>
-//         address-auto-complete-control {
-//             position: absolute;
-//             width: 300px;
-//             height: 280px;
-//             z-index: 20;
-//         }
-//     </style>
-//     <div class="raised-higher column fill-height scroll-y-auto white">
-//     <div ng-repeat="item in postcodes" ng-class="{'grey': ($index % 2) == 0, 'white': ($index % 2) == 1 }" class="padding-heavy hover pointer grey">
-//         {{item}}
-//     <div>
-//     </div>
-// `;
-
-let postCodeList = `
-<style>
-        address-auto-complete-control {
-            position: absolute;
-            width: 300px;
-            height: 280px;
-            z-index: 20;
-        }
-    </style>
-    <div class="raised-higher column fill-height scroll-y-auto white">
-        <div ng-repeat="item in postcodes" ng-class="{'grey': ($index % 2) == 0, 'white': ($index % 2) == 1 }" class="padding-heavy hover pointer grey">{{item}}</div>
-    </div>
-`;
-
-
 let postCodeInputNewInput = `
 
 <input lw-tst="input_postalCode" list="postcodes" type="text" autocomplete="off"  tabindex="8" ng-model="$ctrl.address.PostCode" ng-change="changePostSearch()">
@@ -88,109 +55,12 @@ define(function (require) {
     const placeholderManager = require("core/placeholderManager");
 
     // Set validation there
-    $(document).ready(function ($scope, $element, $http, $timeout, $compile) {
-
-        const config = { childList: true, subtree: true };
-
-
-        function searchTree(element, matchingTitle) {
-            if (element.innerText == matchingTitle) {
-                return element;
-            } else if (element.children != null) {
-                var i;
-                var result = null;
-                for (i = 0; result == null && i < element.children.length; i++) {
-                    result = searchTree(element.children[i], matchingTitle);
-                }
-                return result;
-            }
-            return null;
-        }
-
-        function getPostCodeInput(element) {
-            const resultPostCode = searchTree(element, "Postcode");
-            if (resultPostCode?.parentNode?.nextElementSibling) {
-
-                return resultPostCode.parentNode.nextElementSibling
-            }
-            return null
-        }
-
-        function searchTreeByAttribute(element) {
-            if (element?.getAttribute("address-auto-complete-field") == "POSTALCODE") {
-                postCodeInputNew = element
-                return element;
-            }
-            if (element && element?.children != null) {
-                var i;
-                var result = null;
-                for (i = 0; result == null && i < element.children.length; i++) {
-                    result = searchTreeByAttribute(element.children[i]);
-                }
-                return result;
-            }
-            return null;
-        }
-
-
-
-
-        var callback = function (mutationsList, observer) {
-            console.log("mutationsList", mutationsList);
-
-            for (const mutation of mutationsList) {
-                if (mutation.type === "childList") {
-                    for (const node of mutation.addedNodes) {
-                        // var postCodeInput = getPostCodeInput(node)
-                        // if (postCodeInput) {
-                        //     console.log("postCodeInput", postCodeInput)
-                        //     $scope.input = postCodeInput
-                        //     const tInput = `<input id="ttest" type="text" ng-model="postcode" onchange="var e = document.getElementById('ttest'); console.log('ttttest', e)">`
-
-
-                        //     if ($scope.input) {
-                        //         const item = angular.element(tInput);
-                        //         const itemScope = item.scope()
-
-                        //         // console.log("itemScope v3", itemScope)
-
-                        //         // itemScope.postcode = 'aaaaaa'
-
-                        //         angular.element($scope.input).replaceWith(item)
-                        //         console.log("angular.element(tInput)", angular.element(item))
-                        //         item.bind('keydown', function ($event) {
-                        //             console.log("wwwwwwwooooooork", $event.target.value)
-                        //             // console.log("itemScope", angular())
-
-                        //         })
-                        //     }
-
-                        // }
-                    }
-                }
-            }
-
-
-        };
-
-        const observer = new MutationObserver(callback);
-
-        setTimeout(function () {
-            const targetNode = document.getElementsByClassName("opened-modules")[0];
-            observer.observe(targetNode, config);
-        }, 2000);
-    });
-
 
     var LookupPlaceholder = function ($scope, $element, controlService, openOrdersService, $http, $timeout, $compile) {
         const viewModule = angular.module("openOrdersViewService");
         const scope = $scope.$parent.$parent
         let debounceTimer = null;
 
-        // console.log("$scope", $scope)
-        // console.log("element", $element)
-        // console.log("controlService", controlService)
-        // console.log("openOrdersService", openOrdersService)
         const items = [{
             key: "ttest",
             labelClass: "fill-width",
@@ -215,8 +85,17 @@ define(function (require) {
         $timeout(function () {
             const inputs = document.querySelectorAll('[address-auto-complete-field="POSTALCODE"]')
             console.log("inputs", inputs)
-            $($compile(lookupControlNewInput)(scope)).insertAfter(angular.element(result[1]));
-            $($compile(postCodeInputNewInput)(scope)).insertAfter(angular.element(inputs[1]));
+
+            if(inputs[1]){
+                $($compile(lookupControlNewInput)(scope)).insertAfter(angular.element(inputs[1]));
+                $($compile(postCodeInputNewInput)(scope)).insertAfter(angular.element(inputs[1]));
+            }
+     
+            if(inputs[0]){
+                $($compile(lookupControlNewInput)(scope)).insertAfter(angular.element(inputs[0]));
+                $($compile(postCodeInputNewInput)(scope)).insertAfter(angular.element(inputs[0]));
+            }
+           
         }, 1000)
 
         function findAddresses(postalCode) {
@@ -244,8 +123,6 @@ define(function (require) {
             }).then(function (response) {
 
                 const data = response.data;
-
-
 
                 $timeout(function () {
 
