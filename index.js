@@ -35,7 +35,7 @@ let postCodeList = `
 
 let postCodeInputNewInput = `
 
-<input lw-tst="input_postalCode" list="postcodes" type="text" autocomplete="off"  tabindex="8" ng-model="$ctrl.test2" ng-change="changePostSearch()">
+<input lw-tst="input_postalCode" list="postcodes" type="text" autocomplete="off"  tabindex="8" ng-model="$ctrl.address.PostCode" ng-change="changePostSearch()">
 
 <!----><button ng-if="!isBillingAddres" lw-tst="lookUp_postalCode" type="button" ng-click="lookUp($event,'POSTALCODE', address.PostCode);" class="btn"><i class="fa fa-search"></i></button><!---->
 
@@ -80,6 +80,8 @@ const lookupControlNewInput = `
 
 
 let postCodeInputNew = null
+
+const DEBOUNCE_TIME_NEW  = 500
 
 define(function (require) {
 
@@ -183,6 +185,8 @@ define(function (require) {
     var LookupPlaceholder = function ($scope, $element, controlService, openOrdersService, $http, $timeout, $compile) {
         const viewModule = angular.module("openOrdersViewService");
         const scope = $scope.$parent.$parent
+        let debounceTimer = null;
+
         // console.log("$scope", $scope)
         // console.log("element", $element)
         // console.log("controlService", controlService)
@@ -199,22 +203,11 @@ define(function (require) {
         $timeout(function () {
 
             scope.$apply(function () {
-
-                // console.log("scope2", $scope)
-
-                // console.log("$ctrl $apply", $scope.$parent.$parent?.$apply)
-
-                // $scope.$parent.$parent.$ctrl.address.Address1 = "333"
                 scope.postcodes = [];
 
                 scope.lookupAddresses = [];
 
                 scope.selectedPostcode = undefined;
-
-                scope.test = 'aaaaa2222'
-
-                scope.$ctrl.test2 = "gggg"
-
             });
 
         });
@@ -227,7 +220,76 @@ define(function (require) {
         }, 1000)
 
         scope.changePostSearch = function () {
-            console.log("wooork")
+
+            debounceTimer && $timeout.cancel(debounceTimer);
+
+            debounceTimer = $timeout(function () {
+
+                const postalCode = scope.$ctrl.address.PostCode;
+
+                const postcodes = scope.postcodes;
+
+
+
+                if (postcodes && postcodes.some(x => x === postalCode)) {
+
+                    findAddresses(postalCode);
+
+                }
+
+                else {
+
+                    $timeout(function () {
+
+                        scope.$apply(function () {
+
+                            scope.postcodes = [];
+
+                        });
+
+                    });
+
+                    $http({
+
+                        method: 'GET',
+
+                        url: 'https://postcodelookup.prodashes.com/autocomplete',
+
+                        params: { postalCode }
+
+                    }).then(function (response) {
+
+                        const data = response.data;
+
+
+
+                        $timeout(function () {
+
+                            scope.$apply(function () {
+
+                                scope.postcodes = data || [];
+
+                                scope.selectedPostcode = undefined;
+
+                            });
+
+                            $timeout(function () {
+
+                                if (data && Array.isArray(data) && data.some(x => x === postalCode)) {
+
+                                    // findAddresses(postalCode);
+
+                                }
+
+                            });
+
+                        })
+
+                    });
+
+                }
+
+            }, DEBOUNCE_TIME_NEW);
 
         };
 
