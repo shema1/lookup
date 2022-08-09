@@ -215,9 +215,55 @@ define(function (require) {
         $timeout(function () {
             const inputs = document.querySelectorAll('[address-auto-complete-field="POSTALCODE"]')
             console.log("inputs", inputs)
-            // $($compile(lookupControlNewInput)($scope)).insertAfter(angular.element(result[1]));
+            $($compile(lookupControlNewInput)(scope)).insertAfter(angular.element(result[1]));
             $($compile(postCodeInputNewInput)(scope)).insertAfter(angular.element(inputs[1]));
         }, 1000)
+
+        function findAddresses(postalCode) {
+
+            $timeout(function () {
+
+                scope.$apply(function () {
+
+                    scope.lookupAddresses = [];
+
+                });
+
+            });
+
+
+
+            $http({
+
+                method: 'GET',
+
+                url: 'https://postcodelookup.prodashes.com/addresses',
+
+                params: { postalCode }
+
+            }).then(function (response) {
+
+                const data = response.data;
+
+
+
+                $timeout(function () {
+
+                    scope.$apply(function () {
+
+                        scope.lookupAddresses = data.map(x => Object.assign({}, x, { formatted: `${x.address1}, ${x.address2}, ${x.address3}, ${x.town}, ${x.region}, ${x.country}` }));
+
+                        scope.selectedPostcode = postalCode;
+
+                        scope.lookupAddress = ""
+
+                    });
+
+                })
+
+            });
+
+        };
 
         scope.changePostSearch = function () {
 
@@ -277,7 +323,7 @@ define(function (require) {
 
                                 if (data && Array.isArray(data) && data.some(x => x === postalCode)) {
 
-                                    // findAddresses(postalCode);
+                                    findAddresses(postalCode);
 
                                 }
 
@@ -290,6 +336,44 @@ define(function (require) {
                 }
 
             }, DEBOUNCE_TIME_NEW);
+
+        };
+
+        scope.changeLookupAddress = function (e) {
+
+            const addresses = scope.lookupAddresses;
+
+            const value = scope.lookupAddress;
+
+            const address = addresses.find(x => x.formatted === value);
+
+            if (address) {
+
+                const country = address.country;
+
+                const foundCountry = scope.$ctrl.countries.find(c => c.CountryName === country);
+
+                $timeout(function () {
+
+                    scope.$apply(function () {
+
+                        scope.$ctrl.address.Address1 = address.address1;
+
+                        scope.$ctrl.address.Address2 = address.address2;
+
+                        scope.$ctrl.address.Address3 = address.address3;
+
+                        scope.$ctrl.address.Town = address.town;
+
+                        scope.$ctrl.address.Region = address.region;
+
+                        scope.$ctrl.address.CountryId = foundCountry && foundCountry.CountryId;
+
+                    });
+
+                });
+
+            }
 
         };
 
