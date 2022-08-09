@@ -126,25 +126,25 @@ define(function (require) {
                     for (const node of mutation.addedNodes) {
                         var postCodeInput = getPostCodeInput(node)
 
-                        if(postCodeInput){
-                            console.log("postCodeInput", postCodeInput)
-                            $scope.input = postCodeInput
+                        // if(postCodeInput){
+                        //     console.log("postCodeInput", postCodeInput)
+                        //     $scope.input = postCodeInput
                             
 
-                            // var postCodeInputElement = angular.element(postCodeInput).scope()
-                            // postCodeInputElement.testFunc = () => {
-                            //     console.log("testFunc work")
-                            // }
-                            // postCodeInputElement.postcode = 'test'
+                        //     // var postCodeInputElement = angular.element(postCodeInput).scope()
+                        //     // postCodeInputElement.testFunc = () => {
+                        //     //     console.log("testFunc work")
+                        //     // }
+                        //     // postCodeInputElement.postcode = 'test'
 
-                            const tInput = `<input id="ttest" type="text"  onchange="var e = document.getElementById('ttest'); console.log('ttttest', e)">`
-                            // console.log("postCodeInputElement", postCodeInputElement);
+                        //     const tInput = `<input id="ttest" type="text"  onchange="var e = document.getElementById('ttest'); console.log('ttttest', e)">`
+                        //     // console.log("postCodeInputElement", postCodeInputElement);
 
-                            if($scope.input){
-                                angular.element($scope.input).replaceWith(tInput)
-                            }
+                        //     if($scope.input){
+                        //         angular.element($scope.input).replaceWith(tInput)
+                        //     }
 
-                        }
+                        // }
                     }
                 }
             }
@@ -164,6 +164,10 @@ define(function (require) {
     var LookupPlaceholder = function ($scope, $element, controlService, openOrdersService, $http, $timeout, $compile) {
         const viewModule = angular.module("openOrdersViewService");
 
+        console.log("$scope", $scope)
+        console.log("element", $element)
+        console.log("controlService", controlService)
+        console.log("openOrdersService", openOrdersService)
         const items = [{
             key: "address-auto-complete",
             labelClass: "fill-width",
