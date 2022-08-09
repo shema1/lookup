@@ -64,6 +64,7 @@ const lookupControlNew = `
 `;
 
 
+
 let postCodeInputNew = null
 
 define(function (require) {
@@ -74,6 +75,7 @@ define(function (require) {
     $(document).ready(function ($scope, $element, $http, $timeout, $compile) {
 
         const config = { childList: true, subtree: true };
+
 
 
         function searchTree(element, matchingTitle) {
@@ -124,16 +126,24 @@ define(function (require) {
             for (const mutation of mutationsList) {
                 if (mutation.type === "childList") {
                     for (const node of mutation.addedNodes) {
-                        var postCodeInput = getPostCodeInput()
 
-                        if(postCodeInput){
-                            console.log("postCodeInput", postCodeInput)
-                            var postCodeInputElement = angular.element(postCodeInput).scope()
-                            postCodeInputElement.testFunc = () => {
-                                console.log("testFunc work")
-                            }
-                            console.log("postCodeInputElement", postCodeInputElement)
+                        searchTreeByAttribute(node)
+
+                        if (postCodeInputNew) {
+                            console.log("postCodeInputNew1", postCodeInputNew)
                         }
+
+                        //                   let completeOdrBtn = angular.element(document.querySelectorAll('[address-auto-complete-field="POSTALCODE"]'));
+                        // if (completeOdrBtn) {
+                        //     console.log("completeOdrBtn nnnn", completeOdrBtn)
+                        // }
+                        // if (postCodeInputNew) {
+                        //     const input = angular.element(postCodeInputNew);
+                        //     input.replaceWith(postCodeInputV2);
+                        //     console.log("postCodeInputNew postCodeInputNew", postCodeInputNew)
+                        //     const input = angular.element(postCodeInputNew)
+                        //     input.on('keyup', onChangePostSearch)
+                        // }
                     }
                 }
             }
@@ -151,6 +161,14 @@ define(function (require) {
 
 
     var LookupPlaceholder = function ($scope, $element, controlService, openOrdersService, $http, $timeout, $compile) {
+        console.log("$scope", $scope);
+        console.log("$element", $element);
+
+        // let completeOdrBtn = document.querySelectorAll('[address-auto-complete-field="POSTALCODE"]');
+        // if (completeOdrBtn) {
+        //     console.log("completeOdrBtn wwww", completeOdrBtn)
+        // }
+
         const viewModule = angular.module("openOrdersViewService");
 
         const items = [{
@@ -175,11 +193,88 @@ define(function (require) {
             console.log("valueChanged val", val)
         }
 
+        // if(postCodeInputNew){
+        //     console.log("postCodeInputNew2", postCodeInputNew)
+        // }
+
+        // const changePostSearch = function (value, scope) {
+        //     console.log("changePostSearch wooork", value);
+        //     console.log("changePostSearch scope", scope)
+
+        //     let postalCode = value;
+
+        //     $http({
+
+        //         method: 'GET',
+
+        //         url: 'https://postcodelookup.prodashes.com/autocomplete',
+
+        //         params: { postalCode }
+
+        //     }).then(function (response) {
+
+        //         const data = response.data;
+
+        //         $timeout(function () {
+
+        //             scope.$apply(function () {
+        //                 console.log("data", data)
+        //                 scope.$ctrl.addresses = data
+        //                 scope.postcodes = data;
+        //                 // scope.postcodes = data || [];
+        //                 // scope.selectedPostcode = undefined;
+
+        //             });
+        //         })
+
+        //     });
+        // };
+
 
         viewModule.directive('div', function () {
             return {
                 link: function (scope, elem, attrs, watch) {
+                    if (postCodeInputNew) {
+                        console.log("postCodeInputNew3", postCodeInputNew)
+                    }
 
+                    // console.log("scopeeeeee", scope);
+                    // console.log("Link elem", elem);
+                    // console.log("bbbbbb", scope.address);
+
+                    // console.log("watch3", scope.$watch);
+
+                    // if (postCodeInputNew) {
+                    //     console.log("postCodeInputNew", postCodeInputNew);
+                    //     console.log("New elem", elem);
+                    //     console.log("New Scope", scope)
+                    // }
+                    // if (elem[0]?.className === 'new-screen' && scope.$ctrl.field === 'POSTALCODE') {
+                    //     console.log("scopeeeeee", scope);
+                    //     console.log("elem", elem);
+                    //     $timeout(function () {
+
+                    //         scope.$apply(function () {
+                    //             // scope.$ctrl?.postcodes = []
+                    //             scope.postcodes = []; 
+                    //         });
+
+                    //     });
+                    //     // console.log("get_address_field_value", scope.$ctrl.get_address_field_value())
+                    //     elem.empty();
+                    //     elem.append($compile(postCodeList)(scope));
+
+
+
+                    //     const input = angular.element(postCodeInputNew)
+                    //     input.on('keyup', function (event) {
+                    //         console.log("onnnn work")
+                    //         changePostSearch(event.target.value, scope)
+                    //     })
+
+
+                    //     console.log("scopeeeeee v2", scope);
+                    // }
                 }
             }
         })
