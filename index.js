@@ -124,27 +124,18 @@ define(function (require) {
             for (const mutation of mutationsList) {
                 if (mutation.type === "childList") {
                     for (const node of mutation.addedNodes) {
-                        // var postCodeInput = getPostCodeInput(node)
-                        searchTreeByAttribute(node)
-                        // if(postCodeInput){
-                        //     console.log("postCodeInput", postCodeInput)
-                        //     $scope.input = postCodeInput
-                            
+                        var postCodeInput = getPostCodeInput(node)
+                        if(postCodeInput){
+                            console.log("postCodeInput", postCodeInput)
+                            $scope.input = postCodeInput
+                            const tInput = `<input id="ttest" type="text"  onchange="var e = document.getElementById('ttest'); console.log('ttttest', e)">`
 
-                        //     // var postCodeInputElement = angular.element(postCodeInput).scope()
-                        //     // postCodeInputElement.testFunc = () => {
-                        //     //     console.log("testFunc work")
-                        //     // }
-                        //     // postCodeInputElement.postcode = 'test'
 
-                        //     const tInput = `<input id="ttest" type="text"  onchange="var e = document.getElementById('ttest'); console.log('ttttest', e)">`
-                        //     // console.log("postCodeInputElement", postCodeInputElement);
+                            if($scope.input){
+                                angular.element($scope.input).replaceWith(tInput)
+                            }
 
-                        //     if($scope.input){
-                        //         angular.element($scope.input).replaceWith(tInput)
-                        //     }
-
-                        // }
+                        }
                     }
                 }
             }
@@ -169,7 +160,7 @@ define(function (require) {
         // console.log("controlService", controlService)
         // console.log("openOrdersService", openOrdersService)
         const items = [{
-            key: "address-auto-complete",
+            key: "ttest",
             labelClass: "fill-width",
             inputClass: "fill-width",
             label: "",
@@ -179,8 +170,7 @@ define(function (require) {
 
         this.initialize = async (data) => {
             console.log( "init elem, ", $element)
-            console.log("postCodeInputNew", postCodeInputNew)
-
+            console.log( "init elem, ", angular.element($element).find('#ttest'))
         }
 
         this.getItems = function () { return items; }
