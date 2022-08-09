@@ -2,7 +2,7 @@
 
 let postCodeInputNewInput = `
 
-<input lw-tst="input_postalCode" list="postcodes" type="text" autocomplete="off"  tabindex="8" ng-model="$ctrl.address.PostCode" ng-change="changePostSearch()">
+<input lw-tst="input_postalCode" list="postcodes" type="text" autocomplete="off"  tabindex="8" ng-model="$ctrl.address.PostCode" ng-change="changePostSearch()" class="fill-width disabled-transparent ng-pristine ng-valid ng-not-empty ng-touched">
 
 <!----><button ng-if="!isBillingAddres" lw-tst="lookUp_postalCode" type="button" ng-click="lookUp($event,'POSTALCODE', address.PostCode);" class="btn"><i class="fa fa-search"></i></button><!---->
 
@@ -28,7 +28,7 @@ const lookupControlNewInput = `
 
             <input id="lookupAddressesInput" list="lookupAddresses" type="text" autocomplete="off"
 
-                ng-disabled="sameAsShipping || !selectedPostcode" tabindex="-1" ng-model="lookupAddress" ng-change="changeLookupAddress()">
+                ng-disabled="sameAsShipping || !selectedPostcode" tabindex="-1" ng-model="lookupAddress" ng-change="changeLookupAddress()" class="fill-width disabled-transparent ng-pristine ng-valid ng-not-empty ng-touched">
 
             <datalist id="lookupAddresses">
 
