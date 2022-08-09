@@ -185,7 +185,7 @@ define(function (require) {
         viewModule.directive('div', function () {
             return {
                 link: function (scope, elem, attrs, watch) {
-
+                    console.log("derective elem", elem)
                 }
             }
         })
