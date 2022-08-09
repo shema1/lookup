@@ -25,7 +25,7 @@ let postCodeInputNewInput = `
   class="fill-width disabled-transparent ng-pristine ng-valid ng-not-empty ng-touched" ng-blur="blur($event)">
 
 <div class="raised-higher column fill-height scroll-y-auto white" ng-show="isVisibleResults" >
-  <div ng-repeat="item in postcodes track by $index"
+  <div ng-click="selectPostCode(item)" ng-repeat="item in postcodes track by $index"
     ng-class="{'grey': ($index % 2) == 0, 'white': ($index % 2) == 1 }" class="padding-heavy hover pointer grey"
    >
     <div>
@@ -193,10 +193,7 @@ define(function (require) {
                     $timeout(function () {
 
                         scope.$apply(function () {
-
                             scope.postcodes = [];
-                            scope.isVisibleResults = false;
-
                         });
 
                     });
@@ -286,7 +283,17 @@ define(function (require) {
         };
 
         scope.blur = function (e) {
+            $timeout(function () {
+                scope.$apply(function () {
+                    scope.isVisibleResults = false
+                });
+
+            }, 200)
             console.log("$event", e)
+        }
+
+        scope.selectPostCode = function (code){
+            findAddresses(code)
         }
 
         this.initialize = async (data) => { }
