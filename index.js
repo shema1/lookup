@@ -76,10 +76,7 @@ define(function (require) {
 
         const config = { childList: true, subtree: true };
 
-        let completeOdrBtn = document.querySelectorAll('[address-auto-complete-field="POSTALCODE"]');
-        if (completeOdrBtn) {
-            console.log("completeOdrBtn xxxxx", completeOdrBtn)
-        }
+      
 
         function searchTree(element, matchingTitle) {
             if (element.innerText == matchingTitle) {
@@ -131,6 +128,15 @@ define(function (require) {
                     for (const node of mutation.addedNodes) {
 
                         searchTreeByAttribute(node)
+
+                        if(postCodeInputNew){
+                            console.log("postCodeInputNew1", postCodeInputNew)
+                        }
+
+        //                   let completeOdrBtn = angular.element(document.querySelectorAll('[address-auto-complete-field="POSTALCODE"]'));
+        // if (completeOdrBtn) {
+        //     console.log("completeOdrBtn nnnn", completeOdrBtn)
+        // }
                         // if (postCodeInputNew) {
                         //     const input = angular.element(postCodeInputNew);
                         //     input.replaceWith(postCodeInputV2);
@@ -184,6 +190,9 @@ define(function (require) {
 
         this.valueChanged = async function (itemKey, val) { }
 
+        if(postCodeInputNew){
+            console.log("postCodeInputNew2", postCodeInputNew)
+        }
 
         // const changePostSearch = function (value, scope) {
         //     console.log("changePostSearch wooork", value);
@@ -222,6 +231,10 @@ define(function (require) {
         viewModule.directive('div', function () {
             return {
                 link: function (scope, elem, attrs, watch) {
+                    if(postCodeInputNew){
+                        console.log("postCodeInputNew3", postCodeInputNew)
+                    }
+
                     // console.log("scopeeeeee", scope);
                     // console.log("Link elem", elem);
                     // console.log("bbbbbb", scope.address);
