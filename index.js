@@ -124,18 +124,31 @@ define(function (require) {
             for (const mutation of mutationsList) {
                 if (mutation.type === "childList") {
                     for (const node of mutation.addedNodes) {
-                        var postCodeInput = getPostCodeInput(node)
-                        if(postCodeInput){
-                            console.log("postCodeInput", postCodeInput)
-                            $scope.input = postCodeInput
-                            const tInput = `<input id="ttest" type="text"  onchange="var e = document.getElementById('ttest'); console.log('ttttest', e)">`
+                        // var postCodeInput = getPostCodeInput(node)
+                        // if (postCodeInput) {
+                        //     console.log("postCodeInput", postCodeInput)
+                        //     $scope.input = postCodeInput
+                        //     const tInput = `<input id="ttest" type="text" ng-model="postcode" onchange="var e = document.getElementById('ttest'); console.log('ttttest', e)">`
 
 
-                            if($scope.input){
-                                angular.element($scope.input).replaceWith(tInput)
-                            }
+                        //     if ($scope.input) {
+                        //         const item = angular.element(tInput);
+                        //         const itemScope = item.scope()
 
-                        }
+                        //         // console.log("itemScope v3", itemScope)
+
+                        //         // itemScope.postcode = 'aaaaaa'
+
+                        //         angular.element($scope.input).replaceWith(item)
+                        //         console.log("angular.element(tInput)", angular.element(item))
+                        //         item.bind('keydown', function ($event) {
+                        //             console.log("wwwwwwwooooooork", $event.target.value)
+                        //             // console.log("itemScope", angular())
+
+                        //         })
+                        //     }
+
+                        // }
                     }
                 }
             }
@@ -169,8 +182,13 @@ define(function (require) {
         }];
 
         this.initialize = async (data) => {
-            console.log( "init elem, ", $element)
-            console.log( "init elem, ", angular.element($element).find('#ttest'))
+            $timeout(function () {
+                // console.log("init elem, with delay ", $element)
+                // console.log("init elem, ", angular.element($element).find('ttest'))
+                // console.log("document", document.getElementById('ttest'))
+                console.log("mmmm2", document.querySelectorAll('[address-auto-complete-field="POSTALCODE"]'))
+            }, 1000)
+
         }
 
         this.getItems = function () { return items; }
@@ -178,7 +196,7 @@ define(function (require) {
         this.valueChanged = async function (itemKey, val) {
             console.log("valueChanged itemKey", itemKey);
             console.log("valueChanged val", val)
-            
+
         }
 
 
