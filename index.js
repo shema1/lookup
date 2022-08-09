@@ -149,7 +149,7 @@ define(function (require) {
     });
 
 
-    var LookupPlaceholder = function (q, $scope, $element, controlService, openOrdersService, $http, $timeout, $compile) {
+    var LookupPlaceholder = function ($scope, $element, controlService, openOrdersService, $http, $timeout, $compile) {
         console.log("$scope", $scope);
         console.log("$element", $element);
 
