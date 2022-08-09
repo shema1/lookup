@@ -22,9 +22,9 @@ let postCodeInputNewInput = `
 
 <input lw-tst="input_postalCode" list="postcodes" type="text" autocomplete="off" tabindex="8"
   ng-model="$ctrl.address.PostCode" ng-change="changePostSearch()"
-  class="fill-width disabled-transparent ng-pristine ng-valid ng-not-empty ng-touched">
+  class="fill-width disabled-transparent ng-pristine ng-valid ng-not-empty ng-touched" ng-blur="blur($event)">
 
-<div class="raised-higher column fill-height scroll-y-auto white" ng-show="isVisibleResults" ng-blur="blur($event)">
+<div class="raised-higher column fill-height scroll-y-auto white" ng-show="isVisibleResults" >
   <div ng-repeat="item in postcodes track by $index"
     ng-class="{'grey': ($index % 2) == 0, 'white': ($index % 2) == 1 }" class="padding-heavy hover pointer grey"
    >
