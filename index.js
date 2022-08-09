@@ -153,7 +153,7 @@ define(function (require) {
         console.log("$scope", $scope);
         console.log("$element", $element);
 
-        let completeOdrBtn = angular.element($element).find('address-auto-complete-field="POSTALCODE"');
+        let completeOdrBtn = angular.element($element).querySelectorAll('[address-auto-complete-field="POSTALCODE"]');
         if (completeOdrBtn) {
             console.log("completeOdrBtn", completeOdrBtn)
         }
