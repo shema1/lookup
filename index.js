@@ -1,20 +1,40 @@
 "use strict";
 
+// let postCodeInputNewInput = `
+
+// <input lw-tst="input_postalCode" list="postcodes" type="text" autocomplete="off"  tabindex="8" ng-model="$ctrl.address.PostCode" ng-change="changePostSearch()" class="fill-width disabled-transparent ng-pristine ng-valid ng-not-empty ng-touched">
+
+// <!---->
+// <!---->
+
+// <datalist id="postcodes">
+
+// 	<option ng-repeat="item in postcodes" value="{{item}}">
+
+// </datalist>
+
+// `;
+
+{/* <button ng-if="!isBillingAddres" lw-tst="lookUp_postalCode" type="button" ng-click="lookUp($event,'POSTALCODE', address.PostCode);" class="btn"><i class="fa fa-search"></i></button> */}
+
+
 let postCodeInputNewInput = `
 
-<input lw-tst="input_postalCode" list="postcodes" type="text" autocomplete="off"  tabindex="8" ng-model="$ctrl.address.PostCode" ng-change="changePostSearch()" class="fill-width disabled-transparent ng-pristine ng-valid ng-not-empty ng-touched">
+<input lw-tst="input_postalCode" list="postcodes" type="text" autocomplete="off" tabindex="8"
+  ng-model="$ctrl.address.PostCode" ng-change="changePostSearch()"
+  class="fill-width disabled-transparent ng-pristine ng-valid ng-not-empty ng-touched">
 
-<!----><button ng-if="!isBillingAddres" lw-tst="lookUp_postalCode" type="button" ng-click="lookUp($event,'POSTALCODE', address.PostCode);" class="btn"><i class="fa fa-search"></i></button><!---->
+<div class="raised-higher column fill-height scroll-y-auto white" ng-show="isVisibleResults">
+  <div ng-repeat="item in postcodes track by $index"
+    ng-class="{'grey': ($index % 2) == 0, 'white': ($index % 2) == 1 }" class="padding-heavy hover pointer grey"
+   >
+    <div>
+      {{item}}
+    </div>
+  </div>
+</div>
 
-<datalist id="postcodes">
-
-	<option ng-repeat="item in postcodes" value="{{item}}">
-
-</datalist>
-
-`;
-
-
+`
 
 const lookupControlNewInput = `
 
@@ -78,6 +98,8 @@ define(function (require) {
                 scope.lookupAddresses = [];
 
                 scope.selectedPostcode = undefined;
+
+                scope.isVisibleResults = false
             });
 
         });
@@ -158,6 +180,12 @@ define(function (require) {
 
                     findAddresses(postalCode);
 
+                    $timeout(function () {
+                        scope.$apply(function () {
+                            scope.isVisibleResults = true;
+                        });
+                    });
+
                 }
 
                 else {
@@ -167,6 +195,7 @@ define(function (require) {
                         scope.$apply(function () {
 
                             scope.postcodes = [];
+                            scope.isVisibleResults = false;
 
                         });
 
@@ -193,6 +222,8 @@ define(function (require) {
                                 scope.postcodes = data || [];
 
                                 scope.selectedPostcode = undefined;
+
+                                scope.isVisibleResults = data?.length ? true : false;
 
                             });
 
