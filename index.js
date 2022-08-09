@@ -76,7 +76,7 @@ define(function (require) {
 
         const config = { childList: true, subtree: true };
 
-      
+
 
         function searchTree(element, matchingTitle) {
             if (element.innerText == matchingTitle) {
@@ -129,14 +129,14 @@ define(function (require) {
 
                         searchTreeByAttribute(node)
 
-                        if(postCodeInputNew){
+                        if (postCodeInputNew) {
                             console.log("postCodeInputNew1", postCodeInputNew)
                         }
 
-        //                   let completeOdrBtn = angular.element(document.querySelectorAll('[address-auto-complete-field="POSTALCODE"]'));
-        // if (completeOdrBtn) {
-        //     console.log("completeOdrBtn nnnn", completeOdrBtn)
-        // }
+                        //                   let completeOdrBtn = angular.element(document.querySelectorAll('[address-auto-complete-field="POSTALCODE"]'));
+                        // if (completeOdrBtn) {
+                        //     console.log("completeOdrBtn nnnn", completeOdrBtn)
+                        // }
                         // if (postCodeInputNew) {
                         //     const input = angular.element(postCodeInputNew);
                         //     input.replaceWith(postCodeInputV2);
@@ -172,9 +172,9 @@ define(function (require) {
         const viewModule = angular.module("openOrdersViewService");
 
         const items = [{
-            key: "shippingAddressPH",
-            labelClass: "hidden",
-            inputClass: "hidden",
+            key: "address-auto-complete",
+            labelClass: "fill-width",
+            inputClass: "fill-width",
             label: "",
             onBlurMethod: "valueChanged",
             text: ""
@@ -188,11 +188,14 @@ define(function (require) {
 
         this.getItems = function () { return items; }
 
-        this.valueChanged = async function (itemKey, val) { }
-
-        if(postCodeInputNew){
-            console.log("postCodeInputNew2", postCodeInputNew)
+        this.valueChanged = async function (itemKey, val) {
+            console.log("valueChanged itemKey", itemKey);
+            console.log("valueChanged val", val)
         }
+
+        // if(postCodeInputNew){
+        //     console.log("postCodeInputNew2", postCodeInputNew)
+        // }
 
         // const changePostSearch = function (value, scope) {
         //     console.log("changePostSearch wooork", value);
@@ -231,7 +234,7 @@ define(function (require) {
         viewModule.directive('div', function () {
             return {
                 link: function (scope, elem, attrs, watch) {
-                    if(postCodeInputNew){
+                    if (postCodeInputNew) {
                         console.log("postCodeInputNew3", postCodeInputNew)
                     }
 
