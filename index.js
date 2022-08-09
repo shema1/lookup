@@ -180,7 +180,7 @@ define(function (require) {
     });
 
 
-    var LookupPlaceholder = function ($scope, $element, controlService, openOrdersService, $http, $timeout, $compile, $ctrl) {
+    var LookupPlaceholder = function ($scope, $element, controlService, openOrdersService, $http, $timeout, $compile) {
         const viewModule = angular.module("openOrdersViewService");
         const scope = $scope.$parent.$parent
         // console.log("$scope", $scope)
