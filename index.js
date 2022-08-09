@@ -149,10 +149,9 @@ define(function (require) {
     });
 
 
-    var LookupPlaceholder = function (localScope, $q, $scope, $element, controlService, openOrdersService, $http, $timeout, $compile) {
+    var LookupPlaceholder = function (q, $scope, $element, controlService, openOrdersService, $http, $timeout, $compile) {
         console.log("$scope", $scope);
         console.log("$element", $element);
-        console.log("localScope", localScope)
 
         let completeOdrBtn = angular.element($element).find('address-auto-complete-field="POSTALCODE"');
         if (completeOdrBtn) {
