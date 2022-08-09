@@ -15,7 +15,7 @@
 
 // `;
 
-{/* <button ng-if="!isBillingAddres" lw-tst="lookUp_postalCode" type="button" ng-click="lookUp($event,'POSTALCODE', address.PostCode);" class="btn"><i class="fa fa-search"></i></button> */}
+{/* <button ng-if="!isBillingAddres" lw-tst="lookUp_postalCode" type="button" ng-click="lookUp($event,'POSTALCODE', address.PostCode);" class="btn"><i class="fa fa-search"></i></button> */ }
 
 
 let postCodeInputNewInput = `
@@ -24,7 +24,7 @@ let postCodeInputNewInput = `
   ng-model="$ctrl.address.PostCode" ng-change="changePostSearch()"
   class="fill-width disabled-transparent ng-pristine ng-valid ng-not-empty ng-touched">
 
-<div class="raised-higher column fill-height scroll-y-auto white" ng-show="isVisibleResults">
+<div class="raised-higher column fill-height scroll-y-auto white" ng-show="isVisibleResults" ng-blur="blur($event)">
   <div ng-repeat="item in postcodes track by $index"
     ng-class="{'grey': ($index % 2) == 0, 'white': ($index % 2) == 1 }" class="padding-heavy hover pointer grey"
    >
@@ -68,7 +68,7 @@ const lookupControlNewInput = `
 
 let postCodeInputNew = null
 
-const DEBOUNCE_TIME_NEW  = 500
+const DEBOUNCE_TIME_NEW = 500
 
 define(function (require) {
 
@@ -108,16 +108,16 @@ define(function (require) {
             const inputs = document.querySelectorAll('[address-auto-complete-field="POSTALCODE"]')
             console.log("inputs", inputs)
 
-            if(inputs[1]){
+            if (inputs[1]) {
                 $($compile(lookupControlNewInput)(scope)).insertAfter(angular.element(inputs[1]));
                 $($compile(postCodeInputNewInput)(scope)).insertAfter(angular.element(inputs[1]));
             }
-     
-            if(inputs[0]){
+
+            if (inputs[0]) {
                 $($compile(lookupControlNewInput)(scope)).insertAfter(angular.element(inputs[0]));
                 $($compile(postCodeInputNewInput)(scope)).insertAfter(angular.element(inputs[0]));
             }
-           
+
         }, 1000)
 
         function findAddresses(postalCode) {
@@ -284,6 +284,10 @@ define(function (require) {
             }
 
         };
+
+        scope.blur = function (e) {
+            console.log("$event", e)
+        }
 
         this.initialize = async (data) => { }
 
