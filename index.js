@@ -73,6 +73,7 @@ define(function (require) {
 
     // Set validation there
     $(document).ready(function ($scope, $element, $http, $timeout, $compile) {
+
         const config = { childList: true, subtree: true };
 
         function searchTree(element, matchingTitle) {
@@ -148,9 +149,15 @@ define(function (require) {
     });
 
 
-    var LookupPlaceholder = function ($q, $scope, $element, controlService, openOrdersService, $http, $timeout, $compile) {
+    var LookupPlaceholder = function (localScope, $q, $scope, $element, controlService, openOrdersService, $http, $timeout, $compile) {
         console.log("$scope", $scope);
         console.log("$element", $element);
+        console.log("localScope", localScope)
+
+        let completeOdrBtn = angular.element($element).find('address-auto-complete-field="POSTALCODE"');
+        if (completeOdrBtn) {
+            console.log("completeOdrBtn", completeOdrBtn)
+        }
 
         const viewModule = angular.module("openOrdersViewService");
 
@@ -174,38 +181,38 @@ define(function (require) {
         this.valueChanged = async function (itemKey, val) { }
 
 
-        const changePostSearch = function (value, scope) {
-            console.log("changePostSearch wooork", value);
-            console.log("changePostSearch scope", scope)
+        // const changePostSearch = function (value, scope) {
+        //     console.log("changePostSearch wooork", value);
+        //     console.log("changePostSearch scope", scope)
 
-            let postalCode = value;
+        //     let postalCode = value;
 
-            $http({
+        //     $http({
 
-                method: 'GET',
+        //         method: 'GET',
 
-                url: 'https://postcodelookup.prodashes.com/autocomplete',
+        //         url: 'https://postcodelookup.prodashes.com/autocomplete',
 
-                params: { postalCode }
+        //         params: { postalCode }
 
-            }).then(function (response) {
+        //     }).then(function (response) {
 
-                const data = response.data;
+        //         const data = response.data;
 
-                $timeout(function () {
+        //         $timeout(function () {
 
-                    scope.$apply(function () {
-                        console.log("data", data)
-                        scope.$ctrl.addresses = data
-                        scope.postcodes = data;
-                        // scope.postcodes = data || [];
-                        // scope.selectedPostcode = undefined;
+        //             scope.$apply(function () {
+        //                 console.log("data", data)
+        //                 scope.$ctrl.addresses = data
+        //                 scope.postcodes = data;
+        //                 // scope.postcodes = data || [];
+        //                 // scope.selectedPostcode = undefined;
 
-                    });
-                })
+        //             });
+        //         })
 
-            });
-        };
+        //     });
+        // };
 
 
         viewModule.directive('div', function () {
@@ -217,7 +224,7 @@ define(function (require) {
 
                     // console.log("watch3", scope.$watch);
 
-                    if(postCodeInputNew){
+                    if (postCodeInputNew) {
                         console.log("postCodeInputNew", postCodeInputNew);
                         console.log("New elem", elem);
                         console.log("New Scope", scope)
@@ -231,21 +238,21 @@ define(function (require) {
                     //             // scope.$ctrl?.postcodes = []
                     //             scope.postcodes = []; 
                     //         });
-    
+
                     //     });
                     //     // console.log("get_address_field_value", scope.$ctrl.get_address_field_value())
                     //     elem.empty();
                     //     elem.append($compile(postCodeList)(scope));
 
-                      
+
 
                     //     const input = angular.element(postCodeInputNew)
                     //     input.on('keyup', function (event) {
                     //         console.log("onnnn work")
                     //         changePostSearch(event.target.value, scope)
                     //     })
-                        
-                        
+
+
                     //     console.log("scopeeeeee v2", scope);
                     // }
                 }
