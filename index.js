@@ -35,7 +35,7 @@ let postCodeList = `
 
 let postCodeInputNewInput = `
 
-<input lw-tst="input_postalCode" list="postcodes" type="text" autocomplete="off"  tabindex="8" ng-model="test" ng-change="changePostSearch()">
+<input lw-tst="input_postalCode" list="postcodes" type="text" autocomplete="off"  tabindex="8" ng-model="$ctrl.test2" ng-change="changePostSearch()">
 
 <!----><button ng-if="!isBillingAddres" lw-tst="lookUp_postalCode" type="button" ng-click="lookUp($event,'POSTALCODE', address.PostCode);" class="btn"><i class="fa fa-search"></i></button><!---->
 
@@ -212,6 +212,8 @@ define(function (require) {
                 scope.selectedPostcode = undefined;
 
                 scope.test = 'aaaaa2222'
+
+                scope.$ctrl.test2 = "gggg"
 
             });
 
