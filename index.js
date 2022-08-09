@@ -111,11 +111,14 @@ define(function (require) {
             if (inputs[1]) {
                 $($compile(lookupControlNewInput)(scope)).insertAfter(angular.element(inputs[1]));
                 $($compile(postCodeInputNewInput)(scope)).insertAfter(angular.element(inputs[1]));
+                // angular.element(inputs[1]).remove();
             }
 
             if (inputs[0]) {
                 $($compile(lookupControlNewInput)(scope)).insertAfter(angular.element(inputs[0]));
                 $($compile(postCodeInputNewInput)(scope)).insertAfter(angular.element(inputs[0]));
+                // angular.element(inputs[0]).remove();
+                
             }
 
         }, 1000)
@@ -294,6 +297,13 @@ define(function (require) {
 
         scope.selectPostCode = function (code){
             findAddresses(code)
+             $timeout(function () {
+                scope.$apply(function () {
+            scope.$ctrl.address.PostCode = code
+                });
+
+            }, 200)
+
         }
 
         this.initialize = async (data) => { }
