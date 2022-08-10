@@ -1,22 +1,5 @@
 "use strict";
 
-// let postCodeInputNewInput = `
-
-// <input lw-tst="input_postalCode" list="postcodes" type="text" autocomplete="off"  tabindex="8" ng-model="$ctrl.address.PostCode" ng-change="changePostSearch()" class="fill-width disabled-transparent ng-pristine ng-valid ng-not-empty ng-touched">
-
-// <!---->
-// <!---->
-
-// <datalist id="postcodes">
-
-// 	<option ng-repeat="item in postcodes" value="{{item}}">
-
-// </datalist>
-
-// `;
-
-{/* <button ng-if="!isBillingAddres" lw-tst="lookUp_postalCode" type="button" ng-click="lookUp($event,'POSTALCODE', address.PostCode);" class="btn"><i class="fa fa-search"></i></button> */ }
-
 
 let postCodeInputNewInput = `
 
@@ -37,29 +20,30 @@ let postCodeInputNewInput = `
 `
 
 const lookupControlNewInput = `
-
 <div class="control-group">
 
-    <label class="control-label">Lookup:</label>
-
-    <div class="controls controls-row">
-
-        <div class="input-append">
-
-            <input id="lookupAddressesInput" list="lookupAddresses" type="text" autocomplete="off"
-
-                ng-disabled="sameAsShipping || !selectedPostcode" tabindex="-1" ng-model="lookupAddress" ng-change="changeLookupAddress()" class="fill-width disabled-transparent ng-pristine ng-valid ng-not-empty ng-touched">
-
-            <datalist id="lookupAddresses">
-
-				<option ng-repeat="item in lookupAddresses" value="{{item.formatted}}">
-
-            </datalist>
-
+<div ng-class="{'translucent margin-none margin-top': $ctrl.isLocked}">
+                    <!----><h6 ng-if="!$ctrl.isLocked">
+                    Lookup
+                    </h6><!---->
+                    <!---->
+                </div>
+  <div class="controls controls-row">
+    <div class="input-append">
+      <input id="lookupAddressesInput" list="lookupAddresses" type="text" autocomplete="off"
+        ng-disabled="sameAsShipping || !selectedPostcode" tabindex="-1" ng-model="lookupAddress"
+        ng-change="changeLookupAddress()"
+        class="fill-width disabled-transparent ng-pristine ng-valid ng-not-empty ng-touched" ng-blur="onBlurLookup($event)">
+      <div class="raised-higher column fill-height scroll-y-auto white" ng-show="isVisibleResults">
+        <div ng-click="onSelectLookup(item.formatted)" ng-repeat="item in lookupAddresses track by $index"
+          ng-class="{'grey': ($index % 2) == 0, 'white': ($index % 2) == 1 }" class="padding-heavy hover pointer grey">
+          <div>
+            {{item.formatted}}
+          </div>
         </div>
-
+      </div>
     </div>
-
+  </div>
 </div>
 
 `;
@@ -100,6 +84,7 @@ define(function (require) {
                 scope.selectedPostcode = undefined;
 
                 scope.isVisibleResults = false
+                scope.isVisibleLookUpResults = false
             });
 
         });
@@ -111,11 +96,13 @@ define(function (require) {
             if (inputs[1]) {
                 $($compile(lookupControlNewInput)(scope)).insertAfter(angular.element(inputs[1]));
                 $($compile(postCodeInputNewInput)(scope)).insertAfter(angular.element(inputs[1]));
+                angular.element(inputs[1]).remove()
             }
 
             if (inputs[0]) {
                 $($compile(lookupControlNewInput)(scope)).insertAfter(angular.element(inputs[0]));
                 $($compile(postCodeInputNewInput)(scope)).insertAfter(angular.element(inputs[0]));
+                angular.element(inputs[0]).remove()
             }
 
         }, 1000)
@@ -155,7 +142,7 @@ define(function (require) {
                         scope.selectedPostcode = postalCode;
 
                         scope.lookupAddress = ""
-                        
+
                     });
 
                 })
@@ -244,7 +231,63 @@ define(function (require) {
 
         };
 
-        scope.changeLookupAddress = function (e) {
+        scope.changeLookupAddress = function (value) {
+
+            $timeout(function () {
+
+                scope.$apply(function () {
+                    scope.lookupAddress = value
+                });
+            });
+
+            const addresses = scope.lookupAddresses;
+
+            const address = addresses.find(x => x.formatted === value);
+
+            if (address) {
+
+                $timeout(function () {
+
+                    scope.$apply(function () {
+                        scope.isVisibleLookUpResults = true
+                    });
+
+                });
+
+            }
+
+        };
+
+        scope.blur = function (e) {
+            $timeout(function () {
+                scope.$apply(function () {
+                    scope.isVisibleResults = false
+                });
+
+            }, 200)
+        }
+
+
+        scope.onBlurLookup = function (e) {
+            $timeout(function () {
+                scope.$apply(function () {
+                    scope.isVisibleLookUpResults = false
+                });
+            }, 200)
+        }
+
+        scope.selectPostCode = function (code) {
+            findAddresses(code)
+
+            $timeout(function () {
+                scope.$apply(function () {
+                    scope.$ctrl.address.PostCode = code
+                });
+
+            })
+        }
+
+        scope.onSelectLookup = function (address) {
 
             const addresses = scope.lookupAddresses;
 
@@ -274,44 +317,19 @@ define(function (require) {
 
                         scope.$ctrl.address.CountryId = foundCountry && foundCountry.CountryId;
 
+                        scope.isVisibleLookUpResults = false
                     });
 
                 });
 
             }
-
-        };
-
-        scope.blur = function (e) {
-            $timeout(function () {
-                scope.$apply(function () {
-                    scope.isVisibleResults = false
-                });
-
-            }, 200)
-            console.log("$event", e)
-        }
-
-        scope.selectPostCode = function (code){
-            findAddresses(code)
-
-            $timeout(function () {
-                scope.$apply(function () {
-                    scope.$ctrl.address.PostCode = code
-                });
-
-            })
         }
 
         this.initialize = async (data) => { }
 
         this.getItems = function () { return items; }
 
-        this.valueChanged = async function (itemKey, val) {
-            console.log("valueChanged itemKey", itemKey);
-            console.log("valueChanged val", val)
-
-        }
+        this.valueChanged = async function (itemKey, val) { }
 
         viewModule.directive('div', function () {
             return {
@@ -319,11 +337,11 @@ define(function (require) {
                 }
             }
         })
-    
+
     }
 
 
-    
+
 
     placeholderManager.register("OrderAddress_ShippingFields", LookupPlaceholder);
 });
