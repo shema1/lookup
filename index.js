@@ -7,7 +7,8 @@ let postCodeInputNewInput = `
   ng-model="$ctrl.address.PostCode" ng-change="changePostSearch()"
   class="fill-width disabled-transparent ng-pristine ng-valid ng-not-empty ng-touched" ng-blur="blur($event)">
 
-<div class="raised-higher column fill-height scroll-y-auto white" ng-show="isVisibleResults" >
+<div style="position: relative;height: 160px;" ng-show="isVisibleResults" >
+<div class="raised-higher column fill-height scroll-y-auto white" >
   <div ng-click="selectPostCode(item)" ng-repeat="item in postcodes track by $index"
     ng-class="{'grey': ($index % 2) == 0, 'white': ($index % 2) == 1 }" class="padding-heavy hover pointer grey"
    >
@@ -16,7 +17,7 @@ let postCodeInputNewInput = `
     </div>
   </div>
 </div>
-
+</div>
 `
 
 const lookupControlNewInput = `
@@ -30,11 +31,11 @@ const lookupControlNewInput = `
 <!---->
 </div>
 <input id="lookupAddressesInput" list="lookupAddresses" type="text" autocomplete="off"
-ng-disabled="sameAsShipping || !selectedPostcode" tabindex="-1" ng-model="lookupAddress"
+ng-disabled="!selectedPostcode" tabindex="-1" ng-model="lookupAddress"
 ng-change="changeLookupAddress()"
 class="fill-width disabled-transparent ng-pristine ng-valid ng-not-empty ng-touched" ng-blur="onBlurLookup($event)">
-<div style="position: relative;">
-<div class="raised-higher column fill-height scroll-y-auto white" ng-show="isVisibleLookUpResults">
+<div style="position: relative;height: 160px;" ng-show="isVisibleLookUpResults">
+<div class="raised-higher column fill-height scroll-y-auto white">
 <div ng-click="onSelectLookup(lookup.formatted)" ng-repeat="lookup in lookupAddresses track by $index"
   ng-class="{'grey': ($index % 2) == 0, 'white': ($index % 2) == 1 }" class="padding-heavy hover pointer grey">
   <div>
