@@ -85,6 +85,8 @@ define(function (require) {
 
                 scope.isVisibleResults = false
                 scope.isVisibleLookUpResults = false
+
+                scope.lookupAddress = "";
             });
 
         });
