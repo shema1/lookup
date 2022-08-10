@@ -141,7 +141,7 @@ define(function (require) {
 
                         scope.selectedPostcode = postalCode;
 
-                        scope.lookupAddress = ""
+                        // scope.lookupAddress = ""
 
                     });
 
