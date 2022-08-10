@@ -20,30 +20,26 @@ let postCodeInputNewInput = `
 `
 
 const lookupControlNewInput = `
-<div class="control-group">
 
 <div ng-class="{'translucent margin-none margin-top': $ctrl.isLocked}">
-                    <!----><h6 ng-if="!$ctrl.isLocked">
-                    Lookup
-                    </h6><!---->
-                    <!---->
-                </div>
-  <div class="controls controls-row">
-    <div class="input-append">
-      <input id="lookupAddressesInput" list="lookupAddresses" type="text" autocomplete="off"
-        ng-disabled="sameAsShipping || !selectedPostcode" tabindex="-1" ng-model="lookupAddress"
-        ng-change="changeLookupAddress()"
-        class="fill-width disabled-transparent ng-pristine ng-valid ng-not-empty ng-touched" ng-blur="onBlurLookup($event)">
-      <div class="raised-higher column fill-height scroll-y-auto white" ng-show="isVisibleLookUpResults">
-        <div ng-click="onSelectLookup(lookup.formatted)" ng-repeat="lookup in lookupAddresses track by $index"
-          ng-class="{'grey': ($index % 2) == 0, 'white': ($index % 2) == 1 }" class="padding-heavy hover pointer grey">
-          <div>
-            {{lookup.formatted}}
-          </div>
-        </div>
-      </div>
-    </div>
+<!---->
+<h6 ng-if="!$ctrl.isLocked">
+  Lookup
+</h6>
+<!---->
+<!---->
+</div>
+<input id="lookupAddressesInput" list="lookupAddresses" type="text" autocomplete="off"
+ng-disabled="sameAsShipping || !selectedPostcode" tabindex="-1" ng-model="lookupAddress"
+ng-change="changeLookupAddress()"
+class="fill-width disabled-transparent ng-pristine ng-valid ng-not-empty ng-touched" ng-blur="onBlurLookup($event)">
+<div class="raised-higher column fill-height scroll-y-auto white" ng-show="isVisibleLookUpResults">
+<div ng-click="onSelectLookup(lookup.formatted)" ng-repeat="lookup in lookupAddresses track by $index"
+  ng-class="{'grey': ($index % 2) == 0, 'white': ($index % 2) == 1 }" class="padding-heavy hover pointer grey">
+  <div>
+    {{lookup.formatted}}
   </div>
+</div>
 </div>
 
 `;
