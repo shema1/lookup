@@ -287,7 +287,7 @@ define(function (require) {
             })
         }
 
-        scope.onSelectLookup = function (address) {
+        scope.onSelectLookup = function () {
 
             const addresses = scope.lookupAddresses;
 
