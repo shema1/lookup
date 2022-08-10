@@ -34,7 +34,7 @@ const lookupControlNewInput = `
         ng-disabled="sameAsShipping || !selectedPostcode" tabindex="-1" ng-model="lookupAddress"
         ng-change="changeLookupAddress()"
         class="fill-width disabled-transparent ng-pristine ng-valid ng-not-empty ng-touched" ng-blur="onBlurLookup($event)">
-      <div class="raised-higher column fill-height scroll-y-auto white" ng-show="isVisibleResults">
+      <div class="raised-higher column fill-height scroll-y-auto white" ng-show="isVisibleLookUpResults">
         <div ng-click="onSelectLookup(item.formatted)" ng-repeat="item in lookupAddresses track by $index"
           ng-class="{'grey': ($index % 2) == 0, 'white': ($index % 2) == 1 }" class="padding-heavy hover pointer grey">
           <div>
@@ -235,12 +235,7 @@ define(function (require) {
 
         scope.changeLookupAddress = function (value) {
 
-            $timeout(function () {
-
-                scope.$apply(function () {
-                    scope.lookupAddress = value
-                });
-            });
+            const value = scope.lookupAddress;
 
             const addresses = scope.lookupAddresses;
 
