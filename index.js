@@ -33,12 +33,14 @@ const lookupControlNewInput = `
 ng-disabled="sameAsShipping || !selectedPostcode" tabindex="-1" ng-model="lookupAddress"
 ng-change="changeLookupAddress()"
 class="fill-width disabled-transparent ng-pristine ng-valid ng-not-empty ng-touched" ng-blur="onBlurLookup($event)">
+<div style="position: relative;">
 <div class="raised-higher column fill-height scroll-y-auto white" ng-show="isVisibleLookUpResults">
 <div ng-click="onSelectLookup(lookup.formatted)" ng-repeat="lookup in lookupAddresses track by $index"
   ng-class="{'grey': ($index % 2) == 0, 'white': ($index % 2) == 1 }" class="padding-heavy hover pointer grey">
   <div>
     {{lookup.formatted}}
   </div>
+</div>
 </div>
 </div>
 
@@ -237,12 +239,6 @@ define(function (require) {
 
             const address = addresses.find(x => x.formatted.match(value));
 
-            // console.log("value", value)
-            // console.log("addresses", addresses)
-
-            // console.log("address", address)
-            
-
             if (address) {
 
                 $timeout(function () {
@@ -287,12 +283,15 @@ define(function (require) {
         }
 
         scope.onSelectLookup = function (value) {
+                console.log("value", value)
 
             const addresses = scope.lookupAddresses;
 
             // const value = scope.lookupAddress;
 
             const address = addresses.find(x => x.formatted === value);
+
+                console.log("address address", address)
 
             if (address) {
 
@@ -303,6 +302,8 @@ define(function (require) {
                 $timeout(function () {
 
                     scope.$apply(function () {
+
+                            console.log("tuuut", address)
 
                         scope.$ctrl.address.Address1 = address.address1;
 
