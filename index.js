@@ -237,10 +237,10 @@ define(function (require) {
 
             const address = addresses.find(x => x.formatted.match(value));
 
-            console.log("value", value)
-            console.log("addresses", addresses)
+            // console.log("value", value)
+            // console.log("addresses", addresses)
 
-            console.log("address", address)
+            // console.log("address", address)
             
 
             if (address) {
@@ -286,11 +286,11 @@ define(function (require) {
             })
         }
 
-        scope.onSelectLookup = function () {
+        scope.onSelectLookup = function (value) {
 
             const addresses = scope.lookupAddresses;
 
-            const value = scope.lookupAddress;
+            // const value = scope.lookupAddress;
 
             const address = addresses.find(x => x.formatted === value);
 
