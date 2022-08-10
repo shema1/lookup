@@ -312,14 +312,16 @@ define(function (require) {
             console.log("valueChanged val", val)
 
         }
+
+        viewModule.directive('div', function () {
+            return {
+                link: function (scope, elem, attrs, watch) {
+                }
+            }
+        })
+    
     }
 
-    viewModule.directive('div', function () {
-        return {
-            link: function (scope, elem, attrs, watch) {
-            }
-        }
-    })
 
     
 
