@@ -82,12 +82,7 @@ define(function (require) {
         let debounceTimer = null;
 
         const items = [{
-            key: "ttest",
-            labelClass: "fill-width",
-            inputClass: "fill-width",
-            label: "",
-            onBlurMethod: "valueChanged",
-            text: ""
+            
         }];
 
         $timeout(function () {
