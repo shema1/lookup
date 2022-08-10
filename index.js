@@ -92,7 +92,6 @@ define(function (require) {
 
         $timeout(function () {
             const inputs = document.querySelectorAll('[address-auto-complete-field="POSTALCODE"]')
-            console.log("inputs", inputs)
 
             if (inputs[1]) {
                 $($compile(lookupControlNewInput)(scope)).insertAfter(angular.element(inputs[1]));
@@ -284,15 +283,12 @@ define(function (require) {
         }
 
         scope.onSelectLookup = function (value) {
-                console.log("value", value)
 
             const addresses = scope.lookupAddresses;
 
             // const value = scope.lookupAddress;
 
             const address = addresses.find(x => x.formatted === value);
-
-                console.log("address address", address)
 
             if (address) {
 
@@ -303,8 +299,6 @@ define(function (require) {
                 $timeout(function () {
 
                     scope.$apply(function () {
-
-                            console.log("tuuut", address)
 
                         scope.$ctrl.address.Address1 = address.address1;
 
@@ -319,6 +313,8 @@ define(function (require) {
                         scope.$ctrl.address.CountryId = foundCountry && foundCountry.CountryId;
 
                         scope.isVisibleLookUpResults = false
+
+                        scope.lookupAddress = value;
                     });
 
                 });
