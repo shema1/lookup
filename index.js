@@ -82,7 +82,12 @@ define(function (require) {
         let debounceTimer = null;
 
         const items = [{
-            
+            key: "shippingAddressPH",
+            labelClass: "hidden",
+            inputClass: "hidden",
+            label: "",
+            onBlurMethod: "valueChanged",
+            text: ""
         }];
 
         $timeout(function () {
