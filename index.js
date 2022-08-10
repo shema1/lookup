@@ -35,10 +35,10 @@ const lookupControlNewInput = `
         ng-change="changeLookupAddress()"
         class="fill-width disabled-transparent ng-pristine ng-valid ng-not-empty ng-touched" ng-blur="onBlurLookup($event)">
       <div class="raised-higher column fill-height scroll-y-auto white" ng-show="isVisibleLookUpResults">
-        <div ng-click="onSelectLookup(item.formatted)" ng-repeat="item in lookupAddresses track by $index"
+        <div ng-click="onSelectLookup(lookup.formatted)" ng-repeat="lookup in lookupAddresses track by $index"
           ng-class="{'grey': ($index % 2) == 0, 'white': ($index % 2) == 1 }" class="padding-heavy hover pointer grey">
           <div>
-            {{item.formatted}}
+            {{lookup.formatted}}
           </div>
         </div>
       </div>
@@ -239,7 +239,13 @@ define(function (require) {
 
             const addresses = scope.lookupAddresses;
 
-            const address = addresses.find(x => x.formatted === value);
+            const address = addresses.find(x => x.formatted.match(value));
+
+            console.log("value", value)
+            console.log("addresses", addresses)
+
+            console.log("address", address)
+            
 
             if (address) {
 
