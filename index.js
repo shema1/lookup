@@ -233,7 +233,7 @@ define(function (require) {
 
         };
 
-        scope.changeLookupAddress = function (value) {
+        scope.changeLookupAddress = function () {
 
             const value = scope.lookupAddress;
 
