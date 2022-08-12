@@ -3,7 +3,7 @@
 
 let postCodeInputNewInput = `
 
-<input lw-tst="input_postalCode" list="postcodes" type="text" autocomplete="off" tabindex="8"
+<input id="postCodeInput" lw-tst="input_postalCode" list="postcodes" type="text" autocomplete="off" tabindex="8"
   ng-model="$ctrl.address.PostCode" ng-change="changePostSearch()"
   class="fill-width disabled-transparent ng-pristine ng-valid ng-not-empty ng-touched" ng-blur="blur($event)">
 
@@ -92,6 +92,19 @@ define(function (require) {
 
         $timeout(function () {
             const inputs = document.querySelectorAll('[address-auto-complete-field="POSTALCODE"]')
+
+            const postCodeInput = document.getElementById('postCodeInput')
+            
+            if(postCodeInput){
+                console.log("postCodeInput", postCodeInput);
+                console.log("postCodeInput value", postCodeInput?.value);
+
+                const a1 = angular.element(postCodeInput);
+                console.log("a1 element", a1);
+                const a2 = angular.element(postCodeInput).scope();
+                console.log("a2 scope", a2);
+
+            }
 
             if (inputs[1]) {
                 $($compile(lookupControlNewInput)(scope)).insertAfter(angular.element(inputs[1]));
