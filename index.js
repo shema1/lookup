@@ -93,19 +93,6 @@ define(function (require) {
         $timeout(function () {
             const inputs = document.querySelectorAll('[address-auto-complete-field="POSTALCODE"]')
 
-            const postCodeInput = document.getElementById('postCodeInput')
-            
-            if(postCodeInput){
-                console.log("postCodeInput", postCodeInput);
-                console.log("postCodeInput value", postCodeInput?.value);
-
-                const a1 = angular.element(postCodeInput);
-                console.log("a1 element", a1);
-                const a2 = angular.element(postCodeInput).scope();
-                console.log("a2 scope", a2);
-
-            }
-
             if (inputs[1]) {
                 $($compile(lookupControlNewInput)(scope)).insertAfter(angular.element(inputs[1]));
                 $($compile(postCodeInputNewInput)(scope)).insertAfter(angular.element(inputs[1]));
@@ -164,7 +151,7 @@ define(function (require) {
 
         };
 
-        scope.changePostSearch = function () {
+        scope.changePostSearch = function (hideResult) {
 
             debounceTimer && $timeout.cancel(debounceTimer);
 
@@ -220,7 +207,7 @@ define(function (require) {
 
                                 scope.selectedPostcode = undefined;
 
-                                scope.isVisibleResults = data?.length ? true : false;
+                                scope.isVisibleResults = (!data?.length || hideResult) ? false : true;
 
                             });
 
@@ -347,6 +334,17 @@ define(function (require) {
                 }
             }
         })
+
+        $timeout(function() {
+            console.log("scope", scope);
+  
+                  if(scope.$ctrl?.address?.PostCode){
+                      console.log("woork", scope.$ctrl?.address?.PostCode);
+                      scope.changePostSearch(scope.$ctrl?.address?.PostCode);                        
+                      
+                  }
+                  
+          }, 200)
 
     }
 
