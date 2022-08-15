@@ -346,31 +346,31 @@ define(function (require) {
     }
 
 
-    var LookupPlaceholderBtn = function ($scope, $element, controlService, openOrdersService, $http, $timeout, $compile) {
-        const viewModule = angular.module("openOrdersViewService");
+    // var LookupPlaceholderBtn = function ($scope, $element, controlService, openOrdersService, $http, $timeout, $compile) {
+    //     const viewModule = angular.module("openOrdersViewService");
 
-        $timeout(function () {
-            const inputs = document.querySelectorAll('[address-auto-complete-field="POSTALCODE"]')
+    //     $timeout(function () {
+    //         const inputs = document.querySelectorAll('[address-auto-complete-field="POSTALCODE"]')
 
-            if (inputs) {
-                console.log("inputs", inputs)
-            }
+    //         if (inputs) {
+    //             console.log("inputs", inputs)
+    //         }
 
-        }, 1000)
+    //     }, 1000)
 
-        viewModule.directive('div2', function () {
-            return {
-                link: function (scope, elem, attrs, watch) {
-                }
-            }
-        })
+    //     viewModule.directive('div2', function () {
+    //         return {
+    //             link: function (scope, elem, attrs, watch) {
+    //             }
+    //         }
+    //     })
 
-    }
-
-
+    // }
 
 
-    placeholderManager.register("OpenOrders_OrderControlButtons", LookupPlaceholderBtn);
+
+
+    // placeholderManager.register("OpenOrders_OrderControlButtons", LookupPlaceholderBtn);
 
     placeholderManager.register("OrderAddress_ShippingFields", LookupPlaceholder);
 
