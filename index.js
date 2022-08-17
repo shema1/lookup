@@ -346,32 +346,44 @@ define(function (require) {
     }
 
 
-    // var LookupPlaceholderBtn = function ($scope, $element, controlService, openOrdersService, $http, $timeout, $compile) {
-    //     const viewModule = angular.module("openOrdersViewService");
+    const LookupPlaceholderBtn = function ($scope, $element, controlService, openOrdersService, $http, $timeout, $compile) {
+        console.log("LookupPlaceholderBtn $element", $element)
+        const viewModule = angular.module("openOrdersViewService");
 
-    //     $timeout(function () {
-    //         const inputs = document.querySelectorAll('[address-auto-complete-field="POSTALCODE"]')
+        const items = [{
+            key: "shippingAddressPH",
+            labelClass: "hidden",
+            inputClass: "hidden",
+            label: "",
+            onBlurMethod: "valueChanged",
+            text: ""
+        }];
+        this.getItems = function () { return items; }
 
-    //         if (inputs) {
-    //             console.log("inputs", inputs)
-    //         }
+        $timeout(function () {
+            const inputs = document.querySelectorAll('[address-auto-complete-field="POSTALCODE"]')
 
-    //     }, 1000)
+            if (inputs) {
+                console.log("inputs", inputs)
+            }
 
-    //     viewModule.directive('div2', function () {
-    //         return {
-    //             link: function (scope, elem, attrs, watch) {
-    //             }
-    //         }
-    //     })
+        }, 1000)
 
-    // }
+        viewModule.directive('div2', function () {
+            return {
+                link: function (scope, elem, attrs, watch) {
+                    console.log("directive $element", $elem)
+
+                }
+            }
+        })
+
+    }
 
 
 
-
-    // placeholderManager.register("OpenOrders_OrderControlButtons", LookupPlaceholderBtn);
-
+    
     placeholderManager.register("OrderAddress_ShippingFields", LookupPlaceholder);
+    placeholderManager.register("OpenOrders_OrderControlButtons", LookupPlaceholderBtn);
 
 });
