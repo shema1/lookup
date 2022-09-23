@@ -33,8 +33,8 @@ const lookupControlNewInput = `
   </div>
   <input id="lookupAddressesInput" list="lookupAddresses" type="text" autocomplete="off"
     tabindex="-1" ng-model="lookupAddress" ng-change="changeLookupAddress()"
-    class="fill-width disabled-transparent ng-pristine ng-valid ng-not-empty ng-touched" ng-blur="onBlurLookup($event)">
-  <div style="position: relative;height: 160px;" ng-show="isVisibleLookUpResults">
+    class="fill-width disabled-transparent ng-pristine ng-valid ng-not-empty ng-touched" ng-focus="handleFocus()" ng-blur="onBlurLookup($event)">
+  <div style="position: relative;height: 160px;"  ng-show="isVisibleLookUpResults">
     <div class="raised-higher column fill-height scroll-y-auto white">
       <div ng-click="onSelectLookup(lookup.formatted)" ng-repeat="lookup in lookupAddresses track by $index"
         ng-class="{'grey': ($index % 2) == 0, 'white': ($index % 2) == 1 }" class="padding-heavy hover pointer grey">
@@ -83,6 +83,8 @@ define(function (require) {
         scope.isVisibleResults = false
         scope.isVisibleLookUpResults = false
 
+        scope.focus = handleFocus
+
         scope.lookupAddress = "";
       });
 
@@ -93,6 +95,14 @@ define(function (require) {
       setNewToggle_locked()
     }, 100)
 
+
+    scope.handleFocus = function() {
+      $timeout(function () {
+        scope.$apply(function () {
+          scope.isVisibleLookUpResults = true
+        });
+      }, 300)
+    }
 
     function setNewToggle_locked() {
       const viewOrderModuleElement = document.querySelectorAll('[ng-controller="ViewOrderModule"]')
