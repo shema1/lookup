@@ -12,6 +12,6 @@ var IframeView = function ($scope) {
 
   // var frameUlr = baseUrl + "pluggable/login";
 
-  pwpAppFrame.src = "https://www.google.com.ua/"
+  pwpAppFrame.src = "https://application.doodle-products.com/login"
  
 };
