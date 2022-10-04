@@ -4,13 +4,13 @@ var IframeView = function ($scope) {
 
   // const session = JSON.parse(window.localStorage.getItem('SPA_auth_session'));
   // $scope.userId = session.userId;
-  // var pwpAppFrame = document.getElementById("pwpAppFrame");
+  var pwpAppFrame = document.getElementById("pwpAppFrame");
 
   // // TODO: replace base URL in production!
   // var baseUrl = "https://pwp-test.herokuapp.com/";
 
   // var frameUlr = baseUrl + "pluggable/login";
 
-  // pwpAppFrame.src = frameUlr + "?userId=" + $scope.userId + "&purchaseNumber=" + $scope.purchaseNumber+ "&purchaseAmount=" + $scope.purchaseAmount;
+  pwpAppFrame.src = "https://www.google.com.ua/"
  
 };
