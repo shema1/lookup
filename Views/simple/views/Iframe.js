@@ -12,6 +12,6 @@ var IframeView = function ($scope) {
 
   // var frameUlr = baseUrl + "pluggable/login";
 
-  pwpAppFrame.src = "https://application.doodle-products.com/login"
+  pwpAppFrame.src = "http://localhost:2000/?token=6c324e9a-bf7d-adb4-900d-eb4420a1e02d"
  
 };
