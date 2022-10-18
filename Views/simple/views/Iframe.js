@@ -1,5 +1,5 @@
 var IframeView = function ($scope) {
-  console.log("scope iframe", scope)
+  console.log("scope iframe", $scope)
 
   const orderInfo = localStorage.getItem('move_cancel_selected_order_info');
 
@@ -17,6 +17,6 @@ var IframeView = function ($scope) {
 
   // var frameUlr = baseUrl + "pluggable/login";
 
-  pwpAppFrame.src = `http://localhost:2000/?token=6c324e9a-bf7d-adb4-900d-eb4420a1e02d?orderId=${orderInfo.OrderId}`
+  pwpAppFrame.src = `http://localhost:2000/?token=6c324e9a-bf7d-adb4-900d-eb4420a1e02d?orderId=${orderInfo.OrderId}?email=akornytskyi@brainence.com`
 
 };
