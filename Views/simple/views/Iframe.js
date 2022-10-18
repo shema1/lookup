@@ -1,7 +1,7 @@
 var IframeView = function ($scope) {
   console.log("scope iframe", $scope)
 
-  const orderInfo = localStorage.getItem('move_cancel_selected_order_info');
+  const orderInfo = JSON.parse(localStorage.getItem('move_cancel_selected_order_info'));
 
   console.log("test iframe orderInfo", orderInfo);
   // $scope.purchaseNumber = localStorage.getItem('pwp-purchase-number');
