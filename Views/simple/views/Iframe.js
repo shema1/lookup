@@ -17,6 +17,6 @@ var IframeView = function ($scope) {
 
   // var frameUlr = baseUrl + "pluggable/login";
 
-  pwpAppFrame.src = `http://localhost:2000/?token=6c324e9a-bf7d-adb4-900d-eb4420a1e02d?orderId=${orderInfo.OrderId}?email=akornytskyi@brainence.com`
+  pwpAppFrame.src = `http://localhost:2000/?token=6c324e9a-bf7d-adb4-900d-eb4420a1e02d&orderId=${orderInfo.OrderId}&email=akornytskyi@brainence.com`
 
 };
