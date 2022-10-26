@@ -1,4 +1,4 @@
-var IframeView = function ($scope) {
+var Iframe2View = function ($scope) {
   console.log("scope iframe", $scope)
 
   const orderInfo = JSON.parse(localStorage.getItem('move_cancel_selected_order_info'));
