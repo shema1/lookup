@@ -1,22 +1,24 @@
 var Iframe2View = function ($scope) {
-  console.log("scope iframe", $scope)
-
   const orderInfo = JSON.parse(localStorage.getItem('move_cancel_selected_order_info'));
+  const session = JSON.parse(window.localStorage.getItem("SPA_auth_session"));
+  const token = window.localStorage.getItem("access_token");
 
-  console.log("test iframe orderInfo", orderInfo);
-  // $scope.purchaseNumber = localStorage.getItem('pwp-purchase-number');
-  // $scope.purchaseAmount = localStorage.getItem('pwp-purchase-amount');
+  var xmlHttp = new XMLHttpRequest();
+  xmlHttp.open("GET", `${session.server}/api/extensions/getInstalledExtensions`, false);
+  xmlHttp.setRequestHeader('Authorization', `Bearer ${token}`);
+  xmlHttp.send(null);
+  let allApps = JSON.parse(xmlHttp.responseText);
+  let cancellationApp = allApps.find(app => app.Name.includes("CancellationButton"))
 
-  // const session = JSON.parse(window.localStorage.getItem('SPA_auth_session'));
-  // $scope.userId = session.userId;
-  var pwpAppFrame = document.getElementById("appFrame");
+  var xmlHttp2 = new XMLHttpRequest();
+  xmlHttp2.open("GET", `${session.server}/api/extensions/getTemporaryToken?applicationId=${cancellationApp.ApplicationInstallationId}`, false);
+  xmlHttp2.setRequestHeader('Authorization', `Bearer ${token}`);
+  xmlHttp2.send(null);
+  let AppToken = xmlHttp2.responseText.replaceAll('"', '');
+  var appFrame = document.getElementById("appFrame2");
 
-  console.log("pwpAppFrame", pwpAppFrame)
-  // // TODO: replace base URL in production!
-  // var baseUrl = "https://pwp-test.herokuapp.com/";
+  // appFrame.src = `https://Devcancellationbutton.autonative.com/?token=${AppToken}&orderId=${orderInfo.OrderId}&email=${session.userName}`
+  appFrame.src = `http://localhost:2000/?token=${AppToken}&orderId=${orderInfo.OrderId}&email=${session.userName}`
 
-  // var frameUlr = baseUrl + "pluggable/login";
-
-  pwpAppFrame.src = `http://localhost:2000/?token=6c324e9a-bf7d-adb4-900d-eb4420a1e02d&orderId=${orderInfo.OrderId}&email=akornytskyi@brainence.com`
 
 };
