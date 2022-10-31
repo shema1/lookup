@@ -19,7 +19,7 @@ var Iframe2View = function ($scope) {
 
   // appFrame.src = `https://Devcancellationbutton.autonative.com/?token=${AppToken}&orderId=${orderInfo.OrderId}&email=${session.userName}`
   // appFrame.src = `http://localhost:2000/?token=${AppToken}&orderId=${orderInfo.OrderId}&email=${session.userName}`
-  appFrame.src = `http://localhost:2000/?token='6c324e9a-bf7d-adb4-900d-eb4420a1e02d'&orderId=${orderInfo.OrderId}&email=${session.userName}`
+  appFrame.src = `http://localhost:2000/?token=6c324e9a-bf7d-adb4-900d-eb4420a1e02d&orderId=${orderInfo.OrderId}&email=akornytskyi@brainence.com`
 
   
 
