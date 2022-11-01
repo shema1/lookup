@@ -30,7 +30,7 @@ var Iframe2View = function ($scope) {
       appFrame.src = ''
     }
     if(data.successMessage){
-      appFrame.src = ''
+      appFrame.src = 'https://www.linnworks.net/success'
       localStorage.setItem('move_cancel_new_orders', JSON.stringify(data.successMessage))
     }
 });
