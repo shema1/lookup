@@ -30,7 +30,8 @@ var Iframe2View = function ($scope) {
       appFrame.src = ''
     }
     if(data.successMessage){
-      appFrame.src = 'https://www.linnworks.net/success'
+      appFrame.src = ''
+      localStorage.setItem(JSON.stringify(data.successMessage))
     }
 });
 };
