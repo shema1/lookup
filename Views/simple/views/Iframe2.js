@@ -26,8 +26,8 @@ var Iframe2View = function ($scope) {
     console.log("eeeeeee", e);
     const data = JSON.parse(e.data);
     console.log("eeeeeee data", data.cancel);
-    // if(data.cancel){
-    //   appFrame.src = ''
-    // }
+    if(data.cancel){
+      appFrame.src = ''
+    }
 });
 };
