@@ -31,7 +31,7 @@ var Iframe2View = function ($scope) {
     }
     if(data.successMessage){
       appFrame.src = ''
-      localStorage.setItem(JSON.stringify(data.successMessage))
+      localStorage.setItem('move_cancel_new_orders', JSON.stringify(data.successMessage))
     }
 });
 };
