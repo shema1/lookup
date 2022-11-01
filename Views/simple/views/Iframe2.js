@@ -25,7 +25,7 @@ var Iframe2View = function ($scope) {
   window.addEventListener('message', function (e) {
     console.log("eeeeeee", e);
     const data = JSON.parse(e.data);
-    console.log("eeeeeee data", data.cancel);
+    console.log("eeeeeee data", data);
     if(data.cancel){
       appFrame.src = ''
     }
