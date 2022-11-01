@@ -29,5 +29,8 @@ var Iframe2View = function ($scope) {
     if(data.cancel){
       appFrame.src = ''
     }
+    if(data.successMessage){
+      appFrame.src = 'https://www.linnworks.net/success'
+    }
 });
 };
