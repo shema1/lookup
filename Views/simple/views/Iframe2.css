@@ -11,6 +11,8 @@
   right: 0;
 }
 
-.pwp-custom-btn {
-  background-color: #ff4800;
-}
+.move-cancel-btn {
+  background-color: #4867df;
+  color: #fff;
+  border: 1px solid #4867df;
+} 

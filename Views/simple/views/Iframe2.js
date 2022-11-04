@@ -22,16 +22,18 @@ var Iframe2View = function ($scope) {
   // appFrame.src = `http://localhost:2000/?token=${AppToken}&orderId=${orderInfo.OrderId}&email=${session.userName}`
   appFrame.src = `http://localhost:2000/?token=6c324e9a-bf7d-adb4-900d-eb4420a1e02d&orderId=${orderInfo.OrderId}&email=akornytskyi@brainence.com`
 
-  window.addEventListener('message', function (e) {
-    console.log("eeeeeee", e);
-    const data = JSON.parse(e.data);
-    console.log("eeeeeee data", data);
-    if(data.cancel){
-      appFrame.src = ''
-    }
-    if(data.successMessage){
-      appFrame.src = 'https://www.linnworks.net/success'
-      localStorage.setItem('move_cancel_new_orders', JSON.stringify(data.successMessage))
-    }
-});
+//   window.addEventListener('message', function (e) {
+//     console.log("eeeeeee", e);
+//     const data = JSON.parse(e.data);
+//     console.log("eeeeeee data", data);
+//     if(data.cancel){
+//       appFrame.src = ''
+//     }
+//     if(data.successMessage){
+//       appFrame.src = 'https://www.linnworks.net/success'
+//       localStorage.setItem('move_cancel_new_orders', JSON.stringify(data.successMessage))
+//      window.parent.postMessage(JSON.stringify({ test: 'test' }), '*')
+
+//     }
+// });
 };
